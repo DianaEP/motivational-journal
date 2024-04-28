@@ -1,0 +1,42 @@
+
+
+
+.nav-links{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+        
+}
+
+.nav-links svg{
+    margin-right: 5px;
+}
+
+.navbar{
+    width: 240px;
+    position: absolute;
+    height: 95vh;
+    padding: 20px;
+    left: -100%;
+    transition : all 0.8s;
+    background-color: var(--color3font);
+    
+}
+
+.logo{
+    width:150px;
+    
+   
+}
+
+.navbar.active{
+    left: 0;
+}
+
+
+
+
+
+
+

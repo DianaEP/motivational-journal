@@ -1,0 +1,38 @@
+.elem-container::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../assets/minimalist.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+
+    
+}
+
+.home-p{
+    font-family: var(--font-family2);
+    text-align: center;
+}
+
+.welcome-msg{
+    font-size: 5rem;
+    color: var(--color1);
+    margin-top: 5rem;
+    
+    
+}
+
+
+
+.quote{
+    font-size: 1.2rem;
+    margin: 1rem 10rem 0 ;  
+    color: var(--color4);
+}
