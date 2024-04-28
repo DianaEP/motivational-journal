@@ -7,7 +7,7 @@ export default function Journal() {
       <>
         <div className="form-elem">
           <h2 className="journal-title">Journal</h2>
-          <form className="form" action="">
+          <form className="form-journal" action="">
             <div className="first-section">
               <fieldset className="fieldset">
                 <label className="label-text" htmlFor="date">Date </label>

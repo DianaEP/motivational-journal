@@ -1,5 +1,5 @@
 import "./Nav.css";
-import logo from '../../assets/logo2.svg';
+import logo from '../../assets/logo3.svg';
 import { Link } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { LuBookLock } from "react-icons/lu";
