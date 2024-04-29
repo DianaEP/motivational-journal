@@ -4,3 +4,45 @@
     background-size: cover; 
     
 }
+
+.planner-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    
+}
+
+.section-one{
+    display: flex;
+    column-gap: 2rem;
+
+}
+
+.section-two{
+    display: flex;
+    justify-content: center;
+}
+
+#reflections{
+    width: 400px;
+}
+
+
+
+.t-planner{
+    width: 250px;
+    background-color: var(--color6-planner);
+    box-shadow: none;
+}
+
+.button-planner{
+    background-color: var(--color6-planner);
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    font-family: var(--font-family2);
+    border: none;
+    /* box-shadow: 0 5px 10px var(--color4); */
+    border-radius: 5px;
+    cursor: pointer;
+    
+}

@@ -1,0 +1,61 @@
+.to-do-list{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 500px;
+    background-color: var(--color6-planner);
+    box-shadow: 0 5px 10px var(--color4);
+    border-radius: 5px;
+    margin-left: 2rem;
+}
+
+.list{
+    width: 10rem;
+    font-family: var(--font-family);
+    border: none;
+    background-color: var(--color5);
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1rem;
+    padding: 0.3rem;
+    outline: none;
+}
+
+.add-button, .delete-button{
+    padding: 0.3rem;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color5);
+    color: var(--color1);
+    cursor: pointer;
+    transition: 0.5 ease;
+    
+}
+
+.delete-button{
+    margin-left: 1rem;
+}
+
+.add-button:hover, .delete-button:hover{
+    background-color: var(--color1);
+    color: var(--color5);
+}
+
+
+.label-list-text{
+    font-family: var(--font-family2);
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.list-item{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+

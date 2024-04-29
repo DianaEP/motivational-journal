@@ -8,6 +8,7 @@
   --color4: #a67b5b;
   --color4font: #a67b5b64;
   --color5: #f3e3c9;
+  --color6-planner: #91bab277;
 }
 
 *{
@@ -37,6 +38,10 @@ a:hover {
   padding: 10px 15px;
   border-radius: 10px;
   transition-duration: 0.1s;
+}
+
+li{
+  list-style-type: none;
 }
 
 /*
