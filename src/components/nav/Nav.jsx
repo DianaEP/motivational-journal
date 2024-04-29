@@ -8,9 +8,10 @@ import { BsClipboardHeart } from "react-icons/bs";
 import { IoIosList } from "react-icons/io";
 import PropTypes from "prop-types";
 
-export default function Nav({showNav}) {
-  
 
+export default function Nav({showNav}) {
+    
+    
     return (
       <>
         
