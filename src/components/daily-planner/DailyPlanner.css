@@ -30,7 +30,8 @@
 
 
 .t-planner{
-    width: 250px;
+    width: 300px;
+    height: 200px;
     background-color: var(--color6-planner);
     box-shadow: none;
 }
