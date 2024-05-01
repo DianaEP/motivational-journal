@@ -1,0 +1,183 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--color1);
+}
+
+.auth-container{
+    /* position: relative; */
+    width: 900px;
+    height: 600px;
+    background: transparent;
+    border: 2px solid var(--color2);
+    display: flex;
+    
+    /* overflow: hidden; */
+    
+    
+}
+
+
+
+.auth-container .form-box{
+    /* position: absolute; */
+    /* top: 0; */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* left: 0; */
+    padding: 0 40px;
+    
+}
+
+  
+
+
+
+.form-box h2{
+    font-size: 2rem;
+    color: var(--color3font);
+    text-align: center;
+
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 25px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    color: var(--color3font);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    background: transparent;
+    padding-right: 25px;
+    border:none;
+    border-bottom: 2px solid var(--color3font);
+    outline: none;
+    transition: 0.5s;
+}
+
+.input-box input::placeholder{
+    color: var(--color3font);
+    text-transform: capitalize;
+}
+
+.input-box input:focus,
+.input-box input:valid{
+    border-bottom-color: var(--color1-login);
+}
+
+
+.input-box svg{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--color3font)
+}
+
+.input-box input:focus~svg,
+.input-box input:valid~svg{
+    color: var(--color1-login);
+}
+
+.form-box .btn{
+    position: relative;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    border: 2px solid var(--color1-login);
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--color3font);
+    font-weight: bold;
+    z-index: 1;
+    overflow: hidden;
+    
+}
+
+.form-box .btn::before{
+    content: '';
+    position:absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(var(--color1),var(--color1-login),var(--color1),var(--color1-login));
+    z-index: -1;
+    transition: 0.4s;
+}
+
+.form-box .btn:hover::before{
+    top: 0;
+}
+
+.form-box .link-text{
+    font-size: 14.5px;
+    color: var(--color3font);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-text a{
+    color: var(--color1-login);
+    font-size: 14.5px;
+}
+
+.link-text a:hover{
+    color: var(--color3font);
+    text-decoration: underline;
+    padding: 0px;
+    background-color: transparent;
+}
+
+.welcome-info{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    padding: 0 40px 0px 150px;
+    color: var(--color3font);
+    background-image: url('../../../assets/minimalist.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
+   
+
+
+}
+
+
+.welcome-info h2{
+    font-size: 2rem;
+    color: var(--color1);
+    margin: 4rem 1rem;
+    
+}
+
+
+.welcome-info span{
+    font-family: var(--font-family2);
+    font-size: 4rem;
+    color: var(--color4);
+}
+
+.welcome-info p{
+    margin: 4rem 1rem; 
+    color: var(--color1); 
+    font-family: var(--font-family2);
+}

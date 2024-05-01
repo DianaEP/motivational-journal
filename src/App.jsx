@@ -16,9 +16,12 @@ import HideNavbar from './components/hide-navbar/HideNavbar';
 
 
 function App() {
+  // show navbar or not on components
   const [showNav, setShowNav] = useState(false);
 
   const showNavbar = () => setShowNav(!showNav);
+
+
 
 
   return (
@@ -28,6 +31,10 @@ function App() {
         <Header showNavbar={showNavbar} showNav={showNav}/>
         <Nav showNav={showNav}/>
       </HideNavbar>
+        
+     
+
+       
       
       
       <Routes>

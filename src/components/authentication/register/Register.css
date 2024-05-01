@@ -1,0 +1,12 @@
+.auth-register{
+    box-shadow: 0 0 25px var(--color1-login);
+}
+
+.welcome-register{
+    transform: rotateY(180deg);
+}
+
+.welcome-register h2, .welcome-register p{
+    transform: rotateY(180deg);
+}
+

@@ -1,7 +1,12 @@
 import './Login.css';
+import '../auth-css/Authentication.css';
+
 import { Link } from 'react-router-dom';
-import { FaRegUser } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
+
+
+
 
 
 export default function Login() {
@@ -10,27 +15,33 @@ export default function Login() {
     return (
       <>
         <div className="wrapper">
-          <div className='login-container'>
-              
-              
-              <div className='form-box login'>
+          <div className='auth-container  auth-login'>
+               
+              <div className= 'form-box' >
                   <h2>Login</h2>
                   <form action="">
 
                     <div className="input-box">
-                      <input type="email" placeholder='Email' id='email' required />
-                      <FaRegUser />
+                      <input type="email" placeholder='email'  required />
+                      <MdOutlineEmail />
                     </div>
 
                     <div className="input-box">
-                      <input type="password" id='password' placeholder='Password' required />
+                      <input type="password"  placeholder='password' required />
                       <MdLockOutline />
                     </div>
+
+                    <div className="login-details">
+                      <p className='forgot-password'>Forgot password?</p>
+
+                    </div>
+
+                    
 
                     <button className='btn'>Login</button>
 
                     <div className="link-text">
-                      <p>Not have an account? <Link to="/register">Sign Up</Link></p>
+                      <p>Not have an account? <Link to="/register"  >Register</Link></p>
                     </div>
   
                   </form>
