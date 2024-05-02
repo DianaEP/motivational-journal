@@ -1,11 +1,13 @@
 .board-wrapper{
     padding: 2rem;
+    color: var(--color1);
 }
 
 .display-cards{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: 5rem 10rem;
 }
 .board-intro{
    display: flex;
@@ -61,11 +63,12 @@
 }
 
 
+
 .card-container{
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 20rem;
+    width: 15rem;
     height: fit-content;
     background-color: white;
     border-radius: 1rem;
@@ -74,8 +77,14 @@
     padding-bottom: 1rem;
     overflow: hidden;
     
-    /* transform: rotate(10deg);
-     */
+    
+}
+
+
+/* when press on button the rotation changes */
+.card-rotation{
+    transform: rotate(10deg);
+    
 }
 
 .card-container img{
@@ -103,6 +112,14 @@
     border: none;
 }
 
+
+/* when press on button the input font changes */
+.change-font-input{
+    font-family: var(--font-family2);
+}
+
+
+
 .card-name-input::placeholder{
     font-family: var(--font-family);
     text-transform: capitalize;
@@ -111,6 +128,7 @@
 
 .card-text-input{
     text-align: center;
+    height: 10rem;
     color: var(--color1);
     /* background-color: var(--color3font); */
     font-family: var(--font-family);
@@ -125,6 +143,12 @@
     
 }
 
+/* when press on button the textarea font changes */
+.change-font-textarea{
+    font-family: var(--font-family2);
+}
+
+
 .card-text-input::placeholder{
     font-family: var(--font-family);
     color: var(--color1);
@@ -133,7 +157,7 @@
 #pin-img{
     width: 60px;
     position: absolute;
-    left: 120px;
+    left: 80px;
     top: 10px;
 }
 
@@ -141,6 +165,8 @@
     height: 32px;
 }
 
+
+/* when press on = the menu with the styling buttons show up */
 .hidden-style{
     position: absolute;
     display:flex;

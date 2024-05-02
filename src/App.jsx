@@ -3,7 +3,7 @@ import "./App.css";
 import Nav from "./components/nav/Nav";
 import Journal from "./components/journal/Journal";
 import DailyPlanner from "./components/daily-planner/DailyPlanner";
-import MotivationalBoard from "./components/motivational-board/MotivationalBoard";
+import MotivationalCards from "./components/motivational-board/MotivationalCards";
 import ListBooks from "./components/list-books/ListBooks";
 import HomePage from "./components/home-page/HomePage";
 import Header from "./components/header/Header";
@@ -43,7 +43,7 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/journal" element={<Journal />}></Route>
         <Route path="/daily-planner" element={<DailyPlanner />}></Route>
-        <Route path="/motivational-board" element={<MotivationalBoard />}></Route>
+        <Route path="/motivational-cards" element={<MotivationalCards />}></Route>
         <Route path="/list-books" element={<ListBooks />}></Route>  
 
         

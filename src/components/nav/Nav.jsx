@@ -28,7 +28,7 @@ export default function Nav({showNav}) {
                     <Link to="/daily-planner"><MdOutlineEditCalendar />Daily Planner</Link>
                   </li>
                   <li>
-                    <Link to="/motivational-board"><BsClipboardHeart />Motivational Board</Link>
+                    <Link to="/motivational-cards"><BsClipboardHeart />Motivational Cards</Link>
                   </li>
                   <li>
                     <Link to="/list-books"><IoIosList />Books List</Link>
