@@ -16,17 +16,19 @@
 .navbar{
     width: 240px;
     position: absolute;
+    z-index: 1;
     height: 95vh;
     padding: 20px;
     left: -100%;
     transition : all 0.8s;
-    background-color: var(--color3font);
+    background-color: var(--color1);
     
 }
 
 .logo{
     width:50px;
     margin: 0 0 1rem 1rem;
+    
     
    
 }

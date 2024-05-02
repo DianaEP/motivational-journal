@@ -14,7 +14,7 @@ export default function Register() {
     return (
       <>
         <div className="wrapper">
-          <div className='auth-container  auth-login'>
+          <div className='auth-container  auth-register'>
               
               <div className="welcome-info welcome-register">
                 <h2>Welcome to <span>About me</span></h2>

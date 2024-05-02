@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     column-gap: 3rem;
-    background-color: var(--color3font);
+    background-color: var(--color1);
     padding: 1rem;
     
 }
@@ -16,7 +16,7 @@
 
 .header svg{
     margin-left: 1rem;
-    color: var(--color1);
+    color: var(--color1-login);
     cursor: pointer;
 }
 
@@ -24,9 +24,9 @@
     padding: 0.3rem 0.5rem;
     font-family: var(--font-family);
     border: none;
-    color: var(--color3font);
-    background-color: var(--color1);
-    box-shadow: 0 1px 5px var(--color1);
+    color: var(--color1);
+    background-color: var(--color1-login);
+    box-shadow: 0 1px 5px var(--color4);
     border-radius: 5px;
     margin-right: 1rem;
     cursor: pointer;

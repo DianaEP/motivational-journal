@@ -11,6 +11,7 @@
   --color6-planner: #91bab277;
   --color1-login: #f58f7c;
   --color2-login: #f2c4ce;
+  --color1-gray: #d6d6d6;
 }
 
 *{
@@ -26,7 +27,7 @@ body{
 
 a {
   text-decoration: inherit;
-  color: var(--color1) ;
+  color: var(--color1-login) ;
   font-weight: bold;
   font-size: 1rem;
   text-transform: capitalize;
@@ -35,8 +36,8 @@ a {
 
 
 a:hover {
-  color: var(--color3font);
-  background-color: var(--color1);
+  color: var(--color1);
+  background-color: var(--color1-login);
   padding: 10px 15px;
   border-radius: 10px;
   transition-duration: 0.1s;
