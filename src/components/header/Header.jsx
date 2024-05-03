@@ -12,7 +12,7 @@ export default function Header({showNavbar}){
         <header className="header">
                 <GiHamburgerMenu onClick={showNavbar}/> 
                 
-                <button className='logout'>Log Out</button> 
+                
         </header>
     )
 }

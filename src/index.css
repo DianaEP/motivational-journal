@@ -12,6 +12,10 @@
   --color1-login: #f58f7c;
   --color2-login: #f2c4ce;
   --color1-gray: #d6d6d6;
+  --color2-gray: #4f4f51;
+  --color1-journal: #aeaea88f;
+  --color2-journal: #e3e0d5;
+  --color3-journal: #cdc1b3;
 }
 
 *{
@@ -26,9 +30,9 @@ body{
 
 
 a {
-  text-decoration: inherit;
-  color: var(--color1-login) ;
-  font-weight: bold;
+  text-decoration: none;
+  color: var(--color1-gray) ;
+  font-weight: 600;
   font-size: 1rem;
   text-transform: capitalize;
 
@@ -37,10 +41,10 @@ a {
 
 a:hover {
   color: var(--color1);
-  background-color: var(--color1-login);
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition-duration: 0.1s;
+  background-color: var(--color1-gray);
+  padding: 7px 9px;
+  border-radius: 5px;
+  transition-duration: 0.2s;
 }
 
 li{
