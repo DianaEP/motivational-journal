@@ -3,13 +3,13 @@
     align-items: center;
     flex-direction: column;
     width: 400px;
-    height: 700px;
+    height: 600px;
     /* background-color: var(--color2-journal); */
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    background-color: var(--color3-journal);
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
     /* border-radius: 5px; */
-    margin-left: 2rem;
-    position:relative;
+    margin-left: 5rem;
+    position: relative;
     z-index: 1;
 }
 
@@ -23,53 +23,97 @@
 
 .to-do-list::before{
     /* background-color: var(--color3-journal); */
-    background-color: #fafafa;
-    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    background-color: #c9bfb3;
+    box-shadow: 0 0 8px rgba(0,0,0,.3);
     left:-5px;
     top:4px;
-    transform: rotate(-2.5deg);
+    transform: rotate(-3.5deg);
 
 }
 
 .to-do-list::after{
-    background-color: #f6f6f6;
-    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    background-color: #c3b9ac;
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
     left:-3px;
     top: 1px;
-    transform: rotate(1.4deg);
+    transform: rotate(1.8deg);
 
 }
 
 .list{
     width: 10rem;
     font-family: var(--font-family);
+    font-size: 1rem;
     border: none;
-    background-color: var(--color5);
-    border-radius: 5px;
+    border-bottom: 1px solid var(--color1);
+    border-left: 1px solid var(--color1);
+    background-color: #c3b9ac;
+    border-radius: 1px;
     cursor: pointer;
     margin: 1rem;
-    padding: 0.3rem;
+    padding: 0.4rem;
     outline: none;
 }
 
-.add-button, .delete-button{
+.list::placeholder{
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+.add-button{
     padding: 0.3rem;
-    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--color1);
+    color: var(--color1-journal);
     border: none;
-    background-color: var(--color5);
-    color: var(--color1);
+    border: 1px solid var(--color1);
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+    outline: none;
     cursor: pointer;
-    transition: 0.5 ease;
+    transition: 0.3s ease;
     
 }
 
-.delete-button{
-    margin-left: 1rem;
+
+
+.add-button:hover {
+    color: var(--color2-journal);
+    
+    
 }
 
-.add-button:hover, .delete-button:hover{
-    background-color: var(--color1);
-    color: var(--color5);
+.list-item{
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.span-item{
+    width: 120px;
+    margin: 2px 60px 2px 20px;
+    padding: 5px;
+}
+
+.item-update{
+   font-size: 1.2rem;
+   color: var(--color1);
+   margin-right: 10px;
+   cursor: pointer;
+
+}
+
+.item-update:hover{
+    transition: 0.3s ease;
+}
+
+.update-checked:hover{
+    color: #79a344;
+}
+.update-delete:hover{
+    color: var(--color1-login);
 }
 
 
@@ -80,12 +124,10 @@
     cursor: pointer;
 }
 
-.list-item{
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
 
+
+.checked{
+    text-decoration: line-through;
+}
 
 

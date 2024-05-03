@@ -1,5 +1,7 @@
 import "./ToDoList.css";
 import { useState } from "react";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { IoMdDoneAll } from "react-icons/io";
 
 export default function ToDoList() {
   const [tasks, setTasks] = useState([]);
@@ -9,9 +11,9 @@ export default function ToDoList() {
     setNewTask(event.target.value)
   }
 
-  function addTask() {
+ function addTask(){
     if(newTask.trim() !== ''){
-        setTasks(prev =>[...prev,newTask]);
+        setTasks([...tasks,{text: newTask.trim(), title: false}]);
         setNewTask('');
     }
     
@@ -21,6 +23,14 @@ export default function ToDoList() {
     const updatedTasks = tasks.filter((elem, i) => i !== index);
     setTasks(updatedTasks);
   }
+
+  const toggleTask = (index) =>{
+    const updatedTasks = [...tasks];
+    updatedTasks[index].title = !updatedTasks[index].title;
+    setTasks(updatedTasks);
+  }
+
+  
 
   return (
     <>
@@ -40,10 +50,12 @@ export default function ToDoList() {
         <ul>
             {tasks.map((task, index) => 
                 <li className="list-item" key={index}>
-                    <span>{task}</span>
-                    <button className="delete-button" 
-                            onClick={() => deleteTask(index)}>
-                            Delete</button>
+                    <span title={task.title}  className={task.title? 'span-item checked': 'span-item'} >{task.text}</span>
+                    <div>
+                      <IoMdDoneAll  className="item-update update-checked" onClick={() => toggleTask(index)}/>
+                      <RiDeleteBin5Line className="item-update update-delete" onClick={() => deleteTask(index)}/>
+                    </div>
+                    
                 </li>
                 
             )}
