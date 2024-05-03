@@ -20,24 +20,24 @@ export default function DailyPlanner() {
                 <div className="section-one">
                   <fieldset className="fieldset">
                     <label className="label-text" htmlFor="wins">Daily wins </label>
-                    <textarea className="textarea t-planner" name="wins" id="wins" cols="30" rows="10"></textarea>
+                    <textarea className=" t-planner" name="wins" id="wins" cols="30" rows="10"></textarea>
                   </fieldset>
 
                   <fieldset className="fieldset">
                     <label className="label-text" htmlFor="challenges">Daily challenges </label>
-                    <textarea className="textarea t-planner" name="challenges" id="challenges" cols="30" rows="10"></textarea>
+                    <textarea className=" t-planner" name="challenges" id="challenges" cols="30" rows="10"></textarea>
                   </fieldset>
 
                   <fieldset className="fieldset">
                     <label className="label-text" htmlFor="adjustments">Daily adjustments </label>
-                    <textarea className="textarea t-planner" name="adjustments" id="adjustments" cols="30" rows="10"></textarea>
+                    <textarea className=" t-planner" name="adjustments" id="adjustments" cols="30" rows="10"></textarea>
                   </fieldset>
                 </div>
 
                 <div className='section-two'>
                     <fieldset className="fieldset">
                       <label className="label-text" htmlFor="reflections">Reflections </label>
-                      <textarea className="textarea t-planner" name="reflections" id="reflections" cols="30" rows="10"></textarea>
+                      <textarea className=" t-planner" name="reflections" id="reflections" cols="30" rows="10"></textarea>
                     </fieldset>
                 </div>
 

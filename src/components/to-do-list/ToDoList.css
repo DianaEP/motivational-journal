@@ -4,10 +4,40 @@
     flex-direction: column;
     width: 400px;
     height: 700px;
-    background-color: var(--color1-journal);
-    /* box-shadow: 0 5px 10px var(--color4); */
+    /* background-color: var(--color2-journal); */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
     /* border-radius: 5px; */
     margin-left: 2rem;
+    position:relative;
+    z-index: 1;
+}
+
+.to-do-list::before, .to-do-list::after{
+    content: '';
+    height: 98%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.to-do-list::before{
+    /* background-color: var(--color3-journal); */
+    background-color: #fafafa;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    left:-5px;
+    top:4px;
+    transform: rotate(-2.5deg);
+
+}
+
+.to-do-list::after{
+    background-color: #f6f6f6;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    left:-3px;
+    top: 1px;
+    transform: rotate(1.4deg);
+
 }
 
 .list{
