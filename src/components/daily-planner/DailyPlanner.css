@@ -179,6 +179,10 @@
     }
 } */
 
+
+/* -----------------------MEDIA QUERY--------------------------- */
+
+
 @media(max-width:1700px){
     .planner-container{   
         column-gap: 7rem;

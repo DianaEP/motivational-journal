@@ -181,3 +181,36 @@
     color: var(--color1); 
     font-family: var(--font-family2);
 }
+
+
+/* -----------------------MEDIA QUERY--------------------------- */
+
+@media(max-width:1200px){
+    .auth-container{
+        width: 700px;
+        height: 500px;  
+    }
+    
+    .welcome-info p{
+        display: none;
+    }
+}
+
+
+
+@media(max-width:750px){
+    .welcome-info{
+        display: none;
+    }
+
+    .auth-container{
+        justify-content: center;
+        width: 350px;
+        
+    }
+
+    .auth-container .form-box{
+        width: 80%;
+        padding: 0;
+    }
+}

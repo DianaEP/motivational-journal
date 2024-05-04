@@ -202,3 +202,21 @@
     display: flex;
     column-gap: 5px;
 }
+
+
+/* -----------------------MEDIA QUERY--------------------------- */
+
+
+
+@media(max-width:659px){
+    .board-wrapper{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .display-cards{
+        justify-content: center;
+        margin: 2rem 0;
+    }
+}

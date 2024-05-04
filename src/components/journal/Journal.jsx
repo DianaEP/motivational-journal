@@ -15,7 +15,7 @@ export default function Journal() {
           <div className="date-container">
               <fieldset className="fieldset">
                 <label className="label-text" htmlFor="date">Date</label>
-                <input className="input-field" id="date" type="date" />
+                <input className="input-field"  id="date" type="date" />
               </fieldset>
             </div>
 
