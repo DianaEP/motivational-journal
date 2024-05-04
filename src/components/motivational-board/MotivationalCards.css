@@ -219,4 +219,8 @@
         justify-content: center;
         margin: 2rem 0;
     }
+
+    .create p, .create svg, .create-btn{
+        font-size: 1.2rem;
+    }
 }
