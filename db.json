@@ -1,0 +1,28 @@
+{
+  "journalInputs": [
+    {
+      "id": 1715167089490,
+      "date": "2024-05-07",
+      "grateful": "grateful",
+      "proud": "proud",
+      "lookForward": "forward",
+      "notes": "notes"
+    },
+    {
+      "id": 1715172520423,
+      "date": "2024-05-06",
+      "grateful": "something",
+      "proud": "something",
+      "lookForward": "something",
+      "notes": "something"
+    },
+    {
+      "id": 1715174443518,
+      "date": "2024-05-07",
+      "grateful": "",
+      "proud": "",
+      "lookForward": "",
+      "notes": ""
+    }
+  ]
+}
