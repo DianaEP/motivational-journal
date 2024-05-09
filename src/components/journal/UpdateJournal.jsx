@@ -67,7 +67,7 @@ export default function UpdateDeleteJournalInput(){
     //   DELETE the current input
 
        const userDelete = (id) => {
-        const userConfirmedAction = confirm('Are you sure you want to delete the movie?')
+        const userConfirmedAction = confirm('Are you sure you want to delete the input?')
 
 
         if(userConfirmedAction){

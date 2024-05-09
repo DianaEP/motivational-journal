@@ -99,10 +99,11 @@ export default function Journal() {
                 <label className="label-text" htmlFor="date">Date</label>
                 <input className="input-field"
                        type="date"
+                       name="date"
                        id="date" 
                        value={newInput.date} 
                        onChange = {(e) => setNewInput({ ...newInput, date: e.target.value })}
-                        />
+                       required />
                 <button className="button button-search" onClick={()=>handleSearch()}>Search</button>
               </fieldset>
             </div>
