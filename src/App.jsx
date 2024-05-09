@@ -11,6 +11,8 @@ import Login from "./components/authentication/login/Login";
 import Register from "./components/authentication/register/Register"
 import { useState } from "react";
 import HideNavbar from './components/hide-navbar/HideNavbar';
+import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
+// import JournalEdith from "./components/journal/JournalEdith";
 
 
 
@@ -42,7 +44,7 @@ function App() {
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/journal" element={<Journal />}></Route>
-        <Route path="/journal/:id" element={<Journal />}></Route>
+        <Route path="/journal/:id" element={<UpdateDeleteJournalInput />}></Route>
         <Route path="/daily-planner" element={<DailyPlanner />}></Route>
         <Route path="/motivational-cards" element={<MotivationalCards />}></Route>
         <Route path="/list-books" element={<ListBooks />}></Route>  
