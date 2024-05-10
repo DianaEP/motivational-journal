@@ -1,6 +1,6 @@
 import './Register.css';
 import '../auth-css/Authentication.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
@@ -10,7 +10,38 @@ import { RiLockPasswordLine } from "react-icons/ri";
 
 
 export default function Register() {
-  
+  const navigate = useNavigate()
+
+  function userRegister(e){
+    e.preventDefault();
+    const formElement = e.target;
+    const{firstName, lastName, email, password, confirmPassword} = formElement;
+
+    if(password.value !== confirmPassword.value){
+      console.warn("Password and confirm password don't match");
+      return;
+    }
+    const user = {
+      firstName : firstName.value,
+      lastName : lastName.value,
+      email : email.value,
+      password : password.value,
+    };
+
+    fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then(() => navigate('/login'))
+      .catch((error) => {
+          console.error('Error adding entry:', error);
+    });
+  }
+
+
+
     return (
       <>
         <div className="wrapper">
@@ -23,25 +54,30 @@ export default function Register() {
 
               <div className= 'form-box' >
                   <h2>Register</h2>
-                  <form action="">
+                  <form onSubmit={userRegister}>
 
                     <div className="input-box">
-                      <input type="text" placeholder='full name'  required />
+                      <input type="text" placeholder='first name' name='firstName' required />
                       <FaRegUser />
                     </div>
 
                     <div className="input-box">
-                      <input type="email" placeholder='email'  required />
+                      <input type="text" placeholder='last name' name='lastName'  required />
+                      <FaRegUser />
+                    </div>
+
+                    <div className="input-box">
+                      <input type="email" placeholder='email' name='email'  required />
                       <MdOutlineEmail />
                     </div>
 
                     <div className="input-box">
-                      <input type="password"  placeholder='password' required />
+                      <input type="password"  placeholder='password' name='password' required />
                       <MdLockOutline />
                     </div>
 
                     <div className="input-box">
-                      <input type="password"  placeholder='confirm password' required />
+                      <input type="password"  placeholder='confirm password' name='confirmPassword' required />
                       <RiLockPasswordLine />
                     </div>
 

@@ -1,11 +1,18 @@
 import "./Journal.css";
 import books from '../../assets/books.png';
-import { useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import { retrieveJournalInputs } from "../../../fetch/fetch";
+import { UserAuthContext } from "../../App";
+
 
 
 export default function Journal() {
+
+  
+  const {userAuth} = useContext(UserAuthContext);
+
   const [journalInputs, setJournalInputs] = useState([]);
   
   const [newInput, setNewInput] = useState({
@@ -36,14 +43,23 @@ export default function Journal() {
     searchByDate(newInput.date);
   };
 
-
+  console.log(`from journal${userAuth}`);
   // GET all the journal inputs
 
-  useEffect(() => {
-    fetch('http://localhost:3000/journalInputs')
-      .then((response) => response.json())
-      .then((data) => setJournalInputs(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/journalInputs')
+  //     .then((response) => response.json())
+  //     .then((data) => setJournalInputs(data));
+  // }, []);
+
+
+  // !!!!! ERROR
+  useEffect(()=>{
+    retrieveJournalInputs(setJournalInputs, userAuth, navigate).catch((error) =>
+      console.log(error)
+    );
+  },[userAuth])
+
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -82,6 +98,9 @@ export default function Journal() {
       });
   }
 
+  if (!journalInputs) {
+    return <p>Loading...</p>; // Display loading message while fetching data
+  }
 
   return (
     <>

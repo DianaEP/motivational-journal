@@ -9,48 +9,51 @@ import HomePage from "./components/home-page/HomePage";
 import Header from "./components/header/Header";
 import Login from "./components/authentication/login/Login";
 import Register from "./components/authentication/register/Register"
-import { useState } from "react";
+import React, { useState } from "react";
 import HideNavbar from './components/hide-navbar/HideNavbar';
 import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
 // import JournalEdith from "./components/journal/JournalEdith";
 
 
-
+export const UserAuthContext = React.createContext();
 
 function App() {
   // show navbar or not on components
   const [showNav, setShowNav] = useState(false);
 
+  // to not loose the token on refresh
+  const accessToken = localStorage.getItem("accessToken");
+  const [userAuth, setUserAuth] = useState(accessToken);
+
+  
+
   const showNavbar = () => setShowNav(!showNav);
 
-
+  console.log({userAuth});
 
 
   return (
     <>
+      <UserAuthContext.Provider value={{userAuth, setUserAuth}}>
+          <HideNavbar>
+            <Header showNavbar={showNavbar} showNav={showNav}/>
+            <Nav showNav={showNav}/>
+          </HideNavbar>
       
-      <HideNavbar>
-        <Header showNavbar={showNavbar} showNav={showNav}/>
-        <Nav showNav={showNav}/>
-      </HideNavbar>
-        
-     
+          <Routes>
+            <Route path="/login" element={< Login/>}></Route>
+            <Route path="/register" element={<Register/>}></Route>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/journal" element={<Journal />}></Route>
+            <Route path="/journal/:id" element={<UpdateDeleteJournalInput />}></Route>
+            <Route path="/daily-planner" element={<DailyPlanner />}></Route>
+            <Route path="/motivational-cards" element={<MotivationalCards />}></Route>
+            <Route path="/list-books" element={<ListBooks />}></Route>  
 
-       
-      
-      
-      <Routes>
-        <Route path="/login" element={< Login/>}></Route>
-        <Route path="/register" element={<Register/>}></Route>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/journal" element={<Journal />}></Route>
-        <Route path="/journal/:id" element={<UpdateDeleteJournalInput />}></Route>
-        <Route path="/daily-planner" element={<DailyPlanner />}></Route>
-        <Route path="/motivational-cards" element={<MotivationalCards />}></Route>
-        <Route path="/list-books" element={<ListBooks />}></Route>  
+          </Routes>
 
-        
-      </Routes>
+      </UserAuthContext.Provider>
+      
       
     </>
   );

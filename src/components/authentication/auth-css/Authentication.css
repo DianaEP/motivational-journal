@@ -190,6 +190,26 @@
         width: 700px;
         height: 500px;  
     }
+
+    .input-box{
+        margin: 15px 0 ;
+    }
+
+    .input-box input{
+        font-size: 0.9rem;
+    }
+
+    .input-box svg{
+        font-size: 1rem;
+    }
+
+    .form-box h2{
+        font-size: 1.5rem;
+    }
+
+    .form-box .btn{
+        height: 35px;
+    }
     
     .welcome-info p{
         display: none;

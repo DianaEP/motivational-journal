@@ -1,4 +1,20 @@
 {
+  "users": [
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$bbC9SAPV71XLiN7Y641Q3.J1Cp2hnLNuOv60fHcW4xL7/fmibyvTC",
+      "firstName": "Maya",
+      "lastName": "Smith",
+      "id": 1
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "$2a$10$q.ToHdfVjttAnqmzTovDtOBXVr2IDbPDnB7Sf9ULB.VQx0WOZ9uZy",
+      "firstName": "John",
+      "lastName": "Doe",
+      "id": 2
+    }
+  ],
   "journalInputs": [
     {
       "id": "7ba7",
@@ -6,7 +22,8 @@
       "grateful": "help me God",
       "proud": "help me God please",
       "lookForward": "good good good",
-      "notes": "help me God"
+      "notes": "help me God",
+      "userId" : 1
     },
     {
       "id": "c243aaaa-1a27-4542-b537-27b032d45ec6",

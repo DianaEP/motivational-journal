@@ -1,16 +1,47 @@
 import './Login.css';
 import '../auth-css/Authentication.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
+import { useContext } from 'react';
+import { UserAuthContext } from '../../../App';
 
 
 
 
 
 export default function Login() {
-  
+  const navigate = useNavigate()
+
+  const {setUserAuth} = useContext(UserAuthContext)
+
+  async function userLogin(e){
+    e.preventDefault();
+    const formElement = e.target;
+    const{ email, password} = formElement;
+
+    const user = {
+      email : email.value,
+      password : password.value,
+    };
+
+    const response = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+
+    const body = await response.json();
+    localStorage.setItem('accessToken', body.accessToken);
+    setUserAuth(body.accessToken);
+    navigate('/');
+  }
+
+
+
 
     return (
       <>
@@ -19,15 +50,15 @@ export default function Login() {
                
               <div className= 'form-box' >
                   <h2>Login</h2>
-                  <form action="">
+                  <form onSubmit={userLogin}>
 
                     <div className="input-box">
-                      <input type="email" placeholder='email'  required />
+                      <input type="email" placeholder='email' name='email' required />
                       <MdOutlineEmail />
                     </div>
 
                     <div className="input-box">
-                      <input type="password"  placeholder='password' required />
+                      <input type="password"  placeholder='password' name='password' required />
                       <MdLockOutline />
                     </div>
 

@@ -1,6 +1,6 @@
 import "./Nav.css";
 // import logo from '../../assets/logo3.svg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { LuBookLock } from "react-icons/lu";
 import { MdOutlineEditCalendar } from "react-icons/md";
@@ -10,7 +10,14 @@ import PropTypes from "prop-types";
 
 
 export default function Nav({showNav}) {
-    
+
+    const navigate = useNavigate();
+
+    function logout(){
+  
+      localStorage.removeItem('accessToken');
+      navigate('/login');
+    }
     
     return (
       <>
@@ -34,7 +41,7 @@ export default function Nav({showNav}) {
                     <Link to="/list-books"><IoIosList />Books List</Link>
                   </li>
               </ul>
-              <button className='logout'>Log Out</button> 
+              <button className='logout' onClick={logout}>Log Out</button> 
           </nav>
         
       </>
