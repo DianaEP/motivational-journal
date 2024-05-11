@@ -9,7 +9,7 @@ import HomePage from "./components/home-page/HomePage";
 import Header from "./components/header/Header";
 import Login from "./components/authentication/login/Login";
 import Register from "./components/authentication/register/Register"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HideNavbar from './components/hide-navbar/HideNavbar';
 import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
 // import JournalEdith from "./components/journal/JournalEdith";
@@ -25,7 +25,11 @@ function App() {
   const accessToken = localStorage.getItem("accessToken");
   const [userAuth, setUserAuth] = useState(accessToken);
 
-  
+  useEffect(()=>{
+    if(accessToken){
+      setUserAuth({token:accessToken})
+    }
+  },[])
 
   const showNavbar = () => setShowNav(!showNav);
 

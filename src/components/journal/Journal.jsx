@@ -3,7 +3,7 @@ import books from '../../assets/books.png';
 import {  useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-import { retrieveJournalInputs } from "../../../fetch/fetch";
+import { retrieveJournalInputs } from "../../fetch/fetch";
 import { UserAuthContext } from "../../App";
 
 
@@ -43,7 +43,7 @@ export default function Journal() {
     searchByDate(newInput.date);
   };
 
-  console.log(`from journal${userAuth}`);
+  console.log(`from journal${userAuth.token}`);
   // GET all the journal inputs
 
   // useEffect(() => {
@@ -53,12 +53,16 @@ export default function Journal() {
   // }, []);
 
 
-  // !!!!! ERROR
+  // !!!!! ERROR with fist time user
   useEffect(()=>{
-    retrieveJournalInputs(setJournalInputs, userAuth, navigate).catch((error) =>
-      console.log(error)
-    );
-  },[userAuth])
+    if(userAuth){
+      const userId = userAuth.userId
+      retrieveJournalInputs(userId,setJournalInputs, userAuth, navigate).catch((error) =>
+        console.log(`Error journal inputs ${error}`)
+      );
+    }
+    
+  },[userAuth, navigate])
 
 
   const inputChange = (e) => {
@@ -74,12 +78,16 @@ export default function Journal() {
 
   function userSubmit(e){
     e.preventDefault();
+
+    // new
+    const inputWithUserId = {...newInput, userId : userAuth.userId}
     fetch('http://localhost:3000/journalInputs', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userAuth.token}`
       },
-      body: JSON.stringify(newInput)
+      body: JSON.stringify(inputWithUserId)
     })
       .then((response) => response.json())
       .then((data) => {

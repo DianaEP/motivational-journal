@@ -1,11 +1,14 @@
 import "./Journal.css";
 import books from '../../assets/books.png';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { UserAuthContext } from "../../App";
+import { retrieveOneJournalInput } from "../../fetch/fetch";
 
 
 
 export default function UpdateDeleteJournalInput(){
+    const {userAuth} = useContext(UserAuthContext);
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -22,15 +25,23 @@ export default function UpdateDeleteJournalInput(){
 
     // GET the specific input based on id
 
+    // useEffect(() => {
+    //   fetch(`http://localhost:3000/journalInputs/${id}`)
+    //     .then((response) => response.json())
+    //     .then((data) =>{
+    //       setInput(data);
+    //       setEditedInput(data);
+    //     })
+    //     .catch((error) => console.error('Error fetching journal entry:', error));
+    // }, [id]);
+
     useEffect(() => {
-      fetch(`http://localhost:3000/journalInputs/${id}`)
-        .then((response) => response.json())
-        .then((data) =>{
-          setInput(data);
-          setEditedInput(data);
-        })
-        .catch((error) => console.error('Error fetching journal entry:', error));
-    }, [id]);
+      if(userAuth){
+        retrieveOneJournalInput(id, setInput, setEditedInput, userAuth, navigate )
+            .catch((error) => console.error('Error fetching journal entry:', error));
+      }
+        
+    }, [id,userAuth,navigate]);
   
   
     const inputChange = (e) => {
@@ -49,7 +60,8 @@ export default function UpdateDeleteJournalInput(){
         fetch(`http://localhost:3000/journalInputs/${id}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userAuth.token}`
           },
           body: JSON.stringify(editedInput)
         })
@@ -72,7 +84,10 @@ export default function UpdateDeleteJournalInput(){
 
         if(userConfirmedAction){
             fetch(`http://localhost:3000/journalInputs/${id}`, {
-            method: 'DELETE'
+              method: 'DELETE',
+              headers: {
+                Authorization: `Bearer ${userAuth.token}`
+              }
             })
             .then(() => {
                  navigate('/journal');

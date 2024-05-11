@@ -13,6 +13,13 @@
       "firstName": "John",
       "lastName": "Doe",
       "id": 2
+    },
+    {
+      "email": "test3@gmail.com",
+      "password": "$2a$10$e8C2AHEyYI9ZrA5uU2VQQOmQ52LyGDCVaUsv874EBbrSiMRx8zO0q",
+      "firstName": "Sofia",
+      "lastName": "Santa",
+      "id": 3
     }
   ],
   "journalInputs": [
@@ -22,8 +29,7 @@
       "grateful": "help me God",
       "proud": "help me God please",
       "lookForward": "good good good",
-      "notes": "help me God",
-      "userId" : 1
+      "notes": "help me God"
     },
     {
       "id": "c243aaaa-1a27-4542-b537-27b032d45ec6",
@@ -48,6 +54,24 @@
       "proud": "sdfds",
       "lookForward": "sdfs",
       "notes": "sdfdsf"
+    },
+    {
+      "id": "fcf2a8cf-ca67-4660-a46f-466a10639f7a",
+      "date": "2024-05-02",
+      "grateful": "new new changes ",
+      "proud": "sdfsd",
+      "lookForward": "change me",
+      "notes": "some change has been made",
+      "userId": 1
+    },
+    {
+      "id": "2baee373-575a-4966-9c7c-920ffc49ca8b",
+      "date": "2024-05-09",
+      "grateful": "sfsaf",
+      "proud": "asd",
+      "lookForward": "asds",
+      "notes": "asdsa",
+      "userId": 2
     }
   ]
 }
