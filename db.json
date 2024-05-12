@@ -20,41 +20,23 @@
       "firstName": "Sofia",
       "lastName": "Santa",
       "id": 3
+    },
+    {
+      "email": "test4@gmail.com",
+      "password": "$2a$10$o4Sh.wPSxDDH3ZcKub7DvuiDeczBpAKoi1vbgpzccr8NW.Fm7U3gi",
+      "firstName": "Martha",
+      "lastName": "Jones",
+      "id": 4
+    },
+    {
+      "email": "test5@gmail.com",
+      "password": "$2a$10$kYC.VTuJRklD6sdQy1p5B.N312oCdXCZMdHdAHKueuSnqH4Br8M1y",
+      "firstName": "Martha",
+      "lastName": "Brown",
+      "id": 5
     }
   ],
   "journalInputs": [
-    {
-      "id": "7ba7",
-      "date": "2024-05-07",
-      "grateful": "help me God",
-      "proud": "help me God please",
-      "lookForward": "good good good",
-      "notes": "help me God"
-    },
-    {
-      "id": "c243aaaa-1a27-4542-b537-27b032d45ec6",
-      "date": "2024-05-06",
-      "grateful": "f",
-      "proud": "f",
-      "lookForward": "f",
-      "notes": "f"
-    },
-    {
-      "id": "be719532-9940-4710-8c37-ae27924e65d0",
-      "date": "2024-05-01",
-      "grateful": "",
-      "proud": "",
-      "lookForward": "",
-      "notes": ""
-    },
-    {
-      "id": "4430",
-      "date": "2024-04-30",
-      "grateful": "sfs",
-      "proud": "sdfds",
-      "lookForward": "sdfs",
-      "notes": "sdfdsf"
-    },
     {
       "id": "fcf2a8cf-ca67-4660-a46f-466a10639f7a",
       "date": "2024-05-02",
@@ -62,7 +44,7 @@
       "proud": "sdfsd",
       "lookForward": "change me",
       "notes": "some change has been made",
-      "userId": 1
+      "userId": 2
     },
     {
       "id": "2baee373-575a-4966-9c7c-920ffc49ca8b",
@@ -71,7 +53,17 @@
       "proud": "asd",
       "lookForward": "asds",
       "notes": "asdsa",
-      "userId": 2
+      "userId": 2,
+      "": "2024-05-01"
+    },
+    {
+      "id": "717920bb-67d2-4efb-bf4a-aa24e5f496c2",
+      "date": "2024-05-02",
+      "grateful": "ss",
+      "proud": "sss",
+      "lookForward": "sss",
+      "notes": "ssssssgh",
+      "userId": 1
     }
   ]
 }

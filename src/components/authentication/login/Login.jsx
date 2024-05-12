@@ -4,7 +4,7 @@ import '../auth-css/Authentication.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserAuthContext } from '../../../App';
 
 
@@ -14,32 +14,36 @@ import { UserAuthContext } from '../../../App';
 export default function Login() {
   const navigate = useNavigate()
 
-  const {setUserAuth} = useContext(UserAuthContext)
+  const {setUserAuth} = useContext(UserAuthContext);
+
+  const [dataLogin, setDataLogin] = useState({
+    "email" : '',
+    "password" : ''
+  })
+
+  const inputChange = (e) => {
+    const { name, value } = e.target;
+    setDataLogin({ ...dataLogin, [name]: value });
+  };
+
 
   async function userLogin(e){
     e.preventDefault();
-    const formElement = e.target;
-    const{ email, password} = formElement;
-
-    const user = {
-      email : email.value,
-      password : password.value,
-    };
+   
 
     const response = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(dataLogin),
     })
 
-    // new
-    const body = await response.json();
-    localStorage.setItem('accessToken', body.accessToken);
-    console.log(body.accessToken, body.user.id);
-    setUserAuth({token : body.accessToken, userId: body.user.id});
-    navigate('/');
+      const body = await response.json();
+      localStorage.setItem('accessToken', body.accessToken);
+      console.log(body.accessToken, body.user.id);
+      setUserAuth({token : body.accessToken, userId: body.user.id});
+      navigate('/');
   }
 
 
@@ -55,12 +59,22 @@ export default function Login() {
                   <form onSubmit={userLogin}>
 
                     <div className="input-box">
-                      <input type="email" placeholder='email' name='email' required />
+                      <input type="email" 
+                             placeholder='email' 
+                             name='email' 
+                             value={dataLogin.email}
+                             onChange={inputChange}
+                             required />
                       <MdOutlineEmail />
                     </div>
 
                     <div className="input-box">
-                      <input type="password"  placeholder='password' name='password' required />
+                      <input type="password"  
+                             placeholder='password' 
+                             name='password'
+                             value={dataLogin.password}
+                             onChange={inputChange}
+                             required />
                       <MdLockOutline />
                     </div>
 

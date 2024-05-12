@@ -182,6 +182,11 @@
     font-family: var(--font-family2);
 }
 
+.input-error{
+    color: red;
+    font-size: 0.7rem;
+}
+
 
 /* -----------------------MEDIA QUERY--------------------------- */
 
@@ -209,10 +214,19 @@
 
     .form-box .btn{
         height: 35px;
+        margin-top: 10px;
     }
     
     .welcome-info p{
         display: none;
+    }
+
+    .form-box .link-text{
+        margin-top: 10px;
+    }
+
+    .link-text p{
+        font-size: 0.8rem;
     }
 }
 

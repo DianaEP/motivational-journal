@@ -5,39 +5,51 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { useState } from 'react';
+import FormValidation from '../FormValidation';
 
 
 
 
 export default function Register() {
   const navigate = useNavigate()
+  const [dataRegister, setDataRegister] = useState({
+    "firstName" : '',
+    "lastName" : '',
+    "email" : '',
+    "password" : '',
+    "confirmPassword" : ''
+  })
+
+  const { errors, valid, inputChange, validateData } = FormValidation({ dataRegister, setDataRegister });
+  const {firstName, lastName, email, password} = dataRegister;
+  const userDataRegistration = {firstName, lastName, email, password}
+    
 
   function userRegister(e){
     e.preventDefault();
-    const formElement = e.target;
-    const{firstName, lastName, email, password, confirmPassword} = formElement;
+    
 
-    if(password.value !== confirmPassword.value){
-      console.warn("Password and confirm password don't match");
-      return;
-    }
-    const user = {
-      firstName : firstName.value,
-      lastName : lastName.value,
-      email : email.value,
-      password : password.value,
-    };
-
-    fetch("http://localhost:3000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    }).then(() => navigate('/login'))
-      .catch((error) => {
-          console.error('Error adding entry:', error);
+    // Object.keys(validationErrors).length === 0
+    if(validateData()){
+        
+        fetch("http://localhost:3000/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userDataRegistration),
+        }).then(() => {
+           alert("Registration Successfully") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+           navigate('/login')})
+          .catch((error) => {
+            console.log('Error adding entry:', error);// i need a alert!!!!!!ERROR it doesn't catch the error
     });
+    }
+
+    
+
+    
   }
 
 
@@ -57,29 +69,64 @@ export default function Register() {
                   <form onSubmit={userRegister}>
 
                     <div className="input-box">
-                      <input type="text" placeholder='first name' name='firstName' required />
+                      <input type="text"
+                             placeholder='first name'
+                             name='firstName' 
+                             value = {dataRegister.firstName}
+                             onChange={inputChange}
+                              />
                       <FaRegUser />
+                      {valid ? <></> : <span className='input-error'>{errors.firstName}</span>}
                     </div>
+                    
 
                     <div className="input-box">
-                      <input type="text" placeholder='last name' name='lastName'  required />
+                      <input type="text"
+                             placeholder='last name' 
+                             name='lastName' 
+                             value = {dataRegister.lastName}
+                             onChange={inputChange} 
+                              />
                       <FaRegUser />
+                      {valid ? <></> : <span className='input-error'>{errors.lastName}</span>}
                     </div>
+                    
 
                     <div className="input-box">
-                      <input type="email" placeholder='email' name='email'  required />
+                      <input type="email"
+                             placeholder='email' 
+                             name='email' 
+                             value = {dataRegister.email}
+                             onChange={inputChange} 
+                              />
                       <MdOutlineEmail />
+                      {valid ? <></> : <span className='input-error'>{errors.email}</span>}
                     </div>
+                    
 
                     <div className="input-box">
-                      <input type="password"  placeholder='password' name='password' required />
+                      <input type="password"  
+                             placeholder='password' 
+                             name='password' 
+                             value = {dataRegister.password}
+                             onChange={inputChange} 
+                              />
                       <MdLockOutline />
+                      {valid ? <></> : <span className='input-error'>{errors.password}</span>}
                     </div>
+                    
 
                     <div className="input-box">
-                      <input type="password"  placeholder='confirm password' name='confirmPassword' required />
+                      <input type="password"  
+                             placeholder='confirm password' 
+                             name='confirmPassword' 
+                             value = {dataRegister.confirmPassword}
+                             onChange={inputChange} 
+                              />
                       <RiLockPasswordLine />
+                      {valid ? <></> : <span className='input-error'>{errors.confirmPassword}</span>}
                     </div>
+                    
 
                     <button className='btn'>Register</button>
 
