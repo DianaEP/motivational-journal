@@ -6,6 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { UserAuthContext } from '../../../App';
+import FormValidationLogin from '../validation/FormValidationLogin';
 
 
 
@@ -20,30 +21,45 @@ export default function Login() {
     "email" : '',
     "password" : ''
   })
-
-  const inputChange = (e) => {
-    const { name, value } = e.target;
-    setDataLogin({ ...dataLogin, [name]: value });
-  };
-
+  
+  const { errors, valid, inputChange, validateData } = FormValidationLogin({ data: dataLogin, setData: setDataLogin });
 
   async function userLogin(e){
     e.preventDefault();
-   
+    // debugger
+    if(validateData()){
+      try{
+        const response = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataLogin),
+        })
 
-    const response = await fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataLogin),
-    })
+        if (!response.ok) {
+          if(response.status === 400){
+            alert('Invalid email or password. Please try again.') //!!!!!!!!message box
+            throw new Error('Invalid email or password. ');
+            
+          }
+        }
 
-      const body = await response.json();
-      localStorage.setItem('accessToken', body.accessToken);
-      console.log(body.accessToken, body.user.id);
-      setUserAuth({token : body.accessToken, userId: body.user.id});
-      navigate('/');
+        if(response.ok){
+          const body = await response.json();
+          localStorage.setItem('accessToken', body.accessToken);
+          console.log(body.accessToken, body.user.id);
+          setUserAuth({token : body.accessToken, userId: body.user.id});
+          navigate('/');
+        }
+
+        
+      }catch(error){
+        console.log('Error logging in:', error.message);
+      }
+      
+    }
+    
   }
 
 
@@ -64,8 +80,9 @@ export default function Login() {
                              name='email' 
                              value={dataLogin.email}
                              onChange={inputChange}
-                             required />
+                              />
                       <MdOutlineEmail />
+                      {valid ? <></> : <span className='input-error'>{errors.email}</span>}
                     </div>
 
                     <div className="input-box">
@@ -74,8 +91,9 @@ export default function Login() {
                              name='password'
                              value={dataLogin.password}
                              onChange={inputChange}
-                             required />
+                             />
                       <MdLockOutline />
+                      {valid ? <></> : <span className='input-error'>{errors.password}</span>}
                     </div>
 
                     <div className="login-details">

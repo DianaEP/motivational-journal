@@ -6,7 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from 'react';
-import FormValidation from '../FormValidation';
+import FormValidation from '../validation/FormValidationRegister';
 
 
 
@@ -21,15 +21,19 @@ export default function Register() {
     "confirmPassword" : ''
   })
 
-  const { errors, valid, inputChange, validateData } = FormValidation({ dataRegister, setDataRegister });
+  // const inputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setDataRegister({ ...dataRegister, [name]: value });
+  // };
+
+  const { errors, valid, inputChange, validateData } = FormValidation({ data: dataRegister, setData: setDataRegister });
   const {firstName, lastName, email, password} = dataRegister;
   const userDataRegistration = {firstName, lastName, email, password}
     
 
   function userRegister(e){
     e.preventDefault();
-    
-
+  
     // Object.keys(validationErrors).length === 0
     if(validateData()){
         
@@ -39,17 +43,21 @@ export default function Register() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(userDataRegistration),
-        }).then(() => {
-           alert("Registration Successfully") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
-           navigate('/login')})
+        }).then((response) => {
+            if(response.status === 400){
+              alert(`${response.statusText} Email already exists `); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+              return;
+            }
+
+            if(response.status === 201){
+              alert("Registration Successfully") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+              navigate('/login')
+            }
+           })
           .catch((error) => {
-            console.log('Error adding entry:', error);// i need a alert!!!!!!ERROR it doesn't catch the error
-    });
-    }
-
-    
-
-    
+            console.log('Error adding entry:', error);
+      });
+    } 
   }
 
 

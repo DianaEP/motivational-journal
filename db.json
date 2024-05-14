@@ -30,10 +30,38 @@
     },
     {
       "email": "test5@gmail.com",
-      "password": "$2a$10$kYC.VTuJRklD6sdQy1p5B.N312oCdXCZMdHdAHKueuSnqH4Br8M1y",
+      "password": "$2a$10$BissmTkK4M7RK7xS2I5N1e5bk5WX20ecuNzGxeKpj9YZCh3UqHSGS",
       "firstName": "Martha",
       "lastName": "Brown",
       "id": 5
+    },
+    {
+      "email": "test6@gmail.com",
+      "password": "$2a$10$n8DqDy6cPn6dCPALXKyTgeoVb0QlSVRFMX8AqvjVdQ8bbjjsPOkqK",
+      "firstName": "Stafania",
+      "lastName": "Ionescu",
+      "id": 6
+    },
+    {
+      "email": "test7@gmail.com",
+      "password": "$2a$10$OgXeSNMzfgAmST4CeNsndunMXP3fFKtJpMJ7aKaITNKeXao2aK4AC",
+      "firstName": "Alexandra",
+      "lastName": "Ionescu",
+      "id": 7
+    },
+    {
+      "email": "test8@gmail.com",
+      "password": "$2a$10$4vY.DNRWWe5p9VATxjTzneOLJTDe4CJtnbSNapsq5q21Qq3tw57Gy",
+      "firstName": "Alexandra",
+      "lastName": "Ion",
+      "id": 8
+    },
+    {
+      "email": "test9@gmail.com",
+      "password": "$2a$10$Z6m/N9JRfDikzCYRq9uOVeH8QxTvBHFGnJtpes1/4asY0pOQcBwaS",
+      "firstName": "Martha",
+      "lastName": "Smith",
+      "id": 9
     }
   ],
   "journalInputs": [

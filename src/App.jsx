@@ -22,10 +22,12 @@ function App() {
   const [showNav, setShowNav] = useState(false);
 
   // to not loose the token on refresh
-  const accessToken = localStorage.getItem("accessToken");
-  const [userAuth, setUserAuth] = useState(accessToken);
+  
+  const [userAuth, setUserAuth] = useState(null);
 
   useEffect(()=>{
+    const accessToken = localStorage.getItem("accessToken");
+
     if(accessToken){
       setUserAuth({token:accessToken})
     }

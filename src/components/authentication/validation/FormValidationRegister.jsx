@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function FormValidation({dataRegister, setDataRegister}){
+export default function FormValidation({data, setData}){
 
      // VALIDATIONS
 
@@ -9,42 +9,42 @@ export default function FormValidation({dataRegister, setDataRegister}){
 
   const inputChange = (e) => {
     const { name, value } = e.target;
-    setDataRegister({ ...dataRegister, [name]: value });
+    setData({ ...data, [name]: value });
   };
 
   const validateData = () =>{
     let isValid = true;
     let validationErrors = {};
 
-    if(dataRegister.firstName === '' || dataRegister.firstName === null){
+    if(data.firstName === '' || data.firstName === null){
       isValid = false;
       validationErrors.firstName = 'First name required'
     }
 
-    if(dataRegister.lastName === '' || dataRegister.lastName === null){
+    if(data.lastName === '' || data.lastName === null){
       isValid = false;
       validationErrors.lastName = 'Last name required'
     }
 
-    if(dataRegister.email === '' || dataRegister.email === null){
+    if(data.email === '' || data.email === null){
       isValid = false;
       validationErrors.email = 'Email required'
-    }else if(!/\S+@\S+\.\S+/.test(dataRegister.email)){
+    }else if(!/\S+@\S+\.\S+/.test(data.email)){
       isValid = false;
       validationErrors.email = 'Email is not valid'
     }
 
-    if(dataRegister.password === '' || dataRegister.password === null){
+    if(data.password === '' || data.password === null){
       isValid = false;
       validationErrors.password = 'Password required'
     }
 
-    if(dataRegister.confirmPassword === '' || dataRegister.confirmPassword === null){
+    if(data.confirmPassword === '' || data.confirmPassword === null){
       isValid = false;
       validationErrors.confirmPassword = 'Confirm password required'
     }
 
-    if( dataRegister.password !== dataRegister.confirmPassword){
+    if( data.password !== data.confirmPassword){
       isValid = false;
       validationErrors.confirmPassword = "Passwords don't match"
     }
