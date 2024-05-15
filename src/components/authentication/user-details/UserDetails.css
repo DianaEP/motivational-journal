@@ -1,0 +1,83 @@
+.user_details-wrapper{
+    background: linear-gradient(var(--color2-journal), #ffffff);
+}
+
+
+.user_details-container{
+    box-shadow: 0 0 25px var(--color1);
+    border: none;
+}
+
+.user_details-container .user_details-form-box{
+    width: 100%;
+    margin: 0 4rem;
+
+    
+}
+
+.user_details-form-box form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_details-form-box h2{
+    color: var(--color1);
+    text-transform: capitalize;
+}
+
+.user_details-input-box{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* padding: 2rem ; */
+}
+
+.user_details-input-box label{
+    width: 10rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: var(--color1);
+
+}
+
+.user_details-input-box input{
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color4);
+    border-bottom: 2px solid var(--color1-login);
+}
+
+.user_details-input-box input:focus,
+.user_details-input-box input:invalid{
+    border-bottom-color: var(--color1);
+}
+
+.user_details-input-box svg{
+    color: var(--color1-login);
+}
+
+.user_details-input-box input:focus~svg,
+.user_details-input-box input:invalid~svg{
+    color: var(--color1);
+}
+
+.user_details-form-box .user_details-btn{
+    width: 10rem;
+    
+}
+
+
+/* -----------------------MEDIA QUERY--------------------------- */
+
+@media(max-width:750px){
+    .user_details-form-box{
+        gap: 2rem;
+    }
+    .user_details-input-box{
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1rem;
+    }
+}
+

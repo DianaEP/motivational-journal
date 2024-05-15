@@ -12,7 +12,9 @@
     height: 600px;
     background: transparent;
     border: 2px solid var(--color2);
+    border-radius: 10px;
     display: flex;
+
     
     /* overflow: hidden; */
     
@@ -72,7 +74,7 @@
 }
 
 .input-box input:focus,
-.input-box input:valid{
+.input-box input:invalid{
     border-bottom-color: var(--color1-login);
 }
 
@@ -83,11 +85,11 @@
     right: 0;
     transform: translateY(-50%);
     font-size: 1.2rem;
-    color: var(--color3font)
+    color: var(--color3font);
 }
 
 .input-box input:focus~svg,
-.input-box input:valid~svg{
+.input-box input:invalid~svg{
     color: var(--color1-login);
 }
 
@@ -156,6 +158,7 @@
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
+    border-radius: 0 8px 8px 0;
    
 
 

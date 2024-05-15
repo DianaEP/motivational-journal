@@ -12,20 +12,22 @@ import Register from "./components/authentication/register/Register"
 import React, { useEffect, useState } from "react";
 import HideNavbar from './components/hide-navbar/HideNavbar';
 import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
+import UserDetails from "./components/authentication/user-details/UserDetails";
 // import JournalEdith from "./components/journal/JournalEdith";
 
 
 export const UserAuthContext = React.createContext();
 
+
 function App() {
   // show navbar or not on components
   const [showNav, setShowNav] = useState(false);
 
-  // to not loose the token on refresh
-  
+  // context for user authentication token and id
   const [userAuth, setUserAuth] = useState(null);
 
   useEffect(()=>{
+    // to not loose the token on refresh
     const accessToken = localStorage.getItem("accessToken");
 
     if(accessToken){
@@ -50,6 +52,7 @@ function App() {
             <Route path="/login" element={< Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
             <Route path="/" element={<HomePage />}></Route>
+            <Route path="/user-details" element={<UserDetails />} />
             <Route path="/journal" element={<Journal />}></Route>
             <Route path="/journal/:id" element={<UpdateDeleteJournalInput />}></Route>
             <Route path="/daily-planner" element={<DailyPlanner />}></Route>

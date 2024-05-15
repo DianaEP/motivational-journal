@@ -6,6 +6,7 @@ import { LuBookLock } from "react-icons/lu";
 import { MdOutlineEditCalendar } from "react-icons/md";
 import { TbCards } from "react-icons/tb";
 import { IoIosList } from "react-icons/io";
+import { RiUserHeartLine } from "react-icons/ri";
 import PropTypes from "prop-types";
 
 
@@ -27,6 +28,9 @@ export default function Nav({showNav}) {
               <ul className="nav-links">
                   <li>
                     <Link to="/"><IoHomeOutline />Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/user-details"><RiUserHeartLine />About Me</Link>
                   </li>
                   <li>
                     <Link to="/journal"><LuBookLock />Journal</Link>
