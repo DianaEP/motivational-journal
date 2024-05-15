@@ -2,8 +2,42 @@ import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import "../auth-css/Authentication.css";
 import "./UserDetails.css";
+import { useContext, useEffect, useState } from "react";
+import { UserAuthContext } from "../../../App";
 
 export default function UserDetails() {
+  const { userAuth } = useContext(UserAuthContext);
+  // const [userData, setUserData] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   email: ''
+  // });
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`, {
+  //         method: "GET",
+  //         headers: {
+  //           Authorization: `Bearer ${userAuth.token}`,
+  //         },
+  //       });
+
+  //       if (response.ok) {
+  //         const userData = await response.json();
+  //         setUserData(userData);
+  //       } else {
+  //         throw new Error('Failed to fetch user data');
+  //       }
+  //     } catch (error) {
+  //       console.log('Error fetching user data:', error);
+  //     }
+  //   };
+
+  //   if (userAuth && userAuth.token) {
+  //     fetchUserData();
+  //   }
+  // }, [userAuth]); // Fetch data when userAuth changes
   return (
     <>
       <div className="wrapper user_details-wrapper">
@@ -17,7 +51,7 @@ export default function UserDetails() {
                   type="text"
                   name="firstName"
                   id="first-name"
-                //    value = {userAuth.firstName}
+                  value = {userAuth.firstName}
                   //  onChange={inputChange}
                 />
                 <FaRegUser />
@@ -30,7 +64,7 @@ export default function UserDetails() {
                   type="text"
                   name="lastName"
                   id="last-name"
-                  //  value = {dataRegister.lastName}
+                  value = {userAuth.lastName}
                   //  onChange={inputChange}
                 />
                 <FaRegUser />
@@ -43,7 +77,7 @@ export default function UserDetails() {
                   type="email"
                   name="email"
                   id="email"
-                  //  value = {dataRegister.email}
+                  value = {userAuth.email}
                   //  onChange={inputChange}
                 />
                 <MdOutlineEmail />

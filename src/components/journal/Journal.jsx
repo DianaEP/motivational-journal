@@ -43,7 +43,7 @@ export default function Journal() {
     searchByDate(newInput.date);
   };
 
-  console.log(`from journal${userAuth.token}`);
+  // console.log(`from journal${userAuth.token}`);
   // GET all the journal inputs
 
   // useEffect(() => {

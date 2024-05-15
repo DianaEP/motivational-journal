@@ -19,6 +19,7 @@ import UserDetails from "./components/authentication/user-details/UserDetails";
 export const UserAuthContext = React.createContext();
 
 
+
 function App() {
   // show navbar or not on components
   const [showNav, setShowNav] = useState(false);

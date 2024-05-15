@@ -11,8 +11,13 @@ import FormValidation from '../validation/FormValidationRegister';
 
 
 
+
+
 export default function Register() {
   const navigate = useNavigate()
+
+  
+
   const [dataRegister, setDataRegister] = useState({
     "firstName" : '',
     "lastName" : '',
@@ -50,7 +55,9 @@ export default function Register() {
             }
 
             if(response.status === 201){
+              
               alert("Registration Successfully") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+              
               navigate('/login')
             }
            })

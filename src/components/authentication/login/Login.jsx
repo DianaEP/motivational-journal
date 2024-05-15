@@ -49,7 +49,7 @@ export default function Login() {
           const body = await response.json();
           localStorage.setItem('accessToken', body.accessToken);
           console.log(body.accessToken, body.user.id);
-          setUserAuth({token : body.accessToken, userId: body.user.id});
+          setUserAuth({token : body.accessToken, userId: body.user.id, firstName : body.user.firstName, lastName : body.user.lastName, email: body.user.email});
           navigate('/');
         }
 

@@ -9,6 +9,11 @@ export async function retrieveJournalInputs(userId,setInputs, userAuth, navigate
 
       
         if(!response.ok){
+
+            if (response.status === 403) { 
+                return setInputs([]); 
+            }
+
             if(response.status === 401){
                 navigate('/login') // needs navigate as param for function and on login.jsx 
             }else{
