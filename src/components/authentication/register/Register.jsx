@@ -6,7 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from 'react';
-import FormValidation from '../validation/FormValidationRegister';
+import FormValidation from '../validation/FormValidation';
 
 
 
@@ -32,12 +32,16 @@ export default function Register() {
   // };
 
   const { errors, valid, inputChange, validateData } = FormValidation({ data: dataRegister, setData: setDataRegister });
-  const {firstName, lastName, email, password} = dataRegister;
-  const userDataRegistration = {firstName, lastName, email, password}
+  const {confirmPassword, ...restUserData} = dataRegister;
+  // const userDataRegistration = {firstName, lastName, email, password}
     
 
   function userRegister(e){
     e.preventDefault();
+
+      if( dataRegister.password !== confirmPassword){
+      alert("Passwords don't match") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+      }
   
     // Object.keys(validationErrors).length === 0
     if(validateData()){
@@ -47,7 +51,7 @@ export default function Register() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(userDataRegistration),
+          body: JSON.stringify(restUserData),
         }).then((response) => {
             if(response.status === 400){
               alert(`${response.statusText} Email already exists `); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR

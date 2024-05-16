@@ -2,61 +2,102 @@ import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
 import "../auth-css/Authentication.css";
 import "./UserDetails.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserAuthContext } from "../../../App";
+import FormValidation from "../validation/FormValidation";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDetails() {
-  const { userAuth } = useContext(UserAuthContext);
-  // const [userData, setUserData] = useState({
-  //   firstName: '',
-  //   lastName: '',
-  //   email: ''
-  // });
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`, {
-  //         method: "GET",
-  //         headers: {
-  //           Authorization: `Bearer ${userAuth.token}`,
-  //         },
-  //       });
+  const { userAuth, setUserAuth } = useContext(UserAuthContext);
+  const navigate = useNavigate();
 
-  //       if (response.ok) {
-  //         const userData = await response.json();
-  //         setUserData(userData);
-  //       } else {
-  //         throw new Error('Failed to fetch user data');
-  //       }
-  //     } catch (error) {
-  //       console.log('Error fetching user data:', error);
-  //     }
-  //   };
+  const [userDetails, setUserDetails] = useState({
+    firstName: userAuth.firstName,
+    lastName: userAuth.lastName,
+    email: userAuth.email,
+    password: ''
+  })
 
-  //   if (userAuth && userAuth.token) {
-  //     fetchUserData();
-  //   }
-  // }, [userAuth]); // Fetch data when userAuth changes
+  const { errors, valid, inputChange, validateData } = FormValidation({ data: userDetails, setData: setUserDetails });
+
+
+
+  // PUT update user details
+
+  async function updateUserDetails(e){
+    e.preventDefault();
+
+    if(validateData()){
+     
+      try {
+        // console.log("Updating user with data:", userDetails);
+        const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`,{
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userAuth.token}`
+          },
+          body: JSON.stringify(userDetails),
+        });
+  
+        if (response.ok) {
+          const updatedUser = await response.json();
+          // console.log("Server response with updated user:", updatedUser);
+          setUserAuth(updatedUser); // Update context with new user data
+          alert('Your changes have been successfully saved! ')
+          navigate('/')
+        } 
+        }catch (error) {
+        console.error('Error updating user details:', error); 
+      }
+    }
+  }
+
+  // DELETE delete user account
+  async function deleteUserAccount(e){
+    e.preventDefault();
+
+    const userConfirmedAction = confirm('Are you sure you want to delete your account?') // confirmation box ERROR
+
+    if(userConfirmedAction){
+      try {
+        
+        const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`,{
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${userAuth.token}`
+          }
+        });
+  
+        if (response.ok) {
+          navigate('/register')
+        } 
+        }catch (error) {
+        console.error('Error deleting user account:', error); 
+      }
+    }
+  }
+ 
   return (
     <>
       <div className="wrapper user_details-wrapper">
         <div className="auth-container user_details-container">
           <div className="form-box user_details-form-box ">
             <h2>About me</h2>
-            <form>
+            <form >
               <div className="input-box user_details-input-box">
-                <label htmlFor="fist-name">First name</label>
+                <label htmlFor="first-name">First name</label>
                 <input
                   type="text"
                   name="firstName"
                   id="first-name"
-                  value = {userAuth.firstName}
-                  //  onChange={inputChange}
+                  value = {userDetails.firstName}
+                  onChange={inputChange}
                 />
                 <FaRegUser />
-                {/* {valid ? <></> : <span className='input-error'>{errors.firstName}</span>} */}
               </div>
+              {valid ? <></> : <span className='input-error'>{errors.firstName}</span>}
 
               <div className="input-box user_details-input-box">
                 <label htmlFor="last-name">Last name</label>
@@ -64,12 +105,12 @@ export default function UserDetails() {
                   type="text"
                   name="lastName"
                   id="last-name"
-                  value = {userAuth.lastName}
-                  //  onChange={inputChange}
+                  value = {userDetails.lastName}
+                  onChange={inputChange}
                 />
                 <FaRegUser />
-                {/* {valid ? <></> : <span className='input-error'>{errors.lastName}</span>} */}
               </div>
+              {valid ? <></> : <span className='input-error'>{errors.lastName}</span>}
 
               <div className="input-box user_details-input-box">
                 <label htmlFor="email">Email</label>
@@ -77,14 +118,34 @@ export default function UserDetails() {
                   type="email"
                   name="email"
                   id="email"
-                  value = {userAuth.email}
-                  //  onChange={inputChange}
+                  value = {userDetails.email}
+                  onChange={inputChange}
                 />
                 <MdOutlineEmail />
-                {/* {valid ? <></> : <span className='input-error'>{errors.email}</span>} */}
               </div>
+              {valid ? <></> : <span className='input-error'>{errors.email}</span>}
 
-              <button className="btn user_details-btn">Update</button>
+
+              <div className="input-box user_details-input-box">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="*Please input your password before pressing the update button"
+                  value = {userDetails.password}
+                  onChange={inputChange}
+                />
+                <MdOutlineEmail />
+              </div>
+              {valid ? <></> : <span className='input-error'>{errors.password}</span>}
+
+              <div className="buttons-user_details">
+                <button className="btn user_details-btn" onClick={updateUserDetails}>Update</button>
+                <button className="btn user_details-btn" onClick={deleteUserAccount}>Delete account</button>
+              </div>
+              
+
             </form>
           </div>
         </div>

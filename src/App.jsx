@@ -36,6 +36,21 @@ function App() {
     }
   },[])
 
+  // useEffect(() => {
+  //   const storedUserAuth = localStorage.getItem('userAuth');
+  //   if (storedUserAuth) {
+  //     setUserAuth(JSON.parse(storedUserAuth));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (userAuth) {
+  //     localStorage.setItem('userAuth', JSON.stringify(userAuth));
+  //   } else {
+  //     localStorage.removeItem('userAuth');
+  //   }
+  // }, [userAuth]);
+
   const showNavbar = () => setShowNav(!showNav);
 
   console.log({userAuth});

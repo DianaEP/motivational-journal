@@ -79,7 +79,7 @@ export default function UpdateDeleteJournalInput(){
     //   DELETE the current input
 
        const userDelete = (id) => {
-        const userConfirmedAction = confirm('Are you sure you want to delete the input?')
+        const userConfirmedAction = confirm('Are you sure you want to delete the input?') // confirmation  box ERROR
 
 
         if(userConfirmedAction){
@@ -94,7 +94,7 @@ export default function UpdateDeleteJournalInput(){
             })
             .catch((error) => {
                 console.error('Error deleting journal entry:', error);
-                // I NEED AN ALERT HERE
+                
         })
  
         }

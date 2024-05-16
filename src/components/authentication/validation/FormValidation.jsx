@@ -44,10 +44,7 @@ export default function FormValidation({data, setData}){
       validationErrors.confirmPassword = 'Confirm password required'
     }
 
-    if( data.password !== data.confirmPassword){
-      isValid = false;
-      validationErrors.confirmPassword = "Passwords don't match"
-    }
+  
 
     setErrors(validationErrors);
     setValid(isValid);

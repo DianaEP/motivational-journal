@@ -6,7 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { UserAuthContext } from '../../../App';
-import FormValidationLogin from '../validation/FormValidationLogin';
+import FormValidation from '../validation/FormValidation';
 
 
 
@@ -22,7 +22,7 @@ export default function Login() {
     "password" : ''
   })
   
-  const { errors, valid, inputChange, validateData } = FormValidationLogin({ data: dataLogin, setData: setDataLogin });
+  const { errors, valid, inputChange, validateData } = FormValidation({ data: dataLogin, setData: setDataLogin });
 
   async function userLogin(e){
     e.preventDefault();
@@ -49,7 +49,12 @@ export default function Login() {
           const body = await response.json();
           localStorage.setItem('accessToken', body.accessToken);
           console.log(body.accessToken, body.user.id);
-          setUserAuth({token : body.accessToken, userId: body.user.id, firstName : body.user.firstName, lastName : body.user.lastName, email: body.user.email});
+          setUserAuth({token : body.accessToken, 
+                       userId: body.user.id, 
+                       firstName : body.user.firstName, 
+                       lastName : body.user.lastName, 
+                       email: body.user.email
+                      });
           navigate('/');
         }
 

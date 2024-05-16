@@ -1,10 +1,10 @@
 {
   "users": [
     {
+      "firstName": "Mayan",
+      "lastName": "Smithy",
       "email": "test@gmail.com",
-      "password": "$2a$10$bbC9SAPV71XLiN7Y641Q3.J1Cp2hnLNuOv60fHcW4xL7/fmibyvTC",
-      "firstName": "Maya",
-      "lastName": "Smith",
+      "password": "$2a$10$9N6.hnbFW3EuUfjNO2PR3efb1764g7ZO/ibOqRUM9npJyoQOZ43Dm",
       "id": 1
     },
     {
@@ -20,20 +20,6 @@
       "firstName": "Sofia",
       "lastName": "Santa",
       "id": 3
-    },
-    {
-      "email": "test4@gmail.com",
-      "password": "$2a$10$o8TRvg5rExeiP7oTcxf7/utvMn6ErjKKEoN7gY14wcj9oY.rqvCd2",
-      "firstName": "Stafania",
-      "lastName": "Ion",
-      "id": 4
-    },
-    {
-      "email": "test5@gmail.com",
-      "password": "$2a$10$qK4wYUC/GHt9fFrwkVftCew.O0xfREyKcounnj8JIjkf.60do5HXC",
-      "firstName": "Stafania",
-      "lastName": "Brown",
-      "id": 5
     }
   ],
   "journalInputs": [
@@ -64,6 +50,24 @@
       "lookForward": "sss",
       "notes": "ssssssgh",
       "userId": 1
+    },
+    {
+      "id": "f7cafa0f-3823-482f-9be2-4156421fea50",
+      "date": "2024-05-08",
+      "grateful": "sfsdf",
+      "proud": "sfsdf",
+      "lookForward": "dfdsf",
+      "notes": "sdfsdf",
+      "userId": 2
+    },
+    {
+      "date": "2024-05-09",
+      "grateful": "three",
+      "proud": "three",
+      "lookForward": "three",
+      "notes": "three",
+      "userId": 3,
+      "id": "wSMZR14"
     }
   ]
 }

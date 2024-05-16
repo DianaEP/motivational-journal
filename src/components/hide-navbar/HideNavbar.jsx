@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import './HideNavbar.css'
 
 const HideNavbar = ({children})=>{
     const path = useLocation();
@@ -15,7 +16,7 @@ const HideNavbar = ({children})=>{
     },[path])
 
     return(
-        <div>{showNavbar && children}</div>
+        <div className="sticky">{showNavbar && children}</div>
     )
 };
 
