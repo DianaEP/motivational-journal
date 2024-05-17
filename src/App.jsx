@@ -13,7 +13,8 @@ import React, { useEffect, useState } from "react";
 import HideNavbar from './components/hide-navbar/HideNavbar';
 import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
 import UserDetails from "./components/authentication/user-details/UserDetails";
-// import JournalEdith from "./components/journal/JournalEdith";
+import PrivateRoute from "../PrivateRoute";
+
 
 
 export const UserAuthContext = React.createContext();
@@ -28,7 +29,7 @@ function App() {
   const [userAuth, setUserAuth] = useState(null);
 
   useEffect(()=>{
-    // to not loose the token on refresh
+    // to not loose the token on refresh ///////////////NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const accessToken = localStorage.getItem("accessToken");
 
     if(accessToken){
@@ -67,13 +68,13 @@ function App() {
           <Routes>
             <Route path="/login" element={< Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/user-details" element={<UserDetails />} />
-            <Route path="/journal" element={<Journal />}></Route>
-            <Route path="/journal/:id" element={<UpdateDeleteJournalInput />}></Route>
-            <Route path="/daily-planner" element={<DailyPlanner />}></Route>
-            <Route path="/motivational-cards" element={<MotivationalCards />}></Route>
-            <Route path="/list-books" element={<ListBooks />}></Route>  
+            <Route path="/" element={<PrivateRoute element={<HomePage />} />}></Route>
+            <Route path="/user-details" element={<PrivateRoute element={<UserDetails />} />} />
+            <Route path="/journal" element={<PrivateRoute element={<Journal />} />}></Route>
+            <Route path="/journal/:id" element={<PrivateRoute element={<UpdateDeleteJournalInput />} />}></Route>
+            <Route path="/daily-planner" element={<PrivateRoute element={<DailyPlanner />} />}></Route>
+            <Route path="/motivational-cards" element={<PrivateRoute element={<MotivationalCards />} />}></Route>
+            <Route path="/list-books" element={<PrivateRoute element={<ListBooks />} />}></Route>  
 
           </Routes>
 

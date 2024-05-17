@@ -69,5 +69,34 @@
       "userId": 3,
       "id": "wSMZR14"
     }
+  ],
+  "cards": [
+    {
+      "id": "334a7e8f-a8e8-4a78-ad9e-3cd0be71c59b",
+      "name": "fgdfg",
+      "text": "dfgdgd",
+      "showStyleButtons": true,
+      "font": true,
+      "rotation": false,
+      "userId": 1
+    },
+    {
+      "id": "e5ee704a-d838-4577-a4e9-3e38f04ddaea",
+      "name": "new2",
+      "text": "new new22",
+      "showStyleButtons": true,
+      "font": true,
+      "rotation": true,
+      "userId": 1
+    },
+    {
+      "id": "222c739a-9229-4e14-b5f1-dba24d775128",
+      "name": "dfgdfg",
+      "text": "dgdfgdf",
+      "showStyleButtons": true,
+      "font": true,
+      "rotation": true,
+      "userId": 1
+    }
   ]
 }

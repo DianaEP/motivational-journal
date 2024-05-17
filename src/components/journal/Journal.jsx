@@ -53,7 +53,6 @@ export default function Journal() {
   // }, []);
 
 
-  // !!!!! ERROR with fist time user
   useEffect(()=>{
     if(userAuth){
       const userId = userAuth.userId
