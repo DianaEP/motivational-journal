@@ -8,7 +8,7 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import { v4 as uuidv4 } from 'uuid';
 import { UserAuthContext } from "../../App";
 import { useNavigate } from "react-router-dom";
-import { retrieveCards } from "../../fetch/fetch";
+import { cardDelete, cardSubmit, cardUpdate, retrieveCards } from "../../fetch/fetch";
 import { SlCloudUpload } from "react-icons/sl";
 
 
@@ -97,124 +97,46 @@ export default function MotivationalCards() {
     setCards(updateRotation);
   };
 
+ 
+
 
 
 // POST
-  function cardSubmit(e,cardId){
+  
+  async function saveCard(e, cardId){
     e.preventDefault();
-   
-
-    // debugger
-
-    const defaultCard = {
-      id: cardId,
-      name: '',
-      text: '',
-      showStyleButtons: false,
-      font: false,
-      rotation: false,
-      image: null
-  };
-   
-    const card = cards.find((c) => c.id === cardId) || defaultCard;
-    console.log(defaultCard);
-    const cardWithUserId = {...card, userId : userAuth.userId}
-    console.log(cardWithUserId);
-
-
-    fetch('http://localhost:3000/cards', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userAuth.token}`
-      },
-      body: JSON.stringify(cardWithUserId)
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to add card');
+    const card = cards.find((c) => c.id === cardId);
+    if (card) {
+      // at least one input field is filled
+      if (card.name.trim() !== '' || card.text.trim() !== '') {
+        await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards);
+      } else {
+        alert('Please fill at least one input field'); // alert box ERROR
       }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(setCards([...cards, data]),cards,data);
-      
-      // setCards([...cards, data]);
-      const updatedCards = cards.map((card) =>
-        card.id === cardId ? data : card
-      );
-      setCards(updatedCards);
-     
-
-    })
-      .catch((error) => {
-        console.error('Error adding entry:', error);
-      });
+    }
   }
+
 
 
 
 // PUT
-  function cardUpdate(e, cardId) {
-    e.preventDefault();
-  
-    const defaultCard = {
-      id: cardId,
-      name: '',
-      text: '',
-      showStyleButtons: false,
-      font: false,
-      rotation: false,
-      image: null
-    };
-   
-    const card = cards.find((c) => c.id === cardId) || defaultCard;
-    const cardWithUserId = {...card, userId : userAuth.userId};
-  
-    fetch(`http://localhost:3000/cards/${cardId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userAuth.token}`
-      },
-      body: JSON.stringify(cardWithUserId)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to update card');
-      }
-      alert('Your changes are saved') // add a box ERROR
-    })
-    .catch(error => {
-      console.error('Error updating card:', error);
-      
-    });
+
+async function updateCard(e, cardId){
+  e.preventDefault();
+  const card = cards.find((c) => c.id === cardId);
+  if (card) {
+    await cardUpdate({ ...card, userId: userAuth.userId }, userAuth, setCards);
   }
+}
 
-  function cardDelete (e, cardId){
-    e.preventDefault();
-    const userConfirmedAction = confirm('Are you sure you want to delete the input?') // confirmation  box ERROR
 
-    if(userConfirmedAction){
-        fetch(`http://localhost:3000/cards/${cardId}`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${userAuth.token}`
-          }
-        })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Failed to delete card');
-          }
-          // Remove the card from the list 
-          setCards(prevCards => prevCards.filter(card => card.id !== cardId));
-        })
-        .catch((error) => {
-            console.error('Error deleting journal entry:', error);
-            
-    })
+// DELETE
 
-    }
+async function deleteCard(e, cardId){
+  e.preventDefault();
+  if (confirm('Are you sure you want to delete the input?')) {
+    await cardDelete(cardId, userAuth, setCards);
+  }
 }
 
   return (
@@ -251,9 +173,7 @@ export default function MotivationalCards() {
                 
                 
               </div>
-                
-              
-              
+                 
               <input
                 className={card.font ? "card-name-input change-font-input" : "card-name-input" }
                 type="text"
@@ -279,9 +199,10 @@ export default function MotivationalCards() {
                     <button onClick={() => toggleFont(card.id)}><FaFont /></button>
                     <button onClick={() => toggleRotation(card.id)}><FaArrowsRotate /></button>
                   </div>
-                  <button onClick={(e) => cardSubmit(e, card.id)} >Save</button>
-                  <button onClick={(e) => cardUpdate(e, card.id)}>Update</button>
-                  <button onClick={(e) => cardDelete(e, card.id)}>Delete</button>
+
+                  <button onClick={(e) => saveCard(e, card.id)} >Save</button>
+                  <button onClick={(e) => updateCard(e, card.id)}>Update</button>
+                  <button onClick={(e) => deleteCard(e, card.id)}>Delete</button>
                 </div>
               </div>
             </div>

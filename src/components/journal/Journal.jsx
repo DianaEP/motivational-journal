@@ -3,7 +3,7 @@ import books from '../../assets/books.png';
 import {  useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-import { retrieveJournalInputs } from "../../fetch/fetch";
+import { retrieveJournalInputs, submitJournalInput } from "../../fetch/fetch";
 import { UserAuthContext } from "../../App";
 
 
@@ -27,30 +27,6 @@ export default function Journal() {
   const navigate = useNavigate();
 
 
-  // Search for existing input by date
-
-  function searchByDate(date){
-    const findDate = journalInputs.find((input) => input.date === date);
-    if(findDate){
-      console.log(findDate.id) 
-      navigate(`/journal/${findDate.id}`); //navigate to that specific id
-    }else{
-      alert('there are no inputs with this date');
-    }
-  }
-
-  const handleSearch = () => {
-    searchByDate(newInput.date);
-  };
-
-  // console.log(`from journal${userAuth.token}`);
-  // GET all the journal inputs
-
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/journalInputs')
-  //     .then((response) => response.json())
-  //     .then((data) => setJournalInputs(data));
-  // }, []);
 
 
   useEffect(()=>{
@@ -64,6 +40,21 @@ export default function Journal() {
   },[userAuth, navigate])
 
 
+  // Search for existing input by date if exist 
+  const dateChange = (e) => {
+    const date = e.target.value;
+    setNewInput((prev) => ({
+      ...prev,
+      date: date
+    }));
+
+    const existingInput = journalInputs.find((input) => input.date === date);
+    if (existingInput) {
+      navigate(`/journal/${existingInput.id}`);
+    }
+  };
+
+
   const inputChange = (e) => {
     const { name, value } = e.target;
     setNewInput((prev) => ({
@@ -75,35 +66,24 @@ export default function Journal() {
 
   // POST a new input 
 
-  function userSubmit(e){
+  const userSubmit = (e) => {
     e.preventDefault();
+    if(newInput.date === ''){
+      alert('You need add a date!');
+      return;
+    }
 
-    // new
-    const inputWithUserId = {...newInput, userId : userAuth.userId}
-    fetch('http://localhost:3000/journalInputs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userAuth.token}`
-      },
-      body: JSON.stringify(inputWithUserId)
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setJournalInputs([...journalInputs, data]);
-        console.log('New entry submitted:', newInput.date);
-        setNewInput({
-          date: '',
-          grateful: '',
-          proud: '',
-          lookForward: '',
-          notes: ''
-        });
-      })
-      .catch((error) => {
-        console.error('Error adding entry:', error);
-      });
-  }
+    submitJournalInput(userAuth, newInput, setJournalInputs);
+    setNewInput({
+      date: '',
+      grateful: '',
+      proud: '',
+      lookForward: '',
+      notes: '',
+    });
+  };
+
+
 
   if (!journalInputs) {
     return <p>Loading...</p>; // Display loading message while fetching data
@@ -128,9 +108,9 @@ export default function Journal() {
                        name="date"
                        id="date" 
                        value={newInput.date} 
-                       onChange = {(e) => setNewInput({ ...newInput, date: e.target.value })}
+                       onChange = {dateChange}
                        required />
-                <button className="button button-search" onClick={()=>handleSearch()}>Search</button>
+                
               </fieldset>
             </div>
 

@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { UserAuthContext } from "../../../App";
 import FormValidation from "../validation/FormValidation";
 import { useNavigate } from "react-router-dom";
+import { deleteUser, updateUser } from "../../../fetch/fetch";
 
 export default function UserDetails() {
 
@@ -22,35 +23,16 @@ export default function UserDetails() {
   const { errors, valid, inputChange, validateData } = FormValidation({ data: userDetails, setData: setUserDetails });
 
 
-
   // PUT update user details
 
-  async function updateUserDetails(e){
+function updateUserDetails(e){
     e.preventDefault();
 
     if(validateData()){
-     
-      try {
-        // console.log("Updating user with data:", userDetails);
-        const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`,{
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${userAuth.token}`
-          },
-          body: JSON.stringify(userDetails),
-        });
-  
-        if (response.ok) {
-          const updatedUser = await response.json();
-          // console.log("Server response with updated user:", updatedUser);
-          setUserAuth(updatedUser); // Update context with new user data
-          alert('Your changes have been successfully saved! ')
-          navigate('/')
-        } 
-        }catch (error) {
-        console.error('Error updating user details:', error); 
-      }
+
+      updateUser(userAuth, userDetails, setUserAuth, navigate).catch((error) =>
+        console.error('Error updating user details:', error)
+      );
     }
   }
 
@@ -61,21 +43,9 @@ export default function UserDetails() {
     const userConfirmedAction = confirm('Are you sure you want to delete your account?') // confirmation box ERROR
 
     if(userConfirmedAction){
-      try {
-        
-        const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`,{
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${userAuth.token}`
-          }
-        });
-  
-        if (response.ok) {
-          navigate('/register')
-        } 
-        }catch (error) {
-        console.error('Error deleting user account:', error); 
-      }
+      deleteUser(userAuth,navigate).catch((error) =>
+        console.error('Error deleting user details:', error)
+      );
     }
   }
  

@@ -3,7 +3,7 @@ import books from '../../assets/books.png';
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserAuthContext } from "../../App";
-import { retrieveOneJournalInput } from "../../fetch/fetch";
+import { deleteJournalInput, retrieveOneJournalInput, updateJournalInput } from "../../fetch/fetch";
 
 
 
@@ -23,17 +23,6 @@ export default function UpdateDeleteJournalInput(){
     });
 
 
-    // GET the specific input based on id
-
-    // useEffect(() => {
-    //   fetch(`http://localhost:3000/journalInputs/${id}`)
-    //     .then((response) => response.json())
-    //     .then((data) =>{
-    //       setInput(data);
-    //       setEditedInput(data);
-    //     })
-    //     .catch((error) => console.error('Error fetching journal entry:', error));
-    // }, [id]);
 
     useEffect(() => {
       if(userAuth){
@@ -52,52 +41,32 @@ export default function UpdateDeleteJournalInput(){
       }));
     };
 
+    function goBack(e){
+      e.preventDefault();
+      navigate('/journal');
+    }
+
 
     // PUT update the current input
 
     const userUpdate = (e) => {
         e.preventDefault(); //prevent refresh
-        fetch(`http://localhost:3000/journalInputs/${id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${userAuth.token}`
-          },
-          body: JSON.stringify(editedInput)
-        })
-          .then(() => {
-            navigate('/journal'); // go back to journal page after update
-          })
-          .catch((error) => {
-            console.error('Error updating journal entry:', error);
-            // I NEED AN ALERT HERE!!!!!!!
-          });
+        updateJournalInput(id, editedInput, userAuth, navigate).catch((error) =>
+          console.error('Error updating journal entry:', error)
+        );
       };
 
 
 
     //   DELETE the current input
 
-       const userDelete = (id) => {
-        const userConfirmedAction = confirm('Are you sure you want to delete the input?') // confirmation  box ERROR
-
-
-        if(userConfirmedAction){
-            fetch(`http://localhost:3000/journalInputs/${id}`, {
-              method: 'DELETE',
-              headers: {
-                Authorization: `Bearer ${userAuth.token}`
-              }
-            })
-            .then(() => {
-                 navigate('/journal');
-            })
-            .catch((error) => {
-                console.error('Error deleting journal entry:', error);
-                
-        })
- 
-        }
+    const userDelete = (id) => {
+      const userConfirmedAction = confirm('Are you sure you want to delete the input?') // confirmation  box ERROR
+      if(userConfirmedAction){
+        deleteJournalInput(id, userAuth, navigate).catch((error) =>
+          console.error('Error deleting journal entry:', error)
+        );
+      }
     }
 
 
@@ -129,8 +98,9 @@ export default function UpdateDeleteJournalInput(){
                          type="date"
                          id="date" 
                          value={editedInput.date} 
-                         onChange = {inputChange}
+                         readOnly
                           />
+                  <button className="button button-search" onClick={(e)=>goBack(e)}>Back to journal</button>
                 </fieldset>
               </div>
   
