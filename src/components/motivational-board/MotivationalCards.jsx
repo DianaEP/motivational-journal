@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { UserAuthContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { retrieveCards } from "../../fetch/fetch";
+import { SlCloudUpload } from "react-icons/sl";
 
 
 
@@ -47,8 +48,25 @@ export default function MotivationalCards() {
       showStyleButtons: false, //add the showStyleButtons property
       font: false,
       rotation: false,
+      image: null
     };
     setCards([...cards, newCard]);
+  };
+
+  // image with base64
+  const imageChange = (e, cardId) => {
+    const file = e.target.files[0]; //retrieves the first file selected by the user in the file input
+    console.log(e.target.files);
+    if (file) { // file was indeed selected by the user
+      const reader = new FileReader(); // read the contents of files asynchronously
+      reader.onloadend = () => { //event handler that fires when the reading operation is completed
+        const updatedCards = cards.map((card) =>
+          card.id === cardId ? { ...card, image: reader.result } : card //contains the data URL representing the file's data as a base64 encoded string
+        );
+        setCards(updatedCards); //updates the state where the specified card's image has been updated
+      };
+      reader.readAsDataURL(file); //reader to start reading the contents of the specified file as a data URL
+    }
   };
 
 
@@ -95,6 +113,7 @@ export default function MotivationalCards() {
       showStyleButtons: false,
       font: false,
       rotation: false,
+      image: null
   };
    
     const card = cards.find((c) => c.id === cardId) || defaultCard;
@@ -146,6 +165,7 @@ export default function MotivationalCards() {
       showStyleButtons: false,
       font: false,
       rotation: false,
+      image: null
     };
    
     const card = cards.find((c) => c.id === cardId) || defaultCard;
@@ -212,8 +232,28 @@ export default function MotivationalCards() {
         <div className="display-cards">
           {cards.map((card) => (
             <div key={card.id} className={card.rotation ? "card-container card-rotation" : "card-container" }>
-              <img id="pin-img" src={pin} alt="pin" />
-              <img src="https://picsum.photos/300/200" alt="Card image" />
+              <div className="image-file">
+                <img id="pin-img" src={pin} alt="pin" />
+                {card.image ? <img className="upload-img" src={card.image} alt="Card image" /> 
+                                : 
+                              <div className="upload-msg">
+                                  <div className="design-upload">
+                                      <SlCloudUpload />
+                                      Upload image
+                                  </div>
+                              </div>} {/* Only show image if it exists */}
+                {/* <label htmlFor="file" className="custom-button"><BsUpload /></label> */}
+                <input type="file" 
+                       title = ''
+                       className="input-file" 
+                       onChange={(e) => imageChange(e, card.id)} 
+                       accept="image/*" /> {/* Image upload input */}
+                
+                
+              </div>
+                
+              
+              
               <input
                 className={card.font ? "card-name-input change-font-input" : "card-name-input" }
                 type="text"
