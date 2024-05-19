@@ -10,10 +10,14 @@ import { UserAuthContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { cardDelete, cardSubmit, cardUpdate, retrieveCards } from "../../fetch/fetch";
 import { SlCloudUpload } from "react-icons/sl";
+import useAlert from "../custom-boxes/alert-box/AlertBox";
+import useConfirm from "../custom-boxes/confirm-box/ConfirmBox";
 
 
 
 export default function MotivationalCards() {
+  const { showAlert, AlertComponent } = useAlert();
+  const { showConfirm, ConfirmComponent } = useConfirm();
   
   const {userAuth} = useContext(UserAuthContext);
   const navigate = useNavigate();
@@ -52,6 +56,8 @@ export default function MotivationalCards() {
     };
     setCards([...cards, newCard]);
   };
+
+
 
   // image with base64
   const imageChange = (e, cardId) => {
@@ -109,9 +115,9 @@ export default function MotivationalCards() {
     if (card) {
       // at least one input field is filled
       if (card.name.trim() !== '' || card.text.trim() !== '') {
-        await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards);
+        await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
       } else {
-        alert('Please fill at least one input field'); // alert box ERROR
+        showAlert('Please fill at least one input field'); // alert box ERROR
       }
     }
   }
@@ -125,7 +131,7 @@ async function updateCard(e, cardId){
   e.preventDefault();
   const card = cards.find((c) => c.id === cardId);
   if (card) {
-    await cardUpdate({ ...card, userId: userAuth.userId }, userAuth, setCards);
+    await cardUpdate({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
   }
 }
 
@@ -134,9 +140,14 @@ async function updateCard(e, cardId){
 
 async function deleteCard(e, cardId){
   e.preventDefault();
-  if (confirm('Are you sure you want to delete the input?')) {
-    await cardDelete(cardId, userAuth, setCards);
-  }
+  try{
+    const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation  box ERROR
+    if(userConfirmedAction){
+      await cardDelete(cardId, userAuth, setCards,showAlert);
+    } 
+  }catch(error) {
+      console.error('Error deleting card entry:', error)
+    }
 }
 
   return (
@@ -208,6 +219,8 @@ async function deleteCard(e, cardId){
             </div>
           ))}
         </div>
+        <AlertComponent/>
+        <ConfirmComponent/>
       </div>
     </>
   );

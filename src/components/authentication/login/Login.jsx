@@ -7,13 +7,13 @@ import { MdLockOutline } from "react-icons/md";
 import { useContext, useState } from 'react';
 import { UserAuthContext } from '../../../App';
 import FormValidation from '../validation/FormValidation';
-
-
-
+import { loginUser } from '../../../fetch/fetch';
+import useAlert from '../../custom-boxes/alert-box/AlertBox';
 
 
 export default function Login() {
   const navigate = useNavigate()
+  const { showAlert, AlertComponent } = useAlert();
 
   const {setUserAuth} = useContext(UserAuthContext);
 
@@ -24,53 +24,17 @@ export default function Login() {
   
   const { errors, valid, inputChange, validateData } = FormValidation({ data: dataLogin, setData: setDataLogin });
 
-  async function userLogin(e){
+  function userLogin(e){
     e.preventDefault();
     // debugger
     if(validateData()){
-      try{
-        const response = await fetch("http://localhost:3000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataLogin),
-        })
-
-        if (!response.ok) {
-          if(response.status === 400){
-            alert('Invalid email or password. Please try again.') //!!!!!!!!message box
-            throw new Error('Invalid email or password. ');
-            
-          }
-        }
-
-        if(response.ok){
-          const body = await response.json();
-          localStorage.setItem('accessToken', body.accessToken);
-          console.log(body.accessToken, body.user.id);
-          setUserAuth({token : body.accessToken, 
-                       userId: body.user.id, 
-                       firstName : body.user.firstName, 
-                       lastName : body.user.lastName, 
-                       email: body.user.email
-                      });
-          navigate('/');
-        }
-
-        
-      }catch(error){
-        console.log('Error logging in:', error.message);
-      }
-      
-    }
-    
+      loginUser(dataLogin, setUserAuth, navigate, showAlert).catch((error) =>
+        console.error('Error login:', error)
+      );
+    }  
   }
 
-
-
-
-    return (
+  return (
       <>
         <div className="wrapper">
           <div className='auth-container  auth-login'>
@@ -121,6 +85,7 @@ export default function Login() {
                 <p>This journal will stand as a witness of your hopes,your fear, your dreams, your ambitions and your growth. </p>
               </div>
           </div>
+          <AlertComponent /> 
         </div>
       </>
     )

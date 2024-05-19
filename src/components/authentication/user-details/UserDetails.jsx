@@ -7,8 +7,13 @@ import { UserAuthContext } from "../../../App";
 import FormValidation from "../validation/FormValidation";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, updateUser } from "../../../fetch/fetch";
+import useConfirm from "../../custom-boxes/confirm-box/ConfirmBox";
+import useAlert from "../../custom-boxes/alert-box/AlertBox";
 
 export default function UserDetails() {
+  const { showConfirm, ConfirmComponent } = useConfirm();
+  const { showAlert, AlertComponent } = useAlert();
+
 
   const { userAuth, setUserAuth } = useContext(UserAuthContext);
   const navigate = useNavigate();
@@ -30,23 +35,24 @@ function updateUserDetails(e){
 
     if(validateData()){
 
-      updateUser(userAuth, userDetails, setUserAuth, navigate).catch((error) =>
+      updateUser(userAuth, userDetails, setUserAuth, navigate,showAlert).catch((error) =>
         console.error('Error updating user details:', error)
       );
     }
   }
 
   // DELETE delete user account
-  async function deleteUserAccount(e){
+async function deleteUserAccount(e){
     e.preventDefault();
 
-    const userConfirmedAction = confirm('Are you sure you want to delete your account?') // confirmation box ERROR
-
-    if(userConfirmedAction){
-      deleteUser(userAuth,navigate).catch((error) =>
+    try{
+      const userConfirmedAction = await showConfirm('Are you sure you want to delete your account?') // confirmation  box ERROR
+      if(userConfirmedAction){
+        deleteUser(userAuth,navigate);
+      } 
+      }catch(error) {
         console.error('Error deleting user details:', error)
-      );
-    }
+      }
   }
  
   return (
@@ -119,6 +125,8 @@ function updateUserDetails(e){
             </form>
           </div>
         </div>
+        <ConfirmComponent/>
+        <AlertComponent/>
       </div>
     </>
   );

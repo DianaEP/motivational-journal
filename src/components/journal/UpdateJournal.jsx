@@ -4,11 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserAuthContext } from "../../App";
 import { deleteJournalInput, retrieveOneJournalInput, updateJournalInput } from "../../fetch/fetch";
+import useConfirm from "../custom-boxes/confirm-box/ConfirmBox";
 
 
 
 export default function UpdateDeleteJournalInput(){
     const {userAuth} = useContext(UserAuthContext);
+    const { showConfirm, ConfirmComponent } = useConfirm();
+
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -60,14 +63,18 @@ export default function UpdateDeleteJournalInput(){
 
     //   DELETE the current input
 
-    const userDelete = (id) => {
-      const userConfirmedAction = confirm('Are you sure you want to delete the input?') // confirmation  box ERROR
-      if(userConfirmedAction){
-        deleteJournalInput(id, userAuth, navigate).catch((error) =>
-          console.error('Error deleting journal entry:', error)
-        );
-      }
-    }
+    const userDelete = async (id) => {
+      try{
+          const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation  box ERROR
+          if(userConfirmedAction){
+            await deleteJournalInput(id, userAuth, navigate);
+          } 
+        }catch(error) {
+            console.error('Error deleting journal entry:', error)
+          }
+            
+        }
+     
 
 
     const userDeleteClick = (id, e) => {
@@ -173,6 +180,7 @@ export default function UpdateDeleteJournalInput(){
             <button className="button" onClick={(e)=>userDeleteClick(id,e)}>Delete</button>
             </div>
           </form>
+          <ConfirmComponent/>
         </div>
       </>
     )

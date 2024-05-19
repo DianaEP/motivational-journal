@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { retrieveJournalInputs, submitJournalInput } from "../../fetch/fetch";
 import { UserAuthContext } from "../../App";
+import useAlert from "../custom-boxes/alert-box/AlertBox";
 
 
 
 export default function Journal() {
-
+  const { showAlert, AlertComponent } = useAlert();
   
   const {userAuth} = useContext(UserAuthContext);
 
@@ -69,7 +70,7 @@ export default function Journal() {
   const userSubmit = (e) => {
     e.preventDefault();
     if(newInput.date === ''){
-      alert('You need add a date!');
+      showAlert('You need add a date!');
       return;
     }
 
@@ -181,6 +182,7 @@ export default function Journal() {
             <button className="button" type="submit" onClick={userSubmit}>Save</button>
           </div>
         </form>
+        <AlertComponent/>
       </div>
     </>
   );

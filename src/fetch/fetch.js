@@ -1,8 +1,92 @@
-  //                       ----------------------------->   USERS    <--------------------------------- 
+
+  //                       ----------------------------->   REGISTER   <--------------------------------- 
+
+
+
+  export async function registerUser(restUserData, navigate, showAlert){
+    try{
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(restUserData),
+      })
+  
+      if (!response.ok) {
+        if(response.status === 400){
+          showAlert(`${response.statusText} Email already exists `); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+        }
+        return;    
+     
+      }
+      
+      console.log('Registration successful')
+      showAlert("Registration Successfully"); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+      // navigate('/login'); 
+      
+    }catch(error){
+      console.log('Error adding entry:', error.message);
+    }
+    
+   }
+
+ // ------------------------------------------------------------------------------------------------------------------------------
+
+   //                       ----------------------------->   LOGIN   <--------------------------------- 
+ 
+ export async function loginUser(dataLogin, setUserAuth, navigate, showAlert){
+  try{
+    const response = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataLogin),
+    })
+
+    if (!response.ok) {
+      if(response.status === 400){
+        showAlert('Invalid email or password. Please try again.') //!!!!!!!!message box
+        throw new Error('Invalid email or password. ');
+        
+      }
+    }
+
+    if(response.ok){
+      const body = await response.json();
+      localStorage.setItem('accessToken', body.accessToken);
+      console.log(body.accessToken, body.user.id);
+      setUserAuth({token : body.accessToken, 
+                   userId: body.user.id, 
+                   firstName : body.user.firstName, 
+                   lastName : body.user.lastName, 
+                   email: body.user.email
+                  });
+      navigate('/');
+    }
+
+    
+  }catch(error){
+    console.log('Error logging in:', error.message);
+  }
+  
+ }
+ 
+ 
+ // ------------------------------------------------------------------------------------------------------------------------------ 
+ 
+ 
+ //                       ----------------------------->   USERS    <--------------------------------- 
+
+
 
 //  PUT update user
 
-export async function updateUser(userAuth, userDetails, setUserAuth, navigate){
+export async function updateUser(userAuth, userDetails, setUserAuth, navigate,showAlert){
     try {
         // console.log("Updating user with data:", userDetails);
         const response = await fetch(`http://localhost:3000/users/${userAuth.userId}`,{
@@ -18,8 +102,10 @@ export async function updateUser(userAuth, userDetails, setUserAuth, navigate){
           const updatedUser = await response.json();
           // console.log("Server response with updated user:", updatedUser);
           setUserAuth(updatedUser); // Update context with new user data
-          alert('Your changes have been successfully saved! ')
-          navigate('/')
+          showAlert('Your changes have been successfully saved! ')
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
         } 
         }catch (error) {
         console.error('Error updating user details:', error); 
@@ -227,7 +313,7 @@ export async function retrieveCards(userId,setCards, userAuth, navigate ){
 
 // POST new card
 
-export async function cardSubmit(card, userAuth, setCards){
+export async function cardSubmit(card, userAuth, setCards,showAlert){
     try {
       const response = await fetch('http://localhost:3000/cards', {
         method: 'POST',
@@ -239,7 +325,7 @@ export async function cardSubmit(card, userAuth, setCards){
       });
       if (!response.ok) {
         if(response.status === 500){
-            alert('This card already exist!Press update if you want to save the changes'); // i need the alert box ERROR
+          showAlert('This card already exist!Press update if you want to save the changes'); // i need the alert box ERROR
             return;
         }
       }
@@ -259,7 +345,7 @@ export async function cardSubmit(card, userAuth, setCards){
 
 // PUT update card
 
-export async function cardUpdate(card, userAuth, setCards){
+export async function cardUpdate(card, userAuth, setCards,showAlert){
     try {
       const response = await fetch(`http://localhost:3000/cards/${card.id}`, {
         method: 'PUT',
@@ -272,7 +358,7 @@ export async function cardUpdate(card, userAuth, setCards){
   
       if (!response.ok) {
         if(response.status === 404){
-            alert("This card doesn't exist!You have to save it first!"); // i need the alert box ERROR
+          showAlert("This card doesn't exist!You have to save it first!"); // i need the alert box ERROR
             return;
         }
       }
@@ -293,7 +379,7 @@ export async function cardUpdate(card, userAuth, setCards){
 
 // DELETE card
 
-export async function cardDelete(cardId, userAuth, setCards){
+export async function cardDelete(cardId, userAuth, setCards,showAlert){
     try {
       const response = await fetch(`http://localhost:3000/cards/${cardId}`, {
         method: 'DELETE',
@@ -304,7 +390,7 @@ export async function cardDelete(cardId, userAuth, setCards){
   
       if (!response.ok) {
         if(response.status === 401){
-            alert("You cannot delete this card!You have to save it first!"); // i need the alert box ERROR
+          showAlert("You cannot delete this card!You have to save it first!"); // i need the alert box ERROR
             return;
         }
       }

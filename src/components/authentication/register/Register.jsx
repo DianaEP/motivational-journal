@@ -7,14 +7,15 @@ import { MdLockOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from 'react';
 import FormValidation from '../validation/FormValidation';
-
-
-
+import { registerUser } from '../../../fetch/fetch';
+import useAlert from '../../custom-boxes/alert-box/AlertBox';
 
 
 
 export default function Register() {
   const navigate = useNavigate()
+
+  const { showAlert, AlertComponent } = useAlert();
 
   
 
@@ -26,10 +27,7 @@ export default function Register() {
     "confirmPassword" : ''
   })
 
-  // const inputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setDataRegister({ ...dataRegister, [name]: value });
-  // };
+  
 
   const { errors, valid, inputChange, validateData } = FormValidation({ data: dataRegister, setData: setDataRegister });
   const {confirmPassword, ...restUserData} = dataRegister;
@@ -39,37 +37,18 @@ export default function Register() {
   function userRegister(e){
     e.preventDefault();
 
-      if( dataRegister.password !== confirmPassword){
-      alert("Passwords don't match") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
-      }
+    if( dataRegister.password !== confirmPassword){
+      showAlert("Passwords don't match"); // Use showAlert instead of alert
+      return; 
+    }
   
     // Object.keys(validationErrors).length === 0
     if(validateData()){
-        
-        fetch("http://localhost:3000/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(restUserData),
-        }).then((response) => {
-            if(response.status === 400){
-              alert(`${response.statusText} Email already exists `); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
-              return;
-            }
-
-            if(response.status === 201){
-              
-              alert("Registration Successfully") // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
-              
-              navigate('/login')
-            }
-           })
-          .catch((error) => {
-            console.log('Error adding entry:', error);
-      });
-    } 
-  }
+       registerUser(restUserData, navigate, showAlert).catch((error) =>
+         console.error('Error register:', error)
+       );
+     } 
+   }
 
 
 
@@ -157,6 +136,7 @@ export default function Register() {
               </div>
              
           </div>
+          <AlertComponent /> 
         </div>
       </>
     )
