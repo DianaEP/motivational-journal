@@ -22,17 +22,6 @@ function App() {
   // show navbar or not on components
   const [showNav, setShowNav] = useState(false);
 
-  // context for user authentication token and id
-  // const [userAuth, setUserAuth] = useState(null);
-
-  // useEffect(()=>{
-  //   // to not loose the token on refresh ///////////////NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //   const accessToken = localStorage.getItem("accessToken");
-
-  //   if(accessToken){
-  //     setUserAuth({token:accessToken})
-  //   }
-  // },[])
 
 
   // Finally

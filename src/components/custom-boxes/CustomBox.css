@@ -24,6 +24,23 @@
     justify-content: center;
     align-items: center;
     row-gap: 2rem;
+    /* transition: transform 0.8s ease; */
+  }
+
+
+  .alert-box.animated {
+    animation: slide 0.5s normal; 
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
 .alert-font{

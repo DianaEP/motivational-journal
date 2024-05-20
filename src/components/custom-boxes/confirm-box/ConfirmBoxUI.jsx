@@ -3,11 +3,13 @@ import "./ConfirmBox.css"
 import PropTypes from "prop-types";
 
 export default function ConfirmBox({message, onCancel, onConfirm}) {
+
+
   
   return (
     <>
       <div className="alert-parent">
-        <div className="alert-box confirm-box">
+        <div className="alert-box confirm-box animated">
           <p className="alert-font confirm-font">{message}</p>
           <div className="confirm-style-btn">
                 <button className="alert-btn confirm-btn" onClick={onConfirm}>OK</button>
