@@ -49,29 +49,43 @@
     })
 
     if (!response.ok) {
+      console.log(response);
       if(response.status === 400){
         showAlert('Invalid email or password. Please try again.') //!!!!!!!!message box
-        throw new Error('Invalid email or password. ');
+        
         
       }
     }
 
-    if(response.ok){
+    
       const body = await response.json();
-      localStorage.setItem('accessToken', body.accessToken);
-      console.log(body.accessToken, body.user.id);
-      setUserAuth({token : body.accessToken, 
+      if(body.accessToken && body.user){
+        console.log('Login response:', body);
+
+        localStorage.setItem('accessToken', body.accessToken);
+        localStorage.setItem('userAuth', JSON.stringify({
+        token: body.accessToken,
+        userId: body.user.id,
+        firstName: body.user.firstName,
+        lastName: body.user.lastName,
+        email: body.user.email,
+      }));
+
+        setUserAuth({
+                   token : body.accessToken, 
                    userId: body.user.id, 
                    firstName : body.user.firstName, 
                    lastName : body.user.lastName, 
                    email: body.user.email
                   });
-      navigate('/');
-    }
-
-    
+        // update both the state and local storage
+        navigate('/');
+      }else {
+        throw new Error('Invalid response from server.');
+      }  
   }catch(error){
     console.log('Error logging in:', error.message);
+    // showAlert('Error logging in. Please try again later.');
   }
   
  }

@@ -16,41 +16,60 @@ import UserDetails from "./components/authentication/user-details/UserDetails";
 import PrivateRoute from "../PrivateRoute";
 
 
-
 export const UserAuthContext = React.createContext();
-
-
 
 function App() {
   // show navbar or not on components
   const [showNav, setShowNav] = useState(false);
 
   // context for user authentication token and id
-  const [userAuth, setUserAuth] = useState(null);
+  // const [userAuth, setUserAuth] = useState(null);
 
-  useEffect(()=>{
-    // to not loose the token on refresh ///////////////NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    const accessToken = localStorage.getItem("accessToken");
+  // useEffect(()=>{
+  //   // to not loose the token on refresh ///////////////NOT WORKING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //   const accessToken = localStorage.getItem("accessToken");
 
-    if(accessToken){
-      setUserAuth({token:accessToken})
+  //   if(accessToken){
+  //     setUserAuth({token:accessToken})
+  //   }
+  // },[])
+
+
+  // Finally
+  
+// checks if the user is already authenticated (from a previous session) and sets the userAuth state based on the saved data.
+  const [userAuth, setUserAuth] = useState(() => {
+    const token = localStorage.getItem('accessToken');
+    const storedUserAuth = localStorage.getItem('userAuth');
+    return token && storedUserAuth ? JSON.parse(storedUserAuth) : null;  
+  });
+
+
+//if the page is refreshed, the state is re-initialized from local storage, maintaining user authentication.
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    const storedUserAuth = localStorage.getItem('userAuth');
+    if (accessToken && storedUserAuth) {
+      setUserAuth(JSON.parse(storedUserAuth));
+    }  
+  }, []);
+
+
+// update local storage whenever the userAuth state changes( due to login, logout, or other actions)
+  useEffect(() => {
+    if (userAuth) {
+      localStorage.setItem('accessToken', userAuth.token);
+      localStorage.setItem('userAuth', JSON.stringify(userAuth));
+    } else {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('userAuth');
     }
-  },[])
+  }, [userAuth]);
 
-  // useEffect(() => {
-  //   const storedUserAuth = localStorage.getItem('userAuth');
-  //   if (storedUserAuth) {
-  //     setUserAuth(JSON.parse(storedUserAuth));
-  //   }
-  // }, []);
 
-  // useEffect(() => {
-  //   if (userAuth) {
-  //     localStorage.setItem('userAuth', JSON.stringify(userAuth));
-  //   } else {
-  //     localStorage.removeItem('userAuth');
-  //   }
-  // }, [userAuth]);
+
+
+ 
 
   const showNavbar = () => setShowNav(!showNav);
 

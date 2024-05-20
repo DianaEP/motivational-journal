@@ -8,15 +8,20 @@ import { TbCards } from "react-icons/tb";
 import { IoIosList } from "react-icons/io";
 import { RiUserHeartLine } from "react-icons/ri";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { UserAuthContext } from "../../App";
 
 
 export default function Nav({showNav}) {
+  const {setUserAuth} = useContext(UserAuthContext);
 
     const navigate = useNavigate();
 
     function logout(){
   
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('userAuth');
+      setUserAuth(null);
       navigate('/login');
     }
     

@@ -49,6 +49,9 @@ async function deleteUserAccount(e){
       const userConfirmedAction = await showConfirm('Are you sure you want to delete your account?') // confirmation  box ERROR
       if(userConfirmedAction){
         deleteUser(userAuth,navigate);
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('userAuth');
+        setUserAuth(null);
       } 
       }catch(error) {
         console.error('Error deleting user details:', error)
