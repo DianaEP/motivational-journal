@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 400px;
-    height: 700px;
+    width: 700px;
+    height: 800px;
     /* background-color: var(--color2-journal); */
     background-color: var(--color2-journal);
     box-shadow: 0 0 10px rgba(0,0,0,.4);
@@ -133,7 +133,7 @@
 
 @media(max-width:1700px){
     .to-do-list{
-        width:450px;
+        width:600px;
         margin: 0 3rem;
         
     }
@@ -160,5 +160,31 @@
         font-size: 0.9rem;
     }  
 } 
+
+
+@media(max-width:600px){
+    .to-do-list{
+       width: 300px;
+        height: 400px;
+    }
+
+    .list{
+        width: 7rem; 
+        font-size: 0.7rem;
+    }
+
+    .span-item{
+        font-size: 0.7rem;
+    }  
+} 
+
+@media(max-width:370px){
+    .to-do-list{
+       width: 250px;
+    }
+
+} 
+
+
 
 

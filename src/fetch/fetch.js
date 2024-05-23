@@ -64,12 +64,12 @@
 
         localStorage.setItem('accessToken', body.accessToken);
         localStorage.setItem('userAuth', JSON.stringify({
-        token: body.accessToken,
-        userId: body.user.id,
-        firstName: body.user.firstName,
-        lastName: body.user.lastName,
-        email: body.user.email,
-      }));
+                   token: body.accessToken,
+                   userId: body.user.id,
+                   firstName: body.user.firstName,
+                   lastName: body.user.lastName,
+                   email: body.user.email,
+                }));
 
         setUserAuth({
                    token : body.accessToken, 
@@ -416,4 +416,72 @@ export async function cardDelete(cardId, userAuth, setCards,showAlert){
       
     }
   }
+
+// ------------------------------------------------------------------------------------------------------------------------------
+
+
+//                       ----------------------------->   TASKS    <--------------------------------- 
+
+export async function retrieveTasks(userId,setTasks, userAuth, navigate ){
+  try{
+      const response = await fetch(`http://localhost:3000/tasks?userId=${userId}`,{
+          headers :{
+              'Authorization' : `Bearer ${userAuth.token}`
+          }
+      });
+
+    
+      if(!response.ok){
+
+          if (response.status === 403) { 
+              return setTasks([]); 
+          }
+
+          if(response.status === 401){
+              navigate('/login') 
+          }else{
+              throw new Error(`Failed to fetch journal inputs: ${response.statusText}`)
+          }
+
+         
+      }
+
+      const tasksFromServer = await response.json();
+      setTasks(tasksFromServer);
+    
+
+      
+  }catch(error){
+          console.log('Error retrieving journal inputs:', error);   
+  }
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------
+
+
+export async function taskSubmit(task, userAuth, setTasks, setNewTask){
+  try {
+    const response = await fetch('http://localhost:3000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userAuth.token}`
+      },
+      body: JSON.stringify(task)
+    });
+    // if (!response.ok) {
+    //   if(response.status === 500){
+    //     showAlert('This card already exist!Press update if you want to save the changes'); // i need the alert box ERROR
+    //       return;
+    //   }
+    // }
+
+    const data = await response.json();
+    setTasks(prevTasks => [...prevTasks, data]);
+    setNewTask('');
+    return data;
+  } catch (error) {
+    console.error('Error adding entry:', error);
+  }
+}
 

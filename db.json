@@ -91,5 +91,13 @@
       "image": null,
       "userId": 1
     }
+  ],
+  "tasks": [
+    {
+      "id": "500b72b9-9ddf-4af7-acaa-9f8b39bf230b",
+      "text": "hgjgjjj",
+      "completed": false,
+      "userId": 1
+    }
   ]
 }
