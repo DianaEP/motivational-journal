@@ -1,5 +1,5 @@
 import "./Journal.css";
-import books from '../../assets/books.png';
+import minimalist from '../../assets/minimalist.jpeg';
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserAuthContext } from "../../App";
@@ -92,7 +92,7 @@ export default function UpdateDeleteJournalInput(){
       <>
         <div className="form-elem" >
           <div className="title-container">
-              <img src={books} alt="tree" className="journal-image" />
+              <img src={minimalist} alt="tree" className="journal-image" />
               <h1 className="journal-title">Journal</h1>
           </div>
           

@@ -1,7 +1,7 @@
 .board-wrapper{
     padding: 2rem;
     color: var(--color1);
-    background: linear-gradient(var(--color2-journal), #ffffff);
+    background:  var(--background-gradient);
     width: 100%;
     height: 100vh;
 }
@@ -108,7 +108,7 @@
 
 .card-name-input{
     color: var(--color1);
-    background: linear-gradient(var(--color2-journal), #ffffff);
+    background:  var(--background-gradient);
     /* background-color: var(--color3font); */
     height: 60px;
     text-align: center;
@@ -135,7 +135,7 @@
     text-align: center;
     height: 10rem;
     color: var(--color1);
-    background: linear-gradient(var(--color2-journal), #ffffff);
+    background:  var(--background-gradient);
     /* background-color: var(--color3font); */
     font-family: var(--font-family);
     font-size: 1rem;
@@ -216,7 +216,7 @@
 .upload-msg{
     width: 100%;
     height: 200px;
-    background: linear-gradient(var(--color2-journal), #ffffff);
+    background: var(--background-gradient);
     display: flex;
     justify-content: center;
     align-items: center;

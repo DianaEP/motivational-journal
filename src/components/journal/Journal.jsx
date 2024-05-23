@@ -1,11 +1,12 @@
 import "./Journal.css";
-import books from '../../assets/books.png';
+import minimalist from '../../assets/minimalist.jpeg';
 import {  useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { retrieveJournalInputs, submitJournalInput } from "../../fetch/fetch";
 import { UserAuthContext } from "../../App";
 import useAlert from "../custom-boxes/alert-box/AlertBox";
+
 
 
 
@@ -94,7 +95,7 @@ export default function Journal() {
     <>
       <div className="form-elem">
         <div className="title-container">
-            <img src={books} alt="tree" className="journal-image" />
+            <img src={minimalist} alt="tree" className="journal-image" />
             <h1 className="journal-title">Journal</h1>
         </div>
         

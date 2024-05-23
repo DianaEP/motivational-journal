@@ -95,6 +95,7 @@
     width: 120px;
     margin: 2px 60px 2px 20px;
     padding: 5px;
+    color: var(--color1);
 }
 
 .item-update{

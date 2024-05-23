@@ -11,7 +11,7 @@
     background-repeat: no-repeat;
     background-size: cover;  */
     /* background-color: var(--color2-journal); */
-    background: linear-gradient(var(--color2-journal), #ffffff);
+    background:  var(--background-gradient);
     
 }
 

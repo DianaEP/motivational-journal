@@ -422,6 +422,9 @@ export async function cardDelete(cardId, userAuth, setCards,showAlert){
 
 //                       ----------------------------->   TASKS    <--------------------------------- 
 
+
+// GET TASKS
+
 export async function retrieveTasks(userId,setTasks, userAuth, navigate ){
   try{
       const response = await fetch(`http://localhost:3000/tasks?userId=${userId}`,{
@@ -459,7 +462,9 @@ export async function retrieveTasks(userId,setTasks, userAuth, navigate ){
 // ------------------------------------------------------------------------------------------------------------------------------
 
 
-export async function taskSubmit(task, userAuth, setTasks, setNewTask){
+// POST TASKS
+
+export async function taskSubmit(task, userAuth, setTasks){
   try {
     const response = await fetch('http://localhost:3000/tasks', {
       method: 'POST',
@@ -478,10 +483,71 @@ export async function taskSubmit(task, userAuth, setTasks, setNewTask){
 
     const data = await response.json();
     setTasks(prevTasks => [...prevTasks, data]);
-    setNewTask('');
     return data;
   } catch (error) {
     console.error('Error adding entry:', error);
   }
 }
 
+
+// ------------------------------------------------------------------------------------------------------------------------------
+
+
+// PUT TASKS
+
+export async function taskUpdate(taskToUpdate, userAuth, setTasks, updatedTasks){
+  try {
+    const response = await fetch(`http://localhost:3000/tasks/${taskToUpdate.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userAuth.token}`
+      },
+      body: JSON.stringify(taskToUpdate)
+    });
+
+    // if (!response.ok) {
+    //   if(response.status === 404){
+    //     showAlert("This card doesn't exist!You have to save it first!"); // i need the alert box ERROR
+    //       return;
+    //   }
+    // }
+
+    const data = await response.json();
+    setTasks(updatedTasks);
+    return data;
+  } catch (error) {
+    console.error('Error updating card:', error);
+    
+  }
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------
+
+
+// DELETE TASKS
+
+export async function taskDelete(taskToDelete, userAuth, setTasks, updatedTasks){
+  try {
+    const response = await fetch(`http://localhost:3000/tasks/${taskToDelete.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${userAuth.token}`
+      }
+    });
+    console.log(response);
+
+    // if (!response.ok) {
+    //   if(response.status === 401){
+    //     showAlert("You cannot delete this card!You have to save it first!"); // i need the alert box ERROR
+    //       return;
+    //   }
+    // }
+
+    
+   setTasks(updatedTasks);
+  } catch (error) {
+    console.error('Error deleting task entry:', error);
+    
+  }
+}
