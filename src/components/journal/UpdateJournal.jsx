@@ -65,12 +65,16 @@ export default function UpdateDeleteJournalInput(){
 
     const userDelete = async (id) => {
       try{
-          const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation  box ERROR
+          const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation box 
           if(userConfirmedAction){
             await deleteJournalInput(id, userAuth, navigate);
           } 
         }catch(error) {
-            console.error('Error deleting journal entry:', error)
+          if (error !== false) {
+            console.error('Error deleting journal entry:', error);
+          } else {
+            console.log('Entry deletion canceled by user.');
+          }
           }
             
         }

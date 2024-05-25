@@ -5,12 +5,14 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuthContext } from '../../App';
 import { v4 as uuidv4 } from 'uuid';
+import useConfirm from '../custom-boxes/confirm-box/ConfirmBox';
 
 
 export default function DailyPlanner() {
     const [tasks, setTasks] = useState([]);
     const {userAuth} = useContext(UserAuthContext);
     const navigate = useNavigate();
+    const { showConfirm, ConfirmComponent } = useConfirm();
 
     useEffect(()=>{
       if(userAuth){
@@ -21,32 +23,50 @@ export default function DailyPlanner() {
     },[userAuth, navigate])
   
    function addTask(newTask){
-      
-          const task = { 
-            id : uuidv4(),
-            text: newTask.trim(), 
-            completed: false,
-            userId: userAuth.userId 
-          }
-          taskSubmit(task, userAuth, setTasks)
-      }
-      
-  
-  
-    function deleteTask(taskToDelete) {
-      const updatedTasks = tasks.filter(task => task.id !== taskToDelete.id);
-      taskDelete(taskToDelete, userAuth, setTasks, updatedTasks)
+     
+        const task = { 
+          id : uuidv4(),
+          text: newTask.trim(), 
+          completed: false,
+          userId: userAuth.userId 
+        }
+        taskSubmit(task, userAuth, setTasks)
+           
     }
-  
+     
     const updateTask = (taskToUpdate) =>{
-      // const updatedTasks = [...tasks];
-      // const taskToUpdate = updatedTasks[index]
-      // taskToUpdate.completed = !taskToUpdate.completed;
 
       const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? {...task, completed: !task.completed} : task)
       taskUpdate({ ...taskToUpdate, completed: !taskToUpdate.completed }, userAuth, setTasks, updatedTasks)
+      }
+  
+    
+  
+    async function deleteTask(taskToDelete) {
+      
+      try{
+        
+        const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation box 
+        if(userConfirmedAction){
+          const updatedTasks = tasks.filter(task => task.id !== taskToDelete.id);
+          await taskDelete(taskToDelete, userAuth, setTasks, updatedTasks)
+        }
+      }catch(error) {
+        if (error !== false) {
+          console.error('Error deleting task:', error);
+        } else {
+          console.log('Task deletion canceled by user.');
+        }
+        }
+      
+    }
+
+    function deleteCompletedTask(task){
+      deleteTask(task);
     }
   
+    
+    
 
     return (
       <>
@@ -68,7 +88,7 @@ export default function DailyPlanner() {
                     <div className="top-line-planner"></div>
                     <div className='progress'>
                     {tasks.filter(task => task.completed).map(task => (
-                      <span key={task.id}>{task.text}</span>
+                      <span key={task.id}  onClick ={()=>deleteCompletedTask(task)}>{task.text}</span>
                     ))}
                     </div>
               </div>
@@ -77,6 +97,7 @@ export default function DailyPlanner() {
 
               
           </div> 
+          <ConfirmComponent/>
         </div>
       </>
     )

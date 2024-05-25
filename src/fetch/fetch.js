@@ -15,18 +15,18 @@
   
       if (!response.ok) {
         if(response.status === 400){
-          showAlert(`${response.statusText} Email already exists `); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+          showAlert(`${response.statusText} Email already exists `); // alert box
         }
         return;    
      
       }
       
       console.log('Registration successful')
-      showAlert("Registration Successfully"); // i need a confirmation dialog !!!!!!!!!!!!!!!!!!!!!ERROR
+      showAlert("Registration Successfully"); // alert box
       setTimeout(() => {
         navigate('/login');
       }, 2000);
-      // navigate('/login'); 
+      
       
     }catch(error){
       console.log('Error adding entry:', error.message);
@@ -51,7 +51,7 @@
     if (!response.ok) {
       console.log(response);
       if(response.status === 400){
-        showAlert('Invalid email or password. Please try again.') //!!!!!!!!message box
+        showAlert('Invalid email or password. Please try again.') //alert box
         
         
       }
@@ -174,7 +174,7 @@ export async function retrieveJournalInputs(userId,setInputs, userAuth, navigate
             }
 
             if(response.status === 401){
-                navigate('/login') // needs navigate as param for function and on login.jsx 
+                navigate('/login') 
             }else{
                 throw new Error(`Failed to fetch journal inputs: ${response.statusText}`)
             }
@@ -212,7 +212,7 @@ export async function retrieveOneJournalInput(id, setInput, setEditedInput, user
     }
 
     if(response.status === 401){
-        navigate('/journal') // needs navigate as param for function and on login.jsx 
+        navigate('/journal')
     }
     
 }
@@ -305,7 +305,7 @@ export async function retrieveCards(userId,setCards, userAuth, navigate ){
             }
 
             if(response.status === 401){
-                navigate('/login') // needs navigate as param for function and on login.jsx 
+                navigate('/login') 
             }else{
                 throw new Error(`Failed to fetch journal inputs: ${response.statusText}`)
             }
@@ -339,7 +339,7 @@ export async function cardSubmit(card, userAuth, setCards,showAlert){
       });
       if (!response.ok) {
         if(response.status === 500){
-          showAlert('This card already exist!Press update if you want to save the changes'); // i need the alert box ERROR
+          showAlert('This card already exist!Press update if you want to save the changes'); // alert box 
             return;
         }
       }
@@ -372,7 +372,7 @@ export async function cardUpdate(card, userAuth, setCards,showAlert){
   
       if (!response.ok) {
         if(response.status === 404){
-          showAlert("This card doesn't exist!You have to save it first!"); // i need the alert box ERROR
+          showAlert("This card doesn't exist!You have to save it first!"); //alert box
             return;
         }
       }
@@ -404,7 +404,7 @@ export async function cardDelete(cardId, userAuth, setCards,showAlert){
   
       if (!response.ok) {
         if(response.status === 401){
-          showAlert("You cannot delete this card!You have to save it first!"); // i need the alert box ERROR
+          showAlert("You cannot delete this card!You have to save it first!"); // alert box
             return;
         }
       }
@@ -443,7 +443,7 @@ export async function retrieveTasks(userId,setTasks, userAuth, navigate ){
           if(response.status === 401){
               navigate('/login') 
           }else{
-              throw new Error(`Failed to fetch journal inputs: ${response.statusText}`)
+              throw new Error(`Failed to fetch tasks: ${response.statusText}`)
           }
 
          
@@ -455,7 +455,7 @@ export async function retrieveTasks(userId,setTasks, userAuth, navigate ){
 
       
   }catch(error){
-          console.log('Error retrieving journal inputs:', error);   
+          console.log('Error retrieving tasks:', error);   
   }
 }
 
@@ -506,13 +506,6 @@ export async function taskUpdate(taskToUpdate, userAuth, setTasks, updatedTasks)
       body: JSON.stringify(taskToUpdate)
     });
 
-    // if (!response.ok) {
-    //   if(response.status === 404){
-    //     showAlert("This card doesn't exist!You have to save it first!"); // i need the alert box ERROR
-    //       return;
-    //   }
-    // }
-
     const data = await response.json();
     setTasks(updatedTasks);
     return data;
@@ -537,14 +530,6 @@ export async function taskDelete(taskToDelete, userAuth, setTasks, updatedTasks)
     });
     console.log(response);
 
-    // if (!response.ok) {
-    //   if(response.status === 401){
-    //     showAlert("You cannot delete this card!You have to save it first!"); // i need the alert box ERROR
-    //       return;
-    //   }
-    // }
-
-    
    setTasks(updatedTasks);
   } catch (error) {
     console.error('Error deleting task entry:', error);

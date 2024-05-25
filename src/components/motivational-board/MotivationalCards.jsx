@@ -117,7 +117,7 @@ export default function MotivationalCards() {
       if (card.name.trim() !== '' || card.text.trim() !== '') {
         await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
       } else {
-        showAlert('Please fill at least one input field'); // alert box ERROR
+        showAlert('Please fill at least one input field'); // alert box 
       }
     }
   }
@@ -141,12 +141,16 @@ async function updateCard(e, cardId){
 async function deleteCard(e, cardId){
   e.preventDefault();
   try{
-    const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation  box ERROR
+    const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation box
     if(userConfirmedAction){
       await cardDelete(cardId, userAuth, setCards,showAlert);
     } 
   }catch(error) {
-      console.error('Error deleting card entry:', error)
+    if (error !== false) {
+      console.error('Error deleting card:', error);
+    } else {
+      console.log('Card deletion canceled by user.');
+    }
     }
 }
 

@@ -71,7 +71,7 @@ export default function Journal() {
   const userSubmit = (e) => {
     e.preventDefault();
     if(newInput.date === ''){
-      showAlert('You need add a date!');
+      showAlert('You need add a date!'); // alert box
       return;
     }
 

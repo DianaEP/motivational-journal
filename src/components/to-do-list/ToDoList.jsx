@@ -14,11 +14,22 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
     setNewTask(event.target.value)
   }
 
-  function userAddTask(){
+  function userAddTask(e){
+    e.preventDefault();
     if(newTask.trim() !== ''){ 
       addTask(newTask);
       setNewTask('');
      }
+  }
+
+  function userUpdateTask(e, task){
+    e.preventDefault();
+    updateTask(task)
+  }
+
+  function userDeleteTask(e, task){
+    e.preventDefault();
+    deleteTask(task)
   }
 
   
@@ -36,7 +47,7 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
                    value = {newTask}
                    onChange={inputChange}
             />
-            <button className="add-button" onClick={userAddTask}>Add</button>
+            <button className="add-button" onClick={(e) => userAddTask(e)}>Add</button>
         </div>
        
         <ul>
@@ -44,8 +55,8 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
                 <li className="list-item" key={task.id}>
                     <span  className={task.completed? 'span-item checked': 'span-item'} >{task.text}</span>
                     <div>
-                      <IoMdDoneAll  className="item-update update-checked" onClick={() => updateTask(task)}/>
-                      <RiDeleteBin5Line className="item-update update-delete" onClick={() => deleteTask(task)}/>
+                      <IoMdDoneAll  className="item-update update-checked" onClick={(e) => userUpdateTask(e, task)}/>
+                      <RiDeleteBin5Line className="item-update update-delete" onClick={(e) => userDeleteTask(e, task)}/>
                     </div>
                     
                 </li>

@@ -21,6 +21,8 @@
 .board-intro h1{
     text-align: center;
     margin: 1rem;
+    font-family: var(--font-family2);
+    font-size: 4rem;
 }
 
 .create{

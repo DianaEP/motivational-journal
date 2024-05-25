@@ -38,7 +38,7 @@ export default function Register() {
     e.preventDefault();
 
     if( dataRegister.password !== confirmPassword){
-      showAlert("Passwords don't match"); // Use showAlert instead of alert
+      showAlert("Passwords don't match"); // alert box
       return; 
     }
   
