@@ -1,4 +1,5 @@
 import './DailyPlanner.css';
+import minimalist from '../../assets/minimalist.jpeg';
 import ToDoList from '../to-do-list/ToDoList';
 import { retrieveTasks, taskDelete, taskSubmit, taskUpdate } from '../../fetch/fetch';
 import { useContext, useEffect, useState } from 'react';
@@ -71,6 +72,7 @@ export default function DailyPlanner() {
     return (
       <>
         <div className='daily-elem'>
+          <img src={minimalist} alt="tree" className="journal-image" />
           <h2 className="planner-title">Daily planner</h2>
 
           <div className='planner-container '>
@@ -85,10 +87,10 @@ export default function DailyPlanner() {
                 </div>
 
                 <div className="planner-card">
-                    <div className="top-line-planner"></div>
-                    <div className='progress'>
+                    <div className="top-line-planner">Fears you&apos;ve overcome</div>
+                    <div className='progress '>
                     {tasks.filter(task => task.completed).map(task => (
-                      <span key={task.id}  onClick ={()=>deleteCompletedTask(task)}>{task.text}</span>
+                      <span key={task.id}  className='completed-task' onClick ={()=>deleteCompletedTask(task)}>{task.text}</span>
                     ))}
                     </div>
               </div>

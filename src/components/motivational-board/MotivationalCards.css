@@ -1,5 +1,5 @@
 .board-wrapper{
-    padding: 2rem;
+    /* padding: 2rem; */
     color: var(--color1);
     background:  var(--background-gradient);
     width: 100%;
@@ -20,9 +20,11 @@
 
 .board-intro h1{
     text-align: center;
-    margin: 1rem;
+    margin: 4rem;
+    padding-top: 2rem;
     font-family: var(--font-family2);
     font-size: 4rem;
+    position: relative;
 }
 
 .create{

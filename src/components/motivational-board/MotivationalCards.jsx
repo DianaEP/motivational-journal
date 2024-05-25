@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import "./MotivationalCards.css";
+import minimalist from '../../assets/minimalist.jpeg';
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import pin from "../../assets/pin.png";
 import { FaArrowsRotate } from "react-icons/fa6";
@@ -158,6 +159,7 @@ async function deleteCard(e, cardId){
     <>
       <div className="board-wrapper">
         <div className="board-intro">
+          <img src={minimalist} alt="tree" className="journal-image" />
           <h1>Motivational Cards</h1>
           <div className="create">
             <p>Life is to <span>short</span> to dream small.</p>
