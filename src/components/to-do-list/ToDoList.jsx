@@ -38,7 +38,7 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
   return (
     <>
       <div className="to-do-list">
-        <label className="label-list-text" htmlFor="to-do-list">To do list</label>
+        <label className="label-list-text" htmlFor="to-do-list">Bravery list</label>
         <div className="container-task">
             <input className="list" 
                    id="to-do-list" 
@@ -50,7 +50,7 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
             <button className="add-button" onClick={(e) => userAddTask(e)}>Add</button>
         </div>
        
-        <ul>
+        <ul className="scrollbar-list">
             {tasks.map((task) => 
                 <li className="list-item" key={task.id}>
                     <span  className={task.completed? 'span-item checked': 'span-item'} >{task.text}</span>
