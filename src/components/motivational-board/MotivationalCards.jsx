@@ -52,7 +52,7 @@ export default function MotivationalCards() {
       text: "",
       showStyleButtons: false, //add the showStyleButtons property
       font: false,
-      rotation: false,
+      rotation: 'none',
       image: null
     };
     setCards([...cards, newCard]);
@@ -99,7 +99,10 @@ export default function MotivationalCards() {
   // toggle between rotation card
   const toggleRotation = (cardId) => {
     const updateRotation = cards.map((card) =>
-        card.id === cardId? { ...card, rotation: !card.rotation }: card); // toggle between false and true
+        card.id === cardId? { ...card, 
+                              rotation: card.rotation === 'none' ? 'left' : card.rotation === 'left' ? 'right' : 'none' 
+                            }
+                            : card); // toggle between 0 10
       
     setCards(updateRotation);
   };
@@ -170,7 +173,9 @@ async function deleteCard(e, cardId){
 
         <div className="display-cards">
           {cards.map((card) => (
-            <div key={card.id} className={card.rotation ? "card-container card-rotation" : "card-container" }>
+            <div key={card.id} className={`card-container ${
+              card.rotation === 'left' ? "card-rotation-left" : card.rotation === 'right' ? "card-rotation-right" : ""
+            }`}>
               <div className="image-file">
                 <img id="pin-img" src={pin} alt="pin" />
                 {card.image ? <img className="upload-img" src={card.image} alt="Card image" /> 

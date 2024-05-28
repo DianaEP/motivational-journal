@@ -36,3 +36,32 @@
     margin: 1rem 10rem 0 ;  
     color: var(--color4);
 }
+
+
+
+@media(max-width:900px){
+    .welcome-msg{
+        font-size: 3rem; 
+    }
+
+    .quote{
+        font-size: 1rem;  
+    }
+}
+
+@media(max-width:500px){
+    .home-p{
+        font-family: var(--font-family2);
+        text-align: center;
+    }
+
+    .welcome-msg{
+        font-size: 2.5rem; 
+    }
+
+    .quote{
+        font-size: 0.7rem;  
+        
+        
+    }
+}

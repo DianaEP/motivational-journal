@@ -21,6 +21,7 @@
 
 .nav-links svg{
     margin-right: 10px;
+    
 }
 
 .navbar{
@@ -42,9 +43,25 @@
     left: 0;
 }
 
-.logo{
-    width:50px;
-    margin: 0 0 1rem 1rem;   
+.logos{
+    margin: 1rem 0 0 1rem; 
+    position: relative;
+    
+}
+
+.logo-one{
+    width:30px; 
+    
+     
+}
+
+.logo-two{
+    width:30px; 
+    position: absolute;
+    left:12px;
+    top: 4px;
+    
+     
 }
 
 

@@ -78,6 +78,7 @@
                    lastName : body.user.lastName, 
                    email: body.user.email
                   });
+                  console.log(typeof body.user.id);
         // update both the state and local storage
         navigate('/');
       }else {

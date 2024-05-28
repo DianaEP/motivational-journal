@@ -14,6 +14,7 @@ import HideNavbar from './components/hide-navbar/HideNavbar';
 import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
 import UserDetails from "./components/authentication/user-details/UserDetails";
 import PrivateRoute from "../PrivateRoute";
+import Footer from "./components/footer/Footer";
 
 
 export const UserAuthContext = React.createContext();
@@ -68,23 +69,30 @@ function App() {
   return (
     <>
       <UserAuthContext.Provider value={{userAuth, setUserAuth}}>
-          <HideNavbar>
-            <Header showNavbar={showNavbar} showNav={showNav}/>
-            <Nav showNav={showNav}/>
-          </HideNavbar>
+        <div className="app-container">
+          <div className="content-wrap">
+            <HideNavbar>
+              <Header showNavbar={showNavbar} showNav={showNav}/>
+              <Nav showNav={showNav}/>
+            </HideNavbar>
       
-          <Routes>
-            <Route path="/login" element={< Login/>}></Route>
-            <Route path="/register" element={<Register/>}></Route>
-            <Route path="/" element={<PrivateRoute element={<HomePage />} />}></Route>
-            <Route path="/user-details" element={<PrivateRoute element={<UserDetails />} />} />
-            <Route path="/journal" element={<PrivateRoute element={<Journal />} />}></Route>
-            <Route path="/journal/:id" element={<PrivateRoute element={<UpdateDeleteJournalInput />} />}></Route>
-            <Route path="/daily-planner" element={<PrivateRoute element={<DailyPlanner />} />}></Route>
-            <Route path="/motivational-cards" element={<PrivateRoute element={<MotivationalCards />} />}></Route>
-            <Route path="/list-books" element={<PrivateRoute element={<ListBooks />} />}></Route>  
+            <Routes>
+              <Route path="/login" element={< Login/>}></Route>
+              <Route path="/register" element={<Register/>}></Route>
+              <Route path="/" element={<PrivateRoute element={<HomePage />} />}></Route>
+              <Route path="/user-details" element={<PrivateRoute element={<UserDetails />} />} />
+              <Route path="/journal" element={<PrivateRoute element={<Journal />} />}></Route>
+              <Route path="/journal/:id" element={<PrivateRoute element={<UpdateDeleteJournalInput />} />}></Route>
+              <Route path="/daily-planner" element={<PrivateRoute element={<DailyPlanner />} />}></Route>
+              <Route path="/motivational-cards" element={<PrivateRoute element={<MotivationalCards />} />}></Route>
+              <Route path="/list-books" element={<PrivateRoute element={<ListBooks />} />}></Route>  
 
-          </Routes>
+            </Routes>
+          </div>
+          
+          <Footer/>
+        </div>
+          
 
       </UserAuthContext.Provider>
       
