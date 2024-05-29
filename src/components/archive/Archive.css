@@ -1,0 +1,154 @@
+/* CSS (alert-parent, animated, alert-btn) from alert component */
+
+.archive-box{
+    width: 50rem;
+    height: 30rem;
+    background: var(--background-gradient);
+    color: var(--color3font);
+    padding: 20px;
+    /* margin-top: 10rem; */
+    border-radius: 10px;
+    box-shadow: 0 0 25px var(--color1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 2rem;
+    /* transition: transform 0.8s ease; */
+  }
+
+  .archive-box h1{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: 1rem;
+    color: var(--color1);
+  }
+
+  .archive-box ul{
+    width: 25rem;
+    height: 15rem;
+    padding: 1rem;
+    border-top: 1px solid var(--color1-login);
+    border-bottom: 1px solid var(--color1-login);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .archive-box ul:hover{
+    scrollbar-color: transparent rgba(166, 147, 147, 0.1);
+    transition: 0.8s ease-in-out;
+  }
+
+  
+  .archive-list{
+    color:var(--color4);
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .archive-list:hover{
+    color: var(--color1-login);
+    transition-duration: 0.2s;
+  }
+
+
+  /* -----------------------MEDIA QUERY--------------------------- */
+
+  @media(max-width:1100px){
+    .archive-box h1{
+        font-size: 1.3rem;
+        
+      }
+
+
+      .archive-btn{
+        width: 9rem;
+      }
+}
+
+@media(max-width:1000px){
+
+    .archive-box{
+        width: 40rem;
+        height: 30rem;
+    }
+
+}
+
+@media(max-width:800px){
+
+    .archive-box{
+        width: 30rem;
+        height: 25rem;
+    }
+    .archive-box h1{
+        font-size: 1.2rem;
+        
+      }
+
+      .archive-list{
+        font-size: 1.1rem;
+      }
+
+      .archive-btn{
+        width: 9rem;
+      }
+}
+
+@media(max-width:550px){
+
+    .archive-box{
+        width: 25rem;
+        height: 25rem;
+    }
+    .archive-box h1{
+        font-size: 1.2rem;
+        
+      }
+
+      .archive-box ul{
+        width: 20rem;
+        height: 12rem;
+        
+      }
+
+      .archive-list{
+        font-size: 1.1rem;
+      }
+
+      .archive-btn{
+        width: 7rem;
+      }
+}
+
+@media(max-width:410px){
+
+    .archive-box{
+        width: 20rem;
+        height: 25rem;
+    }
+    .archive-box h1{
+        font-size: 1.2rem;
+        
+      }
+
+      .archive-box ul{
+        width: 15rem; 
+      }
+
+
+      .archive-list{
+        font-size: 1.1rem;
+      }
+
+      .archive-btn{
+        width: 7rem;
+      }
+}

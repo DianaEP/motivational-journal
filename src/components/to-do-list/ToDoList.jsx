@@ -43,7 +43,7 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
             <input className="list" 
                    id="to-do-list" 
                    type="text" 
-                   placeholder="Enter a task..."
+                   placeholder="Write something..."
                    value = {newTask}
                    onChange={inputChange}
             />

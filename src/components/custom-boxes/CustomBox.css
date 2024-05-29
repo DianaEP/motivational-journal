@@ -28,7 +28,7 @@
   }
 
 
-  .alert-box.animated {
+.animated {
     animation: slide 0.5s normal; 
   }
   

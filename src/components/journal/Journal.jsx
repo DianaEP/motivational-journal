@@ -6,12 +6,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { retrieveJournalInputs, submitJournalInput } from "../../fetch/fetch";
 import { UserAuthContext } from "../../App";
 import useAlert from "../custom-boxes/alert-box/AlertBox";
+import useArchive from "../archive/Archive";
 
 
 
 
 export default function Journal() {
   const { showAlert, AlertComponent } = useAlert();
+
+  const { showArchiveComponent, ArchiveComponent } = useArchive();
   
   const {userAuth} = useContext(UserAuthContext);
 
@@ -40,6 +43,8 @@ export default function Journal() {
     }
     
   },[userAuth, navigate])
+
+ 
 
 
   // Search for existing input by date if exist 
@@ -71,7 +76,7 @@ export default function Journal() {
   const userSubmit = (e) => {
     e.preventDefault();
     if(newInput.date === ''){
-      showAlert('You need add a date!'); // alert box
+      showAlert("Please add today's date!"); // alert box
       return;
     }
 
@@ -103,7 +108,7 @@ export default function Journal() {
         <form className="form-journal" >
 
           <div className="date-container">
-              <fieldset className="fieldset">
+              <fieldset className="fieldset-date">
                 <label className="label-text" htmlFor="date">Date</label>
                 <input className="input-field"
                        type="date"
@@ -111,20 +116,21 @@ export default function Journal() {
                        id="date" 
                        value={newInput.date} 
                        onChange = {dateChange}
-                       required />
+                       required/>
                 
               </fieldset>
+              
             </div>
 
           <div className="sections">
             
             <div className="first-section">
               
-              <fieldset className="fieldset parent-position">
+              <fieldset className="fieldset ">
                 
 
                 <label className="label-text" htmlFor="grateful">Today I am grateful for</label>
-                <div className="top-line"></div>
+                {/* <div className="top-line"></div> */}
                 <textarea className="textarea"
                           name="grateful" 
                           id="grateful" 
@@ -134,9 +140,9 @@ export default function Journal() {
                           onChange = {inputChange}></textarea>
               </fieldset>
 
-              <fieldset className="fieldset parent-position">
+              <fieldset className="fieldset ">
                 <label className="label-text" htmlFor="proud">Today I am proud of</label>
-                <div className="top-line"></div>
+                {/* <div className="top-line"></div> */}
                 <textarea className="textarea" 
                           name="proud"
                           id="proud" 
@@ -146,11 +152,11 @@ export default function Journal() {
                           onChange = {inputChange}></textarea>
               </fieldset>
 
-              <fieldset className="fieldset parent-position">
+              <fieldset className="fieldset ">
                 
 
                 <label className="label-text" htmlFor="lookForward">Today I look forward for</label>
-                <div className="top-line"></div>
+                {/* <div className="top-line"></div> */}
                 <textarea className="textarea" 
                           name="lookForward" 
                           id="lookForward" 
@@ -163,9 +169,9 @@ export default function Journal() {
 
 
             <div className="second-section">
-            <fieldset className="fieldset parent-position">
+            <fieldset className="fieldset">
               <label className="label-text" htmlFor="notes">Notes</label>
-              <div className="top-line"></div>
+              {/* <div className="top-line"></div> */}
               <textarea className="textarea t-notes" 
                         name="notes" 
                         id="notes" 
@@ -180,10 +186,18 @@ export default function Journal() {
          
 
           <div className="buttons-container">
-            <button className="button" type="submit" onClick={userSubmit}>Save</button>
+            <button className="button" type="submit" onClick={userSubmit}>Save</button> 
           </div>
         </form>
+
+        <div className="button-archive">
+            <button onClick={showArchiveComponent} className="button">Show Archive</button>
+        </div>
+
+
+        
         <AlertComponent/>
+        <ArchiveComponent journalInputs={journalInputs} />
       </div>
     </>
   );

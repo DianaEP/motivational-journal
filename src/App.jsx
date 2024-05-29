@@ -15,6 +15,7 @@ import UpdateDeleteJournalInput from "./components/journal/UpdateJournal";
 import UserDetails from "./components/authentication/user-details/UserDetails";
 import PrivateRoute from "../PrivateRoute";
 import Footer from "./components/footer/Footer";
+import HideFooter from "./components/hide-footer/HideFooter";
 
 
 export const UserAuthContext = React.createContext();
@@ -90,7 +91,10 @@ function App() {
             </Routes>
           </div>
           
-          <Footer/>
+          <HideFooter>
+              <Footer/>
+          </HideFooter>
+          
         </div>
           
 

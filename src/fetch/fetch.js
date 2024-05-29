@@ -15,7 +15,7 @@
   
       if (!response.ok) {
         if(response.status === 400){
-          showAlert(`${response.statusText} Email already exists `); // alert box
+          showAlert(`A user with this email address already exists. `); // alert box
         }
         return;    
      
@@ -117,7 +117,7 @@ export async function updateUser(userAuth, userDetails, setUserAuth, navigate,sh
           const updatedUser = await response.json();
           // console.log("Server response with updated user:", updatedUser);
           setUserAuth(updatedUser); // Update context with new user data
-          showAlert('Your changes have been successfully saved! ')
+          showAlert('Your changes have been successfully saved. ')
           setTimeout(() => {
             navigate('/login');
           }, 2000);
@@ -171,6 +171,7 @@ export async function retrieveJournalInputs(userId,setInputs, userAuth, navigate
         if(!response.ok){
 
             if (response.status === 403) { 
+                
                 return setInputs([]); 
             }
 
@@ -340,7 +341,7 @@ export async function cardSubmit(card, userAuth, setCards,showAlert){
       });
       if (!response.ok) {
         if(response.status === 500){
-          showAlert('This card already exist!Press update if you want to save the changes'); // alert box 
+          showAlert('This card has been saved already! Press update if you want to save the changes.'); // alert box 
             return;
         }
       }
@@ -373,7 +374,7 @@ export async function cardUpdate(card, userAuth, setCards,showAlert){
   
       if (!response.ok) {
         if(response.status === 404){
-          showAlert("This card doesn't exist!You have to save it first!"); //alert box
+          showAlert("You cannot update this card! You have to save it first."); //alert box
             return;
         }
       }
@@ -405,7 +406,7 @@ export async function cardDelete(cardId, userAuth, setCards,showAlert){
   
       if (!response.ok) {
         if(response.status === 401){
-          showAlert("You cannot delete this card!You have to save it first!"); // alert box
+          showAlert("You cannot delete this card! You have to save it first."); // alert box
             return;
         }
       }
@@ -452,7 +453,7 @@ export async function retrieveTasks(userId,setTasks, userAuth, navigate ){
 
       const tasksFromServer = await response.json();
       setTasks(tasksFromServer);
-    
+      return tasksFromServer;
 
       
   }catch(error){

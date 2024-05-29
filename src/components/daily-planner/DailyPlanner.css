@@ -43,7 +43,7 @@
 }
 
 .planner-card{
-    display: grid;
+    display: grid; /* change this to flex*/
     grid-template-rows: auto 1fr; 
     max-height: 500px;
 

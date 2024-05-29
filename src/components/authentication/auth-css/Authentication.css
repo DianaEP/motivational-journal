@@ -169,6 +169,7 @@
     font-size: 2rem;
     color: var(--color1);
     margin: 4rem 1rem;
+    text-transform: capitalize;
     
 }
 

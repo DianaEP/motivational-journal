@@ -27,6 +27,13 @@
       "email": "test5@gmail.com",
       "password": "$2a$10$BiSFgK03hvCBvlz9q/Q1L.PHhjFBHDwB2gj1USPaOac8mNOsQFf1K",
       "id": 4
+    },
+    {
+      "email": "test8@gmail.com",
+      "password": "$2a$10$WcZyZz.KnSqaP.FylEWIVeQnk0N6X24lRrX6FWukHAP/c.p24o3ai",
+      "firstName": "Stafania",
+      "lastName": "Doe",
+      "id": 5
     }
   ],
   "journalInputs": [
@@ -208,6 +215,12 @@
       "text": "something",
       "completed": false,
       "userId": 1
+    },
+    {
+      "id": "07f3083d-790c-4e38-8dae-7fe03dbb6c2e",
+      "text": "something",
+      "completed": false,
+      "userId": 5
     }
   ]
 }

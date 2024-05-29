@@ -9,20 +9,28 @@ import { v4 as uuidv4 } from 'uuid';
 import useConfirm from '../custom-boxes/confirm-box/ConfirmBox';
 
 
+
+
+
 export default function DailyPlanner() {
     const [tasks, setTasks] = useState([]);
     const {userAuth} = useContext(UserAuthContext);
     const navigate = useNavigate();
     const { showConfirm, ConfirmComponent } = useConfirm();
 
+   
+
     useEffect(()=>{
       if(userAuth){
         const userId = userAuth.userId
-        retrieveTasks(userId,setTasks, userAuth, navigate )
+        retrieveTasks(userId,setTasks, userAuth, navigate);
       }
       
     },[userAuth, navigate])
-  
+    // debugger
+    console.log(tasks);
+
+    
    function addTask(newTask){
      
         const task = { 
@@ -47,7 +55,7 @@ export default function DailyPlanner() {
       
       try{
         
-        const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation box 
+        const userConfirmedAction = await showConfirm('Are you sure you want to delete this task?') // confirmation box 
         if(userConfirmedAction){
           const updatedTasks = tasks.filter(task => task.id !== taskToDelete.id);
           await taskDelete(taskToDelete, userAuth, setTasks, updatedTasks)
@@ -105,6 +113,8 @@ export default function DailyPlanner() {
               
           </div> 
           <ConfirmComponent/>
+          
+          
         </div>
       </>
     )

@@ -121,7 +121,7 @@ export default function MotivationalCards() {
       if (card.name.trim() !== '' || card.text.trim() !== '') {
         await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
       } else {
-        showAlert('Please fill at least one input field'); // alert box 
+        showAlert('Please write something on your card.'); // alert box 
       }
     }
   }
@@ -145,7 +145,7 @@ async function updateCard(e, cardId){
 async function deleteCard(e, cardId){
   e.preventDefault();
   try{
-    const userConfirmedAction = await showConfirm('Are you sure you want to delete the input?') // confirmation box
+    const userConfirmedAction = await showConfirm('Are you sure you want to delete tis card?') // confirmation box
     if(userConfirmedAction){
       await cardDelete(cardId, userAuth, setCards,showAlert);
     } 
@@ -186,7 +186,7 @@ async function deleteCard(e, cardId){
                                       Upload image
                                   </div>
                               </div>} {/* Only show image if it exists */}
-                {/* <label htmlFor="file" className="custom-button"><BsUpload /></label> */}
+                
                 <input type="file" 
                        title = ''
                        className="input-file" 
