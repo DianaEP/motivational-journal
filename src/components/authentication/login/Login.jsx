@@ -65,17 +65,17 @@ export default function Login() {
                       {valid ? <></> : <span className='input-error'>{errors.password}</span>}
                     </div>
 
-                    <div className="login-details">
+                    {/* <div className="login-details">
                       <p className='forgot-password'>Forgot password?</p>
 
-                    </div>
+                    </div> */}
 
                     
 
                     <button className='btn'>Login</button>
 
                     <div className="link-text">
-                      <p>Not have an account? <Link to="/register"  >Register</Link></p>
+                      <p>Don&apos;t have an account? <Link to="/register"  >Register</Link></p>
                     </div>
   
                   </form>

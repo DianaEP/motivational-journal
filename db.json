@@ -8,10 +8,10 @@
       "id": 1
     },
     {
-      "email": "test2@gmail.com",
-      "password": "$2a$10$q.ToHdfVjttAnqmzTovDtOBXVr2IDbPDnB7Sf9ULB.VQx0WOZ9uZy",
       "firstName": "John",
       "lastName": "Doe",
+      "email": "test2@gmail.com",
+      "password": "$2a$10$sPbYY8xijUtyDSb2XsTMEefb9REzg13IjOnTxb3wBiTlPZvXC6ZYy",
       "id": 2
     },
     {

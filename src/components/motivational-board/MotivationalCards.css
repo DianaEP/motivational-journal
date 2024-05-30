@@ -275,21 +275,84 @@
 
 /* -----------------------MEDIA QUERY--------------------------- */
 
+@media(max-width:1300px){
 
-
-@media(max-width:659px){
-    .board-wrapper{
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+    .board-intro h1{
+        margin: 3rem;
+        padding-top: 2rem;
+        font-size: 3rem;
     }
 
-    .display-cards{
-        justify-content: center;
-        margin: 2rem 0;
+    .card-container{
+        width: 14rem;    
+    }
+
+    .card-name-input{
+        height: 55px;
+        font-size: 1.6rem;
+    }
+
+    .card-text-input{
+        height: 9rem;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .image-file{
+        height: 180px;    
     }
 
     .create p, .create svg, .create-btn{
         font-size: 1.2rem;
     }
+}
+
+@media(max-width:950px){
+
+    .board-wrapper{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .card-container{
+        width: 13rem;    
+    }
+
+    .upload-msg .design-upload{
+        padding: 2.5rem;
+    }
+
+}
+
+
+
+@media(max-width:900px){
+    
+
+    .display-cards{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 2rem;
+        margin: 2rem 0;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .board-intro h1{
+        margin: 3rem;
+        padding-top: 3rem;
+        font-size: 2.2rem;
+    }
+
+    .create p, .create svg, .create-btn{
+        font-size: 1rem;
+        text-align: center;
+    }
+
 }

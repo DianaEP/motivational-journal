@@ -252,3 +252,10 @@
         padding: 0;
     }
 }
+
+@media(max-width:550px){
+
+    .auth-container{
+        width: 320px;
+    }
+}

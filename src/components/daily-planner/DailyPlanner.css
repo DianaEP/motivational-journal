@@ -184,7 +184,7 @@
    
 }
 
-@media(max-width:1480px){
+/* @media(max-width:1480px){
    
     .planner-container{
         flex-wrap: wrap;
@@ -194,7 +194,7 @@
     }
    
    
-}
+} */
 
 @media(max-width:1220px){
     .planner-container{
@@ -204,40 +204,36 @@
         
     }
 
-    .planner-card{
-        height: 500px;
-    } 
-
     .planner-title{
         font-size: 3rem;
     }
 
-    .list-container {
-        order: -1; 
+    .courage-text{
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
     }
 
-    .planner-card {
-        order: 0;
-    }
-    
-}
-
-@media(max-width:500px){
-    .planner-title{
-        font-size: 2.5rem;
-    }
-    
-}
-
-@media(max-width:370px){
     .planner-card{
-       width: 250px;
-    }
+        height: 500px;
+    } 
+  
+}
 
+@media(max-width:600px){
     .planner-title{
-        font-size: 2rem;
+        font-size: 3rem;
+        padding: 4rem 4rem 2rem 4rem;
+        margin-bottom: 0;
     }
+   
+    .planner-card{
+        height: 400px;
+    } 
 
-} 
+    .completed-task{
+        font-size: 0.9rem;
+    }
+}
+
 
 

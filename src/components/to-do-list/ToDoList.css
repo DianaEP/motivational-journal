@@ -233,7 +233,7 @@
 
 
 
-
+/* -------------------------MEDIA QUERY---------------------------------- */
 
 
 @media(max-width:1700px){
@@ -259,6 +259,11 @@
     .list{
         width: 10rem; 
         font-size: 0.8rem;
+
+    }
+
+    .list-item{
+        padding: 8px;
     }
 
     .span-item{
@@ -279,8 +284,25 @@
     }
 
     .span-item{
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }  
+
+    .list-item div svg{
+        font-size: 1rem;
+    }
+
+    .label-list-text{
+        font-size: 1.8rem;
+    }
+
+    .list::placeholder{
+        font-size: 0.8rem;
+    }
+
+    .add-button{
+        font-size: 1.1rem;
+    }
+    
 } 
 
 @media(max-width:370px){

@@ -101,6 +101,11 @@
         margin: 1rem;
     }
 
+    .user_details-input-box input{
+        font-size: 0.9rem;
+        padding-bottom: 0.3rem;
+    }
+
     .user_details-form-box .user_details-btn{
         width: 8rem;
         font-size: 0.9rem;
