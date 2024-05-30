@@ -1,5 +1,7 @@
 import { FaRegUser } from "react-icons/fa6";
 import { MdOutlineEmail } from "react-icons/md";
+import { MdLockOutline } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 import "../auth-css/Authentication.css";
 import "./UserDetails.css";
 import { useContext, useState } from "react";
@@ -22,7 +24,8 @@ export default function UserDetails() {
     firstName: userAuth.firstName,
     lastName: userAuth.lastName,
     email: userAuth.email,
-    password: ''
+    password: '',
+    confirmPassword: ''
   })
 
   const { errors, valid, inputChange, validateData } = FormValidation({ data: userDetails, setData: setUserDetails });
@@ -32,6 +35,11 @@ export default function UserDetails() {
 
 function updateUserDetails(e){
     e.preventDefault();
+
+    if( userDetails.password !== userDetails.confirmPassword){
+      showAlert("Passwords don't match!"); // alert box
+      return; 
+    }
 
     if(validateData()){
 
@@ -68,6 +76,7 @@ async function deleteUserAccount(e){
         <div className="auth-container user_details-container">
           <div className="form-box user_details-form-box ">
             <h2>About me</h2>
+            
             <form >
               <div className="input-box user_details-input-box">
                 <label htmlFor="first-name">First name</label>
@@ -119,9 +128,25 @@ async function deleteUserAccount(e){
                   value = {userDetails.password}
                   onChange={inputChange}
                 />
-                <MdOutlineEmail />
+                <MdLockOutline />
               </div>
               {valid ? <></> : <span className='input-error'>{errors.password}</span>}
+
+              <div className="input-box user_details-input-box">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="*Please retype your password before pressing the update button"
+                  value = {userDetails.confirmPassword}
+                  onChange={inputChange}
+                />
+                <RiLockPasswordLine />
+              </div>
+              {valid ? <></> : <span className='input-error'>{errors.confirmPassword}</span>}
+
+              <p className="warning">*If you want to change your old password just type the new one and confirm it</p>
 
               <div className="buttons-user_details">
                 <button className="btn user_details-btn" onClick={updateUserDetails}>Update</button>

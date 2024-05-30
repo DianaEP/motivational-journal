@@ -136,7 +136,13 @@
     outline: none;
     resize: none;
     
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
 
+.textarea:hover{
+    scrollbar-color: transparent rgba(166, 147, 147, 0.1);
+    transition: 0.8s ease-in-out;   
 }
 
 
