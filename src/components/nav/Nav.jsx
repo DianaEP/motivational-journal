@@ -47,7 +47,7 @@ export default function Nav({showNav}) {
                       <Link to="/journal"><LuBookLock />Journal</Link>
                     </li>
                     <li>
-                      <Link to="/daily-planner"><MdOutlineEditCalendar />Daily Planner</Link>
+                      <Link to="/bravery-planner"><MdOutlineEditCalendar />Bravery Planner</Link>
                     </li>
                     <li>
                       <Link to="/motivational-cards"><TbCards />Motivational Cards</Link>

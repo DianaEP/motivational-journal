@@ -1,4 +1,4 @@
-import './DailyPlanner.css';
+import './BraveryPlanner.css';
 import minimalist from '../../assets/minimalist.jpeg';
 import ToDoList from '../to-do-list/ToDoList';
 import { retrieveTasks, taskDelete, taskSubmit, taskUpdate } from '../../fetch/fetch';
@@ -12,7 +12,7 @@ import useConfirm from '../custom-boxes/confirm-box/ConfirmBox';
 
 
 
-export default function DailyPlanner() {
+export default function BraveryPlanner() {
     const [tasks, setTasks] = useState([]);
     const {userAuth} = useContext(UserAuthContext);
     const navigate = useNavigate();
@@ -81,9 +81,9 @@ export default function DailyPlanner() {
 
     return (
       <>
-        <div className='daily-elem'>
+        <div className='bravery-elem'>
           <img src={minimalist} alt="tree" className="journal-image" />
-          <h2 className="planner-title">Daily planner</h2>
+          <h2 className="planner-title">Bravery planner</h2>
           <p className='courage-text'>Having courage means overcoming extraordinary challenges,even though we aren&apos;t necessarily facing tough physical challenges like climbing a mountain,
           we deal with a variety of obstacles and a multitude of fears as a part of our daily lives.Recognizing your bravery, no matter how insignificant the situation may
           seem to you, is empowering.So write every day two things that you&apos;re afraid of or things that you&apos;re not comfortable with, and try to do at least one by the end of the day.

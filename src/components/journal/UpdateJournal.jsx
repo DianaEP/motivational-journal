@@ -148,7 +148,7 @@ export default function UpdateDeleteJournalInput(){
                 <fieldset className="fieldset parent-position">
                   
   
-                  <label className="label-text" htmlFor="lookForward">Today I look forward for</label>
+                  <label className="label-text" htmlFor="lookForward">Today I look forward to</label>
                   {/* <div className="top-line"></div> */}
                   <textarea className="textarea" 
                             name="lookForward" 

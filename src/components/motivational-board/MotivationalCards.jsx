@@ -189,7 +189,8 @@ async function deleteCard(e, cardId){
                 
                 <input type="file" 
                        title = ''
-                       className="input-file" 
+                       className="input-file"
+                       name="file" 
                        onChange={(e) => imageChange(e, card.id)} 
                        accept="image/*" /> {/* Image upload input */}
                 
@@ -199,6 +200,7 @@ async function deleteCard(e, cardId){
               <input
                 className={card.font ? "card-name-input change-font-input" : "card-name-input" }
                 type="text"
+                name="name-text"
                 placeholder="Card name"
                 value={card.name}
                 onChange={(e) => inputChange(e, card.id, 'name')}
@@ -206,7 +208,6 @@ async function deleteCard(e, cardId){
               <textarea
                 className={card.font ? "card-text-input change-font-textarea" : "card-text-input" }
                 name="user-text"
-                id=""
                 cols="30"
                 rows="10"
                 placeholder="Say something about..."
