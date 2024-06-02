@@ -8,21 +8,15 @@
 }
 
 .form-elem{
-    /* background-image: url('../../assets/wallpaper-form0.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;  */
-    /* background-color: var(--color2-journal); */
-    background:  var(--background-gradient);
-    
+    background:  var(--background-gradient);  
 }
 
 .title-container{
     position:relative;
 }
 
-
-
 .journal-image{
+    /* top image */
     -webkit-mask-image: linear-gradient(black, transparent);
     mask-image: linear-gradient(black, transparent);
 
@@ -56,37 +50,26 @@
     border: none;
     display: flex;
     flex-direction: column;
-    /* row-gap: 0.3rem; */
     margin-bottom: 1.5rem;
     padding: 2px;
     background: transparent;
-    /* box-shadow: -5px 4px 10px var(--color3-journal); */
     border-radius: 10px;
 }
 
 .fieldset-date .label-text{
-    
-    
     padding: 0.2rem 0;
-    border-bottom: none;
-    
-   
+    border-bottom: none; 
 }
 
 .fieldset{
     border: none;
     display: flex;
     flex-direction: column;
-    /* row-gap: 0.3rem; */
     margin-bottom: 1.5rem;
     padding: 20px;
     background: var(--background-gradient);
-    /* box-shadow: -5px 4px 10px var(--color3-journal); */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
-    
-    
-
 }
 
 .input-field{
@@ -94,7 +77,6 @@
     padding: 10px;
     font-family: var(--font-family);
     font-size: 0.8rem;
-    /* text-transform: uppercase; */
     border: none;
     outline: none;
     background: linear-gradient(90deg, var(--color1), var(--color2-journal));
@@ -130,8 +112,6 @@
     padding: 5px 20px;
     border: none;
     background: transparent;
-    /* box-shadow: -5px 4px 10px var(--color3-journal); */
-    /* background: repeating-linear-gradient(#F1EDE9,#F1EDE9 31px, var(--color1-login) 32px, var(--color1-login) 32px); */
     border-radius: 0 0 10px 10px;
     outline: none;
     resize: none;
@@ -145,26 +125,12 @@
     transition: 0.8s ease-in-out;   
 }
 
-
-
-
-
-
-
-/* .textarea:hover{
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
-} */
-
 .second-section{
     display: flex;
-    /* justify-content: space-between; */
-
 }
 
 .t-notes{
     height: 100%;
-    /* resize: vertical; */
 }
 
 .buttons-container{
@@ -204,38 +170,6 @@
     align-items: center;
     margin-bottom: 2rem;
 }
-
-
-/* .parent-position{
-    position: relative;
-    width:500px; 
-   
-}
-
-.top-left{
-    position: absolute;
-    right: 0;
-    top: 64px;
-    width: 80px;
-    height: 80px;
-    border-top: 40px solid var(--color2-journal);
-    border-right: 40px solid var(--color2-journal);
-    border-bottom: 40px solid transparent;
-    border-left: 40px solid transparent;
-    border-bottom-left-radius: 10px;
-    box-shadow: -3px 3px 3px rgba(0, 0, 0, 0.2);
-    
-
-} */
-
-/* .top-line{
-    width: 100%;
-    height: 40px;
-    
-    border-radius: 10px 10px 0 0;   
-    background: linear-gradient(90deg, var(--color1), var(--color2-journal));
-    
-  } */
 
 
 

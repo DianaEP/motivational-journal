@@ -17,7 +17,6 @@ export default function Register() {
 
   const { showAlert, AlertComponent } = useAlert();
 
-  
 
   const [dataRegister, setDataRegister] = useState({
     "firstName" : '',

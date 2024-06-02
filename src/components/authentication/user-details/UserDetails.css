@@ -33,7 +33,6 @@
 
 .user_details-input-box{
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     margin: 0.7rem ;
 }
@@ -88,7 +87,6 @@
 .buttons-user_details{
     display: flex;
     column-gap: 1rem;
-    /* flex-wrap: wrap; */
 }
 
 .warning{

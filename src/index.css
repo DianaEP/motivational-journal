@@ -3,20 +3,14 @@
   --font-family2: "Dancing Script", cursive, Helvetica, Arial, sans-serif;
   --color1 : #333;
   --color2 : #edc9af;
-  --color3: #fff3e500;
   --color3font: #fff3e5;
   --color4: #a67b5b;
-  --color4font: #a67b5b64;
-  --color5: #f3e3c9;
-  --color6-planner: #91bab277;
   --color1-login: #f58f7c;
-  --color2-login: #f2c4ce;
   --color1-gray: #d6d6d6;
   --color2-gray: #4f4f51;
   --color1-journal: #aeaea88f;
   --color2-journal: #e3e0d5;
   --color3-journal: #cdc1b3;
-  --color4-journal: #aeaea8;
   --background-gradient:linear-gradient(var(--color2-journal), #ffffff);
 }
 
@@ -30,7 +24,6 @@
 
 body{
   font-family: var(--font-family);
-  /* height: 100%; */
 }
 
 
@@ -73,48 +66,4 @@ background-color: transparent;
 outline: none;
 }
 
-/*
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */

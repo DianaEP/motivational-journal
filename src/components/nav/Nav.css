@@ -1,18 +1,13 @@
-
-
-
 .nav-links{
     list-style-type: none;
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
-    margin-top: 1rem;
-        
+    margin-top: 1rem;       
 }
 
 .nav-links a{
-    display: block;
-    
+    display: block;   
 }
 
 .nav-links a:hover{
@@ -20,8 +15,7 @@
 }
 
 .nav-links svg{
-    margin-right: 10px;
-    
+    margin-right: 10px;   
 }
 
 .navbar{
@@ -35,8 +29,7 @@
     padding: 20px;
     left: -100%;
     transition : all 0.9s;
-    background-color: var(--color1);
-    
+    background-color: var(--color1);   
 }
 
 .navbar.active{
@@ -63,8 +56,6 @@
     
      
 }
-
-
 
 .logout{
     padding: 0.3rem 0.5rem;

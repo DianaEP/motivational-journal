@@ -6,7 +6,6 @@ import { IoHomeOutline } from "react-icons/io5";
 import { LuBookLock } from "react-icons/lu";
 import { MdOutlineEditCalendar } from "react-icons/md";
 import { TbCards } from "react-icons/tb";
-import { IoIosList } from "react-icons/io";
 import { RiUserHeartLine } from "react-icons/ri";
 import PropTypes from "prop-types";
 import { useContext } from "react";
@@ -47,14 +46,12 @@ export default function Nav({showNav}) {
                       <Link to="/journal"><LuBookLock />Journal</Link>
                     </li>
                     <li>
-                      <Link to="/bravery-planner"><MdOutlineEditCalendar />Bravery Planner</Link>
-                    </li>
-                    <li>
                       <Link to="/motivational-cards"><TbCards />Motivational Cards</Link>
                     </li>
                     <li>
-                      <Link to="/list-books"><IoIosList />Books List</Link>
+                      <Link to="/bravery-planner"><MdOutlineEditCalendar />Bravery Planner</Link>
                     </li>
+                    
                 </ul>
               </div>
               

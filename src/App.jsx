@@ -4,7 +4,6 @@ import Nav from "./components/nav/Nav";
 import Journal from "./components/journal/Journal";
 import BraveryPlanner from "./components/bravery-planner/BraveryPlanner";
 import MotivationalCards from "./components/motivational-board/MotivationalCards";
-import ListBooks from "./components/list-books/ListBooks";
 import HomePage from "./components/home-page/HomePage";
 import Header from "./components/header/Header";
 import Login from "./components/authentication/login/Login";
@@ -84,9 +83,10 @@ function App() {
               <Route path="/user-details" element={<PrivateRoute element={<UserDetails />} />} />
               <Route path="/journal" element={<PrivateRoute element={<Journal />} />}></Route>
               <Route path="/journal/:id" element={<PrivateRoute element={<UpdateDeleteJournalInput />} />}></Route>
-              <Route path="/bravery-planner" element={<PrivateRoute element={<BraveryPlanner />} />}></Route>
               <Route path="/motivational-cards" element={<PrivateRoute element={<MotivationalCards />} />}></Route>
-              <Route path="/list-books" element={<PrivateRoute element={<ListBooks />} />}></Route>  
+              <Route path="/bravery-planner" element={<PrivateRoute element={<BraveryPlanner />} />}></Route>
+              
+              
 
             </Routes>
           </div>

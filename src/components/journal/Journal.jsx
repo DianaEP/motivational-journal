@@ -113,10 +113,10 @@ export default function Journal() {
                 <input className="input-field"
                        type="date"
                        name="date"
-                       id="date" 
+                       id="date"
                        value={newInput.date} 
                        onChange = {dateChange}
-                       required/>
+                       />
                 
               </fieldset>
               
@@ -130,7 +130,6 @@ export default function Journal() {
                 
 
                 <label className="label-text" htmlFor="grateful">Today I am grateful for</label>
-                {/* <div className="top-line"></div> */}
                 <textarea className="textarea"
                           name="grateful" 
                           id="grateful" 
@@ -142,7 +141,6 @@ export default function Journal() {
 
               <fieldset className="fieldset ">
                 <label className="label-text" htmlFor="proud">Today I am proud of</label>
-                {/* <div className="top-line"></div> */}
                 <textarea className="textarea" 
                           name="proud"
                           id="proud" 
@@ -156,7 +154,6 @@ export default function Journal() {
                 
 
                 <label className="label-text" htmlFor="lookForward">Today I look forward to</label>
-                {/* <div className="top-line"></div> */}
                 <textarea className="textarea" 
                           name="lookForward" 
                           id="lookForward" 
@@ -171,7 +168,6 @@ export default function Journal() {
             <div className="second-section">
             <fieldset className="fieldset">
               <label className="label-text" htmlFor="notes">Notes</label>
-              {/* <div className="top-line"></div> */}
               <textarea className="textarea t-notes" 
                         name="notes" 
                         id="notes" 

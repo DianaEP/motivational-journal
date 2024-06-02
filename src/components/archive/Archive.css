@@ -1,4 +1,4 @@
-/* CSS (alert-parent, animated, alert-btn) from alert component */
+/* CSS (alert-parent, animated, alert-btn) are classes used from alert component */
 
 .archive-box{
     width: 50rem;
@@ -6,7 +6,6 @@
     background: var(--background-gradient);
     color: var(--color3font);
     padding: 20px;
-    /* margin-top: 10rem; */
     border-radius: 10px;
     box-shadow: 0 0 25px var(--color1);
     display: flex;
@@ -14,7 +13,6 @@
     justify-content: space-between;
     align-items: center;
     row-gap: 2rem;
-    /* transition: transform 0.8s ease; */
   }
 
   .archive-box h1{
