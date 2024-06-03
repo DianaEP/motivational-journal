@@ -11,10 +11,8 @@ import useConfirm from "../custom-boxes/confirm-box/ConfirmBox";
 export default function UpdateDeleteJournalInput(){
     const {userAuth} = useContext(UserAuthContext);
     const { showConfirm, ConfirmComponent } = useConfirm();
-
-
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { id } = useParams(); //extract parameter from URL
   
     const [input, setInput] = useState(null);
     const [editedInput, setEditedInput] = useState({
@@ -25,14 +23,11 @@ export default function UpdateDeleteJournalInput(){
       notes: ''
     });
 
-
-
     useEffect(() => {
       if(userAuth){
         retrieveOneJournalInput(id, setInput, setEditedInput, userAuth, navigate )
             .catch((error) => console.error('Error fetching journal entry:', error));
-      }
-        
+      }    
     }, [id,userAuth,navigate]);
   
   
@@ -48,7 +43,6 @@ export default function UpdateDeleteJournalInput(){
       e.preventDefault();
       navigate('/journal');
     }
-
 
     // PUT update the current input
 
@@ -75,9 +69,8 @@ export default function UpdateDeleteJournalInput(){
           } else {
             console.log('Entry deletion canceled by user.');
           }
-          }
-            
-        }
+        }      
+      }
      
 
 
@@ -90,8 +83,6 @@ export default function UpdateDeleteJournalInput(){
       return <p>Loading...</p>; // Display loading message while fetching data
     }
   
-    
-  
     return(
       <>
         <div className="form-elem" >
@@ -101,7 +92,7 @@ export default function UpdateDeleteJournalInput(){
           </div>
           
           <form className="form-journal" >
-  
+
             <div className="date-container">
                 <fieldset className="fieldset-date">
                   <label className="label-text" htmlFor="date">Date</label>
@@ -118,10 +109,7 @@ export default function UpdateDeleteJournalInput(){
             <div className="sections">
               
               <div className="first-section">
-                
                 <fieldset className="fieldset parent-position">
-                  
-  
                   <label className="label-text" htmlFor="grateful">Today I am grateful for</label>
                   <textarea className="textarea"
                             name="grateful" 
@@ -144,8 +132,6 @@ export default function UpdateDeleteJournalInput(){
                 </fieldset>
   
                 <fieldset className="fieldset parent-position">
-                  
-  
                   <label className="label-text" htmlFor="lookForward">Today I look forward to</label>
                   <textarea className="textarea" 
                             name="lookForward" 
@@ -154,36 +140,31 @@ export default function UpdateDeleteJournalInput(){
                             rows="10"
                             value={editedInput.lookForward} 
                             onChange = {inputChange}></textarea>
-                    
                 </fieldset>
               </div>
   
   
               <div className="second-section">
-              <fieldset className="fieldset parent-position">
-                <label className="label-text" htmlFor="notes">Notes</label>
-                <textarea className="textarea t-notes" 
-                          name="notes" 
-                          id="notes" 
-                          cols="30" 
-                          rows="10"
-                          value={editedInput.notes} 
-                          onChange = {inputChange} ></textarea>
-              </fieldset>
+                <fieldset className="fieldset parent-position">
+                  <label className="label-text" htmlFor="notes">Notes</label>
+                  <textarea className="textarea t-notes" 
+                            name="notes" 
+                            id="notes" 
+                            cols="30" 
+                            rows="10"
+                            value={editedInput.notes} 
+                            onChange = {inputChange} ></textarea>
+                </fieldset>
+              </div>
             </div>
-            </div>
-  
-           
   
             <div className="buttons-container">
-            <button className="button" onClick={userUpdate}>Update</button>
-            <button className="button" onClick={(e)=>userDeleteClick(id,e)}>Delete</button>
+              <button className="button" onClick={userUpdate}>Update</button>
+              <button className="button" onClick={(e)=>userDeleteClick(id,e)}>Delete</button>
             </div>
           </form>
           <ConfirmComponent/>
         </div>
       </>
-    )
-  
-  
+    )  
 }

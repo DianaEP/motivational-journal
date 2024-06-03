@@ -28,15 +28,6 @@
       "userId": 1
     },
     {
-      "id": "47095de8-1ae6-45bf-939a-14d7f14557c4",
-      "date": "2024-05-04",
-      "grateful": "new ",
-      "proud": "newwww",
-      "lookForward": "newwww",
-      "notes": "newwwww something ",
-      "userId": 1
-    },
-    {
       "id": "fb38987b-8926-4d87-b49a-be81c5a775c6",
       "date": "2024-05-31",
       "grateful": "The warm cup of coffee I had this morning that helped me start my day off right.\nThe beautiful sunrise I saw on my way to work that reminded me of the beauty in nature.\nThe supportive friends and family in my life who are always there for me when I need them.",
@@ -82,18 +73,6 @@
       "id": "34e0e1bf-cf64-4169-86c1-69d1c7786f1a",
       "text": "something",
       "completed": true,
-      "userId": 1
-    },
-    {
-      "id": "5a711596-61b7-45db-966b-6e9593ead022",
-      "text": "something new",
-      "completed": true,
-      "userId": 1
-    },
-    {
-      "id": "1115cb41-c824-4750-9c04-ee6807dd8330",
-      "text": "something new",
-      "completed": false,
       "userId": 1
     },
     {

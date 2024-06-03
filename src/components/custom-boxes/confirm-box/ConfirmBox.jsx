@@ -31,16 +31,14 @@ export default function useConfirm(){
     }
 
     function userConfirm(){
-        if(confirm.accept){
-            confirm.accept(true)
-        }
+
+        confirm.accept(true)
         hideConfirm();
     }
 
     function userCancel(){
-        if(confirm.cancel){
-            confirm.cancel(false)
-        }
+        
+        confirm.cancel(false)
         hideConfirm();
     }
 

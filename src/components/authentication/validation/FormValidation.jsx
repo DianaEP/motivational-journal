@@ -9,7 +9,8 @@ export default function FormValidation({data, setData}){
 
   const inputChange = (e) => {
     const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    const trimmedValue = value.trim();
+    setData({ ...data, [name]: trimmedValue });
   };
 
   const validateData = () =>{

@@ -7,7 +7,6 @@ export default function PrivateRoute({ element}){
     const { userAuth } = useContext(UserAuthContext);
 
     return userAuth ? element : <Navigate to="/login" />;
-
 }
 
 PrivateRoute.propTypes = {

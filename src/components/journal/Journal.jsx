@@ -9,14 +9,11 @@ import useAlert from "../custom-boxes/alert-box/AlertBox";
 import useArchive from "../archive/Archive";
 
 
-
-
 export default function Journal() {
   const { showAlert, AlertComponent } = useAlert();
-
   const { showArchiveComponent, ArchiveComponent } = useArchive();
-  
   const {userAuth} = useContext(UserAuthContext);
+  const navigate = useNavigate();
 
   const [journalInputs, setJournalInputs] = useState([]);
   
@@ -29,10 +26,6 @@ export default function Journal() {
     "notes" : ""
   });
 
-  const navigate = useNavigate();
-
-
-
 
   useEffect(()=>{
     if(userAuth){
@@ -44,8 +37,13 @@ export default function Journal() {
     
   },[userAuth, navigate])
 
- 
-
+  const inputChange = (e) => {
+    const { name, value } = e.target;
+    setNewInput((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   // Search for existing input by date if exist 
   const dateChange = (e) => {
@@ -60,16 +58,6 @@ export default function Journal() {
       navigate(`/journal/${existingInput.id}`);
     }
   };
-
-
-  const inputChange = (e) => {
-    const { name, value } = e.target;
-    setNewInput((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
 
   // POST a new input 
 
@@ -117,18 +105,13 @@ export default function Journal() {
                        value={newInput.date} 
                        onChange = {dateChange}
                        />
-                
-              </fieldset>
-              
-            </div>
+              </fieldset>  
+          </div>
 
           <div className="sections">
-            
             <div className="first-section">
-              
-              <fieldset className="fieldset ">
-                
 
+              <fieldset className="fieldset ">
                 <label className="label-text" htmlFor="grateful">Today I am grateful for</label>
                 <textarea className="textarea"
                           name="grateful" 
@@ -151,8 +134,6 @@ export default function Journal() {
               </fieldset>
 
               <fieldset className="fieldset ">
-                
-
                 <label className="label-text" htmlFor="lookForward">Today I look forward to</label>
                 <textarea className="textarea" 
                           name="lookForward" 
@@ -164,22 +145,19 @@ export default function Journal() {
               </fieldset>
             </div>
 
-
             <div className="second-section">
-            <fieldset className="fieldset">
-              <label className="label-text" htmlFor="notes">Notes</label>
-              <textarea className="textarea t-notes" 
-                        name="notes" 
-                        id="notes" 
-                        cols="30" 
-                        rows="10"
-                        value={newInput.notes} 
-                        onChange = {inputChange} ></textarea>
-            </fieldset>
+              <fieldset className="fieldset">
+                <label className="label-text" htmlFor="notes">Notes</label>
+                <textarea className="textarea t-notes" 
+                          name="notes" 
+                          id="notes" 
+                          cols="30" 
+                          rows="10"
+                          value={newInput.notes} 
+                          onChange = {inputChange} ></textarea>
+              </fieldset>
           </div>
           </div>
-
-         
 
           <div className="buttons-container">
             <button className="button" type="submit" onClick={userSubmit}>Save</button> 
@@ -190,8 +168,6 @@ export default function Journal() {
             <button onClick={showArchiveComponent} className="button">Show Archive</button>
         </div>
 
-
-        
         <AlertComponent/>
         <ArchiveComponent journalInputs={journalInputs} />
       </div>

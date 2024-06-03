@@ -12,10 +12,10 @@ import { deleteUser, updateUser } from "../../../fetch/fetch";
 import useConfirm from "../../custom-boxes/confirm-box/ConfirmBox";
 import useAlert from "../../custom-boxes/alert-box/AlertBox";
 
+
 export default function UserDetails() {
   const { showConfirm, ConfirmComponent } = useConfirm();
   const { showAlert, AlertComponent } = useAlert();
-
 
   const { userAuth, setUserAuth } = useContext(UserAuthContext);
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function UserDetails() {
 
   // PUT update user details
 
-function updateUserDetails(e){
+  function updateUserDetails(e){
     e.preventDefault();
 
     if( userDetails.password !== userDetails.confirmPassword){
@@ -50,7 +50,8 @@ function updateUserDetails(e){
   }
 
   // DELETE delete user account
-async function deleteUserAccount(e){
+
+  async function deleteUserAccount(e){
     e.preventDefault();
 
     try{
@@ -153,7 +154,6 @@ async function deleteUserAccount(e){
                 <button className="btn user_details-btn" onClick={deleteUserAccount}>Delete account</button>
               </div>
               
-
             </form>
           </div>
         </div>

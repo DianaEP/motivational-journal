@@ -32,9 +32,6 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
     deleteTask(task)
   }
 
-  
-  
-
   return (
     <>
       <div className="to-do-list">
@@ -57,14 +54,11 @@ export default function ToDoList({tasks, addTask, updateTask, deleteTask}) {
                     <div>
                       <IoMdDoneAll  className="item-update update-checked" onClick={(e) => userUpdateTask(e, task)}/>
                       <RiDeleteBin5Line className="item-update update-delete" onClick={(e) => userDeleteTask(e, task)}/>
-                    </div>
-                    
-                </li>
-                
+                    </div>   
+                </li>  
             )}
         </ul>
       </div>
-
     </>
   );
 }

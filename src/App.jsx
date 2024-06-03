@@ -23,10 +23,6 @@ function App() {
   // show navbar or not on components
   const [showNav, setShowNav] = useState(false);
 
-
-
-  // Finally
-  
 // checks if the user is already authenticated (from a previous session) and sets the userAuth state based on the saved data.
   const [userAuth, setUserAuth] = useState(() => {
     const token = localStorage.getItem('accessToken');
@@ -57,14 +53,7 @@ function App() {
   }, [userAuth]);
 
 
-
-
- 
-
   const showNavbar = () => setShowNav(!showNav);
-
-  console.log({userAuth});
-
 
   return (
     <>
@@ -85,22 +74,14 @@ function App() {
               <Route path="/journal/:id" element={<PrivateRoute element={<UpdateDeleteJournalInput />} />}></Route>
               <Route path="/motivational-cards" element={<PrivateRoute element={<MotivationalCards />} />}></Route>
               <Route path="/bravery-planner" element={<PrivateRoute element={<BraveryPlanner />} />}></Route>
-              
-              
-
             </Routes>
           </div>
           
           <HideFooter>
               <Footer/>
           </HideFooter>
-          
         </div>
-          
-
       </UserAuthContext.Provider>
-      
-      
     </>
   );
 }

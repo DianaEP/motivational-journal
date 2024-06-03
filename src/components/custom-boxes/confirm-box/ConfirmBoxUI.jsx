@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 
 export default function ConfirmBox({message, onCancel, onConfirm}) {
 
-
-  
   return (
     <>
       <div className="alert-parent">

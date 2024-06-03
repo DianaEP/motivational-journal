@@ -26,12 +26,8 @@ export default function Register() {
     "confirmPassword" : ''
   })
 
-  
-
   const { errors, valid, inputChange, validateData } = FormValidation({ data: dataRegister, setData: setDataRegister });
   const {confirmPassword, ...restUserData} = dataRegister;
-  // const userDataRegistration = {firstName, lastName, email, password}
-    
 
   function userRegister(e){
     e.preventDefault();
@@ -41,15 +37,12 @@ export default function Register() {
       return; 
     }
   
-    // Object.keys(validationErrors).length === 0
     if(validateData()){
        registerUser(restUserData, navigate, showAlert).catch((error) =>
          console.error('Error register:', error)
        );
      } 
    }
-
-
 
     return (
       <>
@@ -124,7 +117,6 @@ export default function Register() {
                       {valid ? <></> : <span className='input-error'>{errors.confirmPassword}</span>}
                     </div>
                     
-
                     <button className='btn'>Register</button>
 
                     <div className="link-text">

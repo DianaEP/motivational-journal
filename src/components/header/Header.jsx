@@ -6,13 +6,9 @@ import PropTypes from "prop-types";
 
 export default function Header({showNavbar}){
     
-
-    
     return(
         <header className="header">
-                <GiHamburgerMenu onClick={showNavbar}/> 
-                
-                
+                <GiHamburgerMenu onClick={showNavbar}/>        
         </header>
     )
 }

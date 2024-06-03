@@ -26,7 +26,6 @@ export default function Login() {
 
   function userLogin(e){
     e.preventDefault();
-    // debugger
     if(validateData()){
       loginUser(dataLogin, setUserAuth, navigate, showAlert).catch((error) =>
         console.error('Error login:', error)
@@ -64,13 +63,6 @@ export default function Login() {
                       <MdLockOutline />
                       {valid ? <></> : <span className='input-error'>{errors.password}</span>}
                     </div>
-
-                    {/* <div className="login-details">
-                      <p className='forgot-password'>Forgot password?</p>
-
-                    </div> */}
-
-                    
 
                     <button className='btn'>Login</button>
 

@@ -23,8 +23,6 @@ export default function MotivationalCards() {
   const {userAuth} = useContext(UserAuthContext);
   const navigate = useNavigate();
  
-
-  // create card on click button
   const [cards, setCards] = useState([]);
 
   useEffect(()=>{
@@ -44,13 +42,13 @@ export default function MotivationalCards() {
     setCards(updatedCards);
   };
 
-  // create card on click button
+  // create a new card 
   const addNewCard = () => {
     const newCard = {
       id: uuidv4(),
       name: "",
       text: "",
-      showStyleButtons: false, //add the showStyleButtons property
+      showStyleButtons: false, 
       font: false,
       rotation: 'none',
       image: null
@@ -59,18 +57,17 @@ export default function MotivationalCards() {
   };
 
 
-
   // image with base64
   const imageChange = (e, cardId) => {
     const file = e.target.files[0]; //retrieves the first file selected by the user in the file input
     console.log(e.target.files);
-    if (file) { // file was indeed selected by the user
+    if (file) { 
       const reader = new FileReader(); // read the contents of files asynchronously
       reader.onloadend = () => { //event handler that fires when the reading operation is completed
         const updatedCards = cards.map((card) =>
           card.id === cardId ? { ...card, image: reader.result } : card //contains the data URL representing the file's data as a base64 encoded string
         );
-        setCards(updatedCards); //updates the state where the specified card's image has been updated
+        setCards(updatedCards); 
       };
       reader.readAsDataURL(file); //reader to start reading the contents of the specified file as a data URL
     }
@@ -78,6 +75,7 @@ export default function MotivationalCards() {
 
 
   // hide or show the buttons only on the card you pressed the buttons
+
   const toggleButtons = (cardId) => {
     const updateButtons = cards.map((card) =>
         card.id === cardId? { ...card, showStyleButtons: !card.showStyleButtons }: card); // toggle between false and true
@@ -87,28 +85,24 @@ export default function MotivationalCards() {
 
 
   // toggle between fonts 
-  
+
   const toggleFont = (cardId) => {
     const updateFont = cards.map((card) =>
         card.id === cardId? { ...card, font: !card.font }: card); // toggle between false and true
     setCards(updateFont);
   };
 
-
-
   // toggle between rotation card
+
   const toggleRotation = (cardId) => {
     const updateRotation = cards.map((card) =>
         card.id === cardId? { ...card, 
                               rotation: card.rotation === 'none' ? 'left' : card.rotation === 'left' ? 'right' : 'none' 
                             }
-                            : card); // toggle between 0 10
+                            : card); // toggle between none left right
       
     setCards(updateRotation);
   };
-
- 
-
 
 
 // POST
@@ -116,8 +110,7 @@ export default function MotivationalCards() {
   async function saveCard(e, cardId){
     e.preventDefault();
     const card = cards.find((c) => c.id === cardId);
-    if (card) {
-      // at least one input field is filled
+    if (card) { 
       if (card.name.trim() !== '' || card.text.trim() !== '') {
         await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
       } else {
@@ -125,9 +118,6 @@ export default function MotivationalCards() {
       }
     }
   }
-
-
-
 
 // PUT
 
@@ -138,7 +128,6 @@ async function updateCard(e, cardId){
     await cardUpdate({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
   }
 }
-
 
 // DELETE
 
@@ -155,7 +144,7 @@ async function deleteCard(e, cardId){
     } else {
       console.log('Card deletion canceled by user.');
     }
-    }
+  }
 }
 
   return (
@@ -164,6 +153,7 @@ async function deleteCard(e, cardId){
         <div className="board-intro">
           <img src={minimalist} alt="tree" className="journal-image" />
           <h1>Motivational Cards</h1>
+
           <div className="create">
             <p>Life is to <span>short</span> to dream small.</p>
             <MdKeyboardDoubleArrowRight />
@@ -185,16 +175,14 @@ async function deleteCard(e, cardId){
                                       <SlCloudUpload />
                                       Upload image
                                   </div>
-                              </div>} {/* Only show image if it exists */}
+                              </div>} 
                 
                 <input type="file" 
                        title = ''
                        className="input-file"
                        name="file" 
                        onChange={(e) => imageChange(e, card.id)} 
-                       accept="image/*" /> {/* Image upload input */}
-                
-                
+                       accept="image/*" />   
               </div>
                  
               <input

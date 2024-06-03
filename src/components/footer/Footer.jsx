@@ -12,7 +12,6 @@ export default function Footer(){
         <>
             <footer className='footer'>
                 <div className="app-info">
-                    
                     <Link to="/"><IoHomeOutline />Home</Link>
                 </div>
 
@@ -38,8 +37,7 @@ export default function Footer(){
 
                     <div className="footer-bottom">
                         <p>&copy; {new Date().getFullYear()} About Me App. All rights reserved.</p>
-                    </div>
-                    
+                    </div>  
                 </div>
             </footer>
         </>
