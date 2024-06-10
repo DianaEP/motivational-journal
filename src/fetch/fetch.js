@@ -3,7 +3,7 @@
 
 
 
-  export async function registerUser(restUserData, navigate, showAlert){
+  export async function registerUser(restUserData,setUserAuth, navigate, showAlert){
     try{
       const response = await fetch("http://localhost:3000/register", {
         method: "POST",
@@ -18,13 +18,37 @@
           showAlert(`A user with this email address already exists. `); // alert box
         }
         return;    
-     
       }
 
-      showAlert("Registration Successfully"); // alert box
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000);   
+      const body = await response.json();
+      if(body.accessToken && body.user){
+        localStorage.setItem('accessToken', body.accessToken);
+        localStorage.setItem('userAuth', JSON.stringify({
+                   token: body.accessToken,
+                   userId: body.user.id,
+                   firstName: body.user.firstName,
+                   lastName: body.user.lastName,
+                   email: body.user.email,
+                }));
+
+        setUserAuth({
+                   token : body.accessToken, 
+                   userId: body.user.id, 
+                   firstName : body.user.firstName, 
+                   lastName : body.user.lastName, 
+                   email: body.user.email
+                  });
+                  
+        // update both the state and local storage
+        showAlert("Registration Successfully"); // alert box
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);   
+      }
+
+      
+
+      
     }catch(error){
       console.log('Error adding entry:', error.message);
     } 
@@ -104,10 +128,12 @@ export async function updateUser(userAuth, userDetails, setUserAuth, navigate,sh
         if (response.ok) {
           const updatedUser = await response.json();
 
-          setUserAuth(updatedUser); // Update context with new user data
+          setUserAuth({... userAuth,
+                       ...updatedUser}); // Update context with new user data
+
           showAlert('Your changes have been successfully saved. ')
           setTimeout(() => {
-            navigate('/login');
+            navigate('/');
           }, 2000);
         } 
       }catch (error) {
@@ -298,7 +324,7 @@ export async function retrieveCards(userId,setCards, userAuth, navigate ){
 
 // POST new card
 
-export async function cardSubmit(card, userAuth, setCards,showAlert){
+export async function cardSubmit(card, userAuth, setCards){
     try {
       const response = await fetch('http://localhost:3000/cards', {
         method: 'POST',
@@ -309,10 +335,7 @@ export async function cardSubmit(card, userAuth, setCards,showAlert){
         body: JSON.stringify(card)
       });
       if (!response.ok) {
-        if(response.status === 500){
-          showAlert('This card has been saved already! Press update if you want to save the changes.'); // alert box 
-            return;
-        }
+        throw new Error(response.statusText)
       }
   
       const data = await response.json();
@@ -331,7 +354,7 @@ export async function cardSubmit(card, userAuth, setCards,showAlert){
 
 // PUT update card
 
-export async function cardUpdate(card, userAuth, setCards,showAlert){
+export async function cardUpdate(card, userAuth, setCards){
     try {
       const response = await fetch(`http://localhost:3000/cards/${card.id}`, {
         method: 'PUT',
@@ -343,10 +366,7 @@ export async function cardUpdate(card, userAuth, setCards,showAlert){
       });
   
       if (!response.ok) {
-        if(response.status === 404){
-          showAlert("You cannot update this card! You have to save it first."); //alert box
-            return;
-        }
+          throw new Error(response.statusText)
       }
   
       const data = await response.json();

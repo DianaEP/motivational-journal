@@ -5,16 +5,17 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import FormValidation from '../validation/FormValidation';
 import { registerUser } from '../../../fetch/fetch';
 import useAlert from '../../custom-boxes/alert-box/AlertBox';
+import { UserAuthContext } from '../../../App';
 
 
 
 export default function Register() {
   const navigate = useNavigate()
-
+  const {setUserAuth} = useContext(UserAuthContext);
   const { showAlert, AlertComponent } = useAlert();
 
 
@@ -27,10 +28,11 @@ export default function Register() {
   })
 
   const { errors, valid, inputChange, validateData } = FormValidation({ data: dataRegister, setData: setDataRegister });
-  const {confirmPassword, ...restUserData} = dataRegister;
+  
 
   function userRegister(e){
     e.preventDefault();
+    const {confirmPassword, ...restUserData} = dataRegister;
 
     if( dataRegister.password !== confirmPassword){
       showAlert("Passwords don't match!"); // alert box
@@ -38,7 +40,7 @@ export default function Register() {
     }
   
     if(validateData()){
-       registerUser(restUserData, navigate, showAlert).catch((error) =>
+       registerUser(restUserData,setUserAuth, navigate, showAlert).catch((error) =>
          console.error('Error register:', error)
        );
      } 

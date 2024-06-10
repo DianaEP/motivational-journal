@@ -51,7 +51,8 @@ export default function MotivationalCards() {
       showStyleButtons: false, 
       font: false,
       rotation: 'none',
-      image: null
+      image: null,
+      status: 'new'
     };
     setCards([...cards, newCard]);
   };
@@ -105,29 +106,26 @@ export default function MotivationalCards() {
   };
 
 
-// POST
+// POST and PUT
   
   async function saveCard(e, cardId){
     e.preventDefault();
     const card = cards.find((c) => c.id === cardId);
     if (card) { 
       if (card.name.trim() !== '' || card.text.trim() !== '') {
-        await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
+        
+        if(card.status === 'new'){
+          card.status = 'saved';
+          await cardSubmit({ ...card, userId: userAuth.userId }, userAuth, setCards);   
+        } else {
+          await cardUpdate({ ...card, userId: userAuth.userId }, userAuth, setCards);
+        }  
       } else {
         showAlert('Please write something on your card.'); // alert box 
       }
     }
   }
 
-// PUT
-
-async function updateCard(e, cardId){
-  e.preventDefault();
-  const card = cards.find((c) => c.id === cardId);
-  if (card) {
-    await cardUpdate({ ...card, userId: userAuth.userId }, userAuth, setCards,showAlert);
-  }
-}
 
 // DELETE
 
@@ -212,7 +210,6 @@ async function deleteCard(e, cardId){
                   </div>
 
                   <button onClick={(e) => saveCard(e, card.id)} >Save</button>
-                  <button onClick={(e) => updateCard(e, card.id)}>Update</button>
                   <button onClick={(e) => deleteCard(e, card.id)}>Delete</button>
                 </div>
               </div>

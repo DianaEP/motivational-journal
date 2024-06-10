@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "firstName": "Mayan",
+      "firstName": "Mayana",
       "lastName": "Smith",
       "email": "test@gmail.com",
-      "password": "$2a$10$CVlIz3mFsCT2XgsksnCX6uZLquv34uqokbkkB3/.W0H4kbGqQne1C",
+      "password": "$2a$10$6VCHL1wrGSrfAW4UG.x0QutZSKh1kwFhZ5InDP5mbjKRg9QyGXswa",
       "confirmPassword": "1234",
       "id": 1
     },
@@ -15,6 +15,13 @@
       "password": "$2a$10$fBFVbw00A/rs1oFNJ/ePp.PLB0UDBj/b5oyRheIwDGB2/SHdauB9y",
       "confirmPassword": "12345",
       "id": 2
+    },
+    {
+      "email": "test3@gmail.com",
+      "password": "$2a$10$uJcDnhQufjeTqCZv.kZn0ufUPy/y6DlV90lmKNvYSt3CBTriDeJwm",
+      "firstName": "Stafania",
+      "lastName": "Ionescu",
+      "id": 3
     }
   ],
   "journalInputs": [
@@ -49,8 +56,8 @@
   "cards": [
     {
       "id": "ff6ad8ae-6fab-4bd2-8262-91f0595fc933",
-      "name": "something",
-      "text": "",
+      "name": "something ",
+      "text": "i changed it help",
       "showStyleButtons": true,
       "font": false,
       "rotation": "right",
