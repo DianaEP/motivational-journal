@@ -9,4 +9,8 @@
 }
 
 
-
+@media (min-width: 1200px){
+  #desktop-hidden{
+    display: none;
+}
+}

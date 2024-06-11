@@ -60,11 +60,13 @@ function App() {
       <UserAuthContext.Provider value={{userAuth, setUserAuth}}>
         <div className="app-container">
           <div className="content-wrap">
-            <HideNavbar>
+            <HideNavbar className='extra'>
               <Header showNavbar={showNavbar} showNav={showNav}/>
-              <Nav showNav={showNav}/>
+              <div id='desktop-hidden'>
+                  <Nav showNav={showNav}/>
+              </div>  
             </HideNavbar>
-      
+            
             <Routes>
               <Route path="/login" element={< Login/>}></Route>
               <Route path="/register" element={<Register/>}></Route>
@@ -80,6 +82,7 @@ function App() {
           <HideFooter>
               <Footer/>
           </HideFooter>
+          
         </div>
       </UserAuthContext.Provider>
     </>

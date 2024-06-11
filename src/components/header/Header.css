@@ -8,11 +8,18 @@
 }
 
 
-.header svg{
+.header-svg{
     margin-left: 1rem;
     color: var(--color1-gray);
     cursor: pointer;
+    
 }
 
+@media(min-width: 1200px) {
+    .header-svg{
+        display: none;
+    }
+   
+}
 
 

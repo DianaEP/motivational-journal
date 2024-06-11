@@ -26,8 +26,8 @@ export default function Nav({showNav}) {
     
   return (
       <>
-        <nav className={showNav ? 'navbar active' : 'navbar'} > 
-            <div>
+        <nav className={showNav ? 'navbar active' : 'navbar' } > 
+            <div className="logo-links">
               <div className="logos">
                 <img src={logo} alt="Logo" className="logo-one" />
                 <img src={logo2} alt="Logo" className="logo-two" />

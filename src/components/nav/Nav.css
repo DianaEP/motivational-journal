@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
-    margin-top: 1rem;       
+    margin-top: 1rem;
+    height: 24px;       
 }
 
 .nav-links a{
@@ -12,6 +13,7 @@
 
 .nav-links a:hover{
     box-shadow: 0 1px 5px var(--color4);
+    padding: 4px 9px;
 }
 
 .nav-links svg{
@@ -74,6 +76,78 @@
 .logout:hover{
     background-color: var(--color1-gray);
     transition-duration: 0.2s;
+}
+
+@media(min-width:1200px){
+     .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        position: static;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+        
+      } 
+
+      
+
+      .logo-links{
+        display: flex;
+        align-items: center;
+        column-gap: 4rem;
+      }
+
+      .logos {
+        margin-right: 2rem;
+      }
+    
+      .logout {
+        margin-bottom: 0;
+        padding: 0.2rem 0.5rem;
+      }
+    
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        /* row-gap: 0; */
+        margin-top: 0;
+        
+      }
+    
+      .nav-links li {
+        margin-right: 2rem;
+        
+      }
+    
+      .nav-links a {
+        display: inline-block;
+        font-size: 1rem;
+      }
+    
+      .navbar.active {
+        left: 0;
+      }
+
+    .logo-one{
+        width:30px;
+        position: absolute;   
+        bottom: 2px;  
+    }
+    
+    .logo-two{
+        width:30px; 
+        position: absolute;
+        left:9px;
+        top: -15px;    
+    }
+
+    .nav-links svg{
+      margin-right: 10px;   
+  }
+    
 }
 
 
