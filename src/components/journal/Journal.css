@@ -253,6 +253,9 @@
 
 
   @media(max-width:990px){
+    .journal-title{
+        font-size: 3rem;
+    }
     
     .textarea{
         width:200px;
